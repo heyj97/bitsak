@@ -1,14 +1,15 @@
 // 담당: 정주현
 
-import TopPhoto from "./TopPhoto";
+import HomepageTopPhoto from "./HomepageTopPhoto";
+import HomepageBotMenu from "./HomepageBotMenu";
 
 const HomePage = () => {
-    return (
-        <>
-        <TopPhoto />
-         <div>Homepage Component</div>
-        </>
-    )
-}
+  return (
+    <>
+      <HomepageTopPhoto />
+      <HomepageBotMenu />
+    </>
+  );
+};
 
 export default HomePage;
