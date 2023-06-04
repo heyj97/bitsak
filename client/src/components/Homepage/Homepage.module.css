@@ -1,78 +1,48 @@
-.poemBox {
-  width: fit-content;
+.homeContainer {
   height: fit-content;
-  margin: auto;
+  background-color: black;
 }
 
-.poemTitle,
-.poemDesc {
-  color: white;
-  text-align: center;
-}
-
-.poemTitle {
-  font-size: 50px;
-  padding: 120px 0 0 0;
-}
-
-.poemDesc {
-  font-size: 25px;
-  padding: 50px 0 0 0;
-  text-align: left;
-}
-
-.backgroundImg {
+.homeImgFrame {
   width: 100%;
-  height: 1000px;
-  object-fit: cover;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
+  height: 640px;
+  overflow: hidden;
 }
 
-.imgCover {
+.homepageImg {
   width: 100%;
-  height: 1000px;
-  background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  min-width: 1200px;
+  position: relative;
+  opacity: 0.5;
+}
+
+.homepageFlexContainer {
+  display: flex;
+  height: 300px;
+  width: 100%;
+  min-width: 730px;
 }
 
 .menuBox {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  margin-top: 280px;
-  gap: 70px;
+  flex-grow: 1;
+  height: 100%;
+  text-align: center;
+  background: transperent;
+  overflow: hidden;
+  position: relative;
+  transition: background-color 0.2s ease-in-out;
 }
 
-.linkBtn {
-  width: 300px;
-  height: 400px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  background: linear-gradient(
-    to bottom,
-    rgba(51, 51, 51, 0),
-    rgb(16, 16, 16),
-    rgba(51, 51, 51, 0)
-  );
+.menuBox:first-child:hover {
+  background-color: #eb4034;
 }
-.linkBtnBlur {
-  width: 300px;
-  height: 400px;
-  text-align: center;
-  text-decoration: none;
-  color: white;
-  background: rgba(69, 69, 69, 0.3);
-  backdrop-filter: blur(15px);
-  border-radius: 20px;
+
+.menuBox:nth-child(2):hover {
+  background-color: #41b04a;
+}
+
+.menuBox:hover {
+  background-color: #4157b0;
 }
 
 .menuContents {
@@ -81,13 +51,7 @@
   transform: translateY(-50%);
 }
 
-.menuTitle {
-  font-size: 25px;
-  font-weight: 900;
-}
-
-.menuDesc {
-  margin-top: 20px;
-  font-size: 14px;
-  font-weight: 400;
+.linkBtn {
+  text-decoration: none;
+  color: white;
 }

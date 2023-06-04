@@ -3,11 +3,11 @@
 import AppRouter from "../AppRouter";
 
 const Layout = () => {
-    return (
-        <>
-        <AppRouter />
-        </>
-    )
+  return (
+    <>
+      <AppRouter />
+    </>
+  );
 };
 
 export default Layout;
