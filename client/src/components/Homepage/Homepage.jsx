@@ -6,8 +6,10 @@ import HomepageBotMenu from "./HomepageBotMenu";
 const HomePage = () => {
   return (
     <>
-      <HomepageTopPhoto />
-      <HomepageBotMenu />
+      <div style={{ backgroundColor: "black" }}>
+        <HomepageTopPhoto />
+        <HomepageBotMenu />
+      </div>
     </>
   );
 };
