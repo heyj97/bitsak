@@ -1,7 +1,7 @@
 // 담당: 정주현
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import HomePage from './HomePage/HomePage';
+import HomePage from "./Homepage/Homepage";
 
 const AppRouter = () => {
   return (
@@ -11,6 +11,6 @@ const AppRouter = () => {
       </Routes>
     </Router>
   );
-}
+};
 
 export default AppRouter;
