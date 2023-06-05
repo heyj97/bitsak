@@ -2,12 +2,14 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./Homepage/Homepage";
+import Quiz from "./Quiz/Quiz";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route exact path="/" element={<HomePage />} />
+        <Route path="/Quiz" element={<Quiz />} />
       </Routes>
     </Router>
   );
