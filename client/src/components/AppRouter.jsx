@@ -10,6 +10,7 @@ const AppRouter = () => {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/Quiz" element={<Quiz />} />
+        <Route path="*" element={<div>404 Error</div>} /> {/* 404페이지 추가*/}
       </Routes>
     </Router>
   );
