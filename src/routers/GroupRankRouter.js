@@ -4,5 +4,4 @@ module.exports = app => {
     //랭킹 전체 조회
     app.get('/g20-rank', GroupRank.findAll);
 
-
 };
