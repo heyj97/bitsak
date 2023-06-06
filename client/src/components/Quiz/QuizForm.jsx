@@ -3,7 +3,15 @@ import Question from "./Question";
 
 import styles from "./Quiz.module.css";
 
-const QuizForm = ({ quizNum, quiz, answer, userChoice, setUserChoice }) => {
+const QuizForm = ({
+  quizNum,
+  quiz,
+  answer,
+  correctCount,
+  setCorrectCount,
+  nowPage,
+  setNowPage,
+}) => {
   return (
     <>
       <div className={styles.quizContainer}>
@@ -18,8 +26,10 @@ const QuizForm = ({ quizNum, quiz, answer, userChoice, setUserChoice }) => {
         <Question quizNum={quizNum} quiz={quiz} />
         <AnswerForm
           answer={answer}
-          userChoice={userChoice}
-          setUserChoice={setUserChoice}
+          correctCount={correctCount}
+          setCorrectCount={setCorrectCount}
+          nowPage={nowPage}
+          setNowPage={setNowPage}
         />
       </div>
     </>

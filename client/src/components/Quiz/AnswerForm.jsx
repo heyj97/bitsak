@@ -2,13 +2,18 @@ import { useEffect, useState } from "react";
 
 import styles from "./Quiz.module.css";
 
-const AnswerForm = ({ answer, userChoice, setUserChoice }) => {
+const AnswerForm = ({
+  answer,
+  correctCount,
+  setCorrectCount,
+  nowPage,
+  setNowPage,
+}) => {
   const handleClick = (boolean) => {
     if (boolean === answer) {
-      let arr = [...userChoice];
-      arr.push("Correct");
-      setUserChoice(arr);
+      setCorrectCount(correctCount + 1);
     }
+    setNowPage(nowPage + 1);
   };
   return (
     <div className={styles.answerContainer}>
