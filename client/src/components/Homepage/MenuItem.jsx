@@ -1,19 +1,26 @@
 // 담당: 정주현
 
-import { Link } from "react-router-dom";
 import styles from "./Homepage.module.css";
+import { useNavigate } from "react-router-dom";
 
 const MenuItem = ({ title, url, desc }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (param) => {
+    navigate(`/${param}`);
+  };
+
   return (
     <>
-      <div className={styles.menuBox}>
-        <Link to={url} className={styles.linkBtn}>
-          <div className={styles.menuContents}>
-            <h3 className={styles.menuTitle}>{title}</h3>
-            <h4 className={styles.menuDesc}>{desc}</h4>
-          </div>
-        </Link>
-      </div>
+      <button
+        className={styles.menuBox}
+        onClick={() => {
+          handleClick(url);
+        }}
+      >
+        <h3 className={styles.menuTitle}>{title}</h3>
+        <h4 className={styles.menuDesc}>{desc}</h4>
+      </button>
     </>
   );
 };
