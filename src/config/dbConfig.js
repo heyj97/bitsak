@@ -17,13 +17,4 @@ connection.connect(function (err) {
   });
 
   
-<<<<<<< HEAD
-module.exports = connection;
-=======
 export default connection;
- 
-
- 
-
-
->>>>>>> f38771024a6ffc3699e1ecb3e758edf70e9ad8f3
