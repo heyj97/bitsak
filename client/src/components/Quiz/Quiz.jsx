@@ -1,23 +1,33 @@
 import { useEffect, useState } from "react";
+import QuizForm from "./QuizForm";
+import { quizApi } from "../../constants/Quiz";
+import { useNavigate } from "react-router-dom";
 
 const Quiz = () => {
-  const [userChoice, setUserChoice] = useState([]);
+  const [correctCount, setCorrectCount] = useState(0);
+  const [nowPage, setNowPage] = useState(1);
+  const quizes = quizApi;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(userChoice);
-  }, [userChoice]);
+    if (nowPage > 5) {
+      navigate(`/quiz-result?correctCount=${correctCount}`);
+    }
+  }, [nowPage]);
 
   return (
     <>
-      <QuizForm
-        quizNum={"1"}
-        quiz={
-          "바다거북과 철새 등 조류는 빛공해에 심각한 피해를 입는 대표적인 야생동물이다"
-        }
-        answer={true}
-        userChoice={userChoice}
-        setUserChoice={setUserChoice}
-      />
+      {quizes && nowPage <= 5 && (
+        <QuizForm
+          quizNum={nowPage}
+          quiz={quizes[nowPage - 1].question}
+          answer={quizes[nowPage - 1].answer}
+          correctCount={correctCount}
+          setCorrectCount={setCorrectCount}
+          nowPage={nowPage}
+          setNowPage={setNowPage}
+        />
+      )}
     </>
   );
 };
