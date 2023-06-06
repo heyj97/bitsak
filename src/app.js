@@ -1,11 +1,12 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { groupRankRouter } from "./routes/GroupRankRoutes.js";
+const app = express();
+
+const PORT = process.env.SERVER_PORT;
 
 dotenv.config();
-
-const app = express();
-const PORT = process.env.SERVER_PORT;
 
 app.use(cors());
 
@@ -16,8 +17,10 @@ app.get("/", (req, res) => {
   res.send("데이터 프로젝트 API 입니다.");
 });
 
-// require('./routes/GroupRank.routes')(app);
+app.use(groupRankRouter);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);
 });
+
+export { app };
