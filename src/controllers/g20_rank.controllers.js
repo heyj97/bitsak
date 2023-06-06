@@ -1,1 +1,0 @@
-const G20_rank = require('../models/g20_rank.model');
