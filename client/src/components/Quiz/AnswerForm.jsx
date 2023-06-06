@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import styles from "./Quiz.module.css";
 
 const AnswerForm = ({
@@ -19,7 +17,7 @@ const AnswerForm = ({
     <div className={styles.answerContainer}>
       <div
         className={styles.answerBox}
-        onClick={(e) => {
+        onClick={() => {
           handleClick(true);
         }}
       >
@@ -27,7 +25,7 @@ const AnswerForm = ({
       </div>
       <div
         className={styles.answerBox}
-        onClick={(e) => {
+        onClick={() => {
           handleClick(false);
         }}
       >
