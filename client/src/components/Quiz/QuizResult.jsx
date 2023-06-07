@@ -10,7 +10,7 @@ const QuizResult = () => {
   return (
     <>
       <div>
-        <h2>{data.title}</h2>
+        <h2>{data.point}</h2>
         <p>{data.description}</p>
         <Link to="/introduce">빛공해에 대해 더 알아보기</Link>
         <Link to="/gallery">빛공해 지도 보러가기</Link>
