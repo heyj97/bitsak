@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import { groupRankRouter } from "./routes/GroupRankRoutes.js";
 import { koreaDecadeRouter } from "./routes/KoreaDecadeRoutes.js";
 import { seoulGuRouter } from "./routes/SeoulGuRoutes.js";
+import { sdmComplaintsRouter } from "./routes/SdmComplaintsRoutes.js";
+
 const app = express();
 
 const PORT = process.env.SERVER_PORT;
@@ -22,6 +24,7 @@ app.get("/", (req, res) => {
 app.use(groupRankRouter);
 app.use(koreaDecadeRouter);
 app.use(seoulGuRouter);
+app.use(sdmComplaintsRouter);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);
