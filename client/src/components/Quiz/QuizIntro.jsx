@@ -1,6 +1,9 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./Quiz.module.css";
-const QuizHome = () => {
+
+const QuizIntro = ({ setIsStart, setIsProgress }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.quizHomeContainer}>
       <div className={styles.quizHomeContent}>
@@ -13,11 +16,18 @@ const QuizHome = () => {
         </p>
       </div>
       <div className={styles.linkBtnContainer}>
-        <Link to="/quiz">퀴즈시작</Link>
-        <Link to="/introduce">빛공해 소개</Link>
+        <button
+          onClick={() => {
+            setIsStart(false);
+            setIsProgress(true);
+          }}
+        >
+          퀴즈시작
+        </button>
+        <button onClick={() => navigate("/introduce")}>빛공해 소개</button>
       </div>
     </div>
   );
 };
 
-export default QuizHome;
+export default QuizIntro;
