@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { groupRankController } from '../controllers/GroupRankControllers.js';
+import { groupRankController } from '../controllers/GroupRankController.js';
 
 const groupRankRouter = Router();
 

@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { groupRankRouter } from "./routes/GroupRankRoutes.js";
-import { koreaDecadeRouter } from "./routes/KoreaDecadeRoutes.js";
-import { seoulGuRouter } from "./routes/SeoulGuRoutes.js";
-import { sdmComplaintsRouter } from "./routes/SdmComplaintsRoutes.js";
+import { groupRankRouter } from "./routes/GroupRankRoute.js";
+import { koreaDecadeRouter } from "./routes/KoreaDecadeRoute.js";
+import { seoulGuRouter } from "./routes/SeoulGuRoute.js";
+import { sdmComplaintsRouter } from "./routes/SdmComplaintsRoute.js";
 
 const app = express();
 

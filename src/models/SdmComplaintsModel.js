@@ -6,7 +6,7 @@ import db from '../config/dbConfig.js';
   class sdmComplaintsModel {
     static async getAll() {
       return new Promise((resolve, reject) => {
-        db.query('SELECT id, latitude, longitude, illuminance, luminance FROM minwon', (err, res) => {
+        db.query('SELECT minwon_id, latitude, longitude, illuminance, luminance FROM minwon', (err, res) => {
           if (err) {
             console.log('error', err);
             reject(err);

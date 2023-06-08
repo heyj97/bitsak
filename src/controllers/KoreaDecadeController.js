@@ -1,4 +1,4 @@
-import { koreaDecadeService } from "../services/KoreaDecadeServices.js";
+import { koreaDecadeService } from "../services/KoreaDecadeService.js";
 
 const koreaDecadeController = async (req,res,next) => {
     try{

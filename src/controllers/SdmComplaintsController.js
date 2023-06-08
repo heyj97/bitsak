@@ -1,4 +1,4 @@
-import { sdmComplaintsService } from "../services/SdmComplaintsServices.js";
+import { sdmComplaintsService } from "../services/SdmComplaintsService.js";
 
 const sdmComplaintsController = async (req,res,next) => {
     try{

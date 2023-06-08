@@ -1,4 +1,4 @@
-import { seoulGuService } from "../services/SeoulGuServices.js";
+import { seoulGuService } from "../services/SeoulGuService.js";
 
 const seoulGuController = async (req,res,next) => {
     try{
