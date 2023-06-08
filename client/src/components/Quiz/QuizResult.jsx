@@ -1,8 +1,18 @@
-import { useSearchParams, Link, useNavigate } from "react-router-dom";
-import countToResult from "../../utils/countToResult";
+import { useNavigate } from "react-router-dom";
+import score from "../../constants/score";
 import QuizPhoto from "./QuizPhoto";
 import styles from "./Quiz.module.css";
 import QuizSolution from "./QuizSolution";
+
+const countToResult = (count) => {
+  const countInt = parseInt(count);
+  const result = score[Object.keys(score)[countInt]];
+
+  return {
+    point: count * 20,
+    description: result.description,
+  };
+};
 
 const QuizResult = ({ questionData, correctCount }) => {
   const data = countToResult(correctCount);

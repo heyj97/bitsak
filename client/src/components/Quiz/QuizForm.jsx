@@ -2,7 +2,7 @@ import { useState } from "react";
 import useGetFetch from "../../utils/useGetFetch";
 import AnswerForm from "./AnswerForm";
 import Question from "./Question";
-
+import { API_BASE_URL, API_PORT } from "../../constants/api";
 import styles from "./Quiz.module.css";
 
 const QuizForm = ({
@@ -12,7 +12,9 @@ const QuizForm = ({
   setIsEnd,
   setIsProgress,
 }) => {
-  const { data, isLoading, error } = useGetFetch("http://localhost:5001/quiz");
+  const { data, isLoading, error } = useGetFetch(
+    `http://${API_BASE_URL}:${API_PORT}/quiz`
+  );
   const [quizNum, setQuizNum] = useState(0);
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>error...</div>;
