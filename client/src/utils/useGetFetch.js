@@ -5,10 +5,14 @@ const useGetFetch = (url) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchConfig = {
+    method: "GET",
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(url);
+        const response = await fetch(url, fetchConfig);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
