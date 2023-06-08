@@ -1,32 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import QuizIntro from "./QuizIntro";
 import QuizForm from "./QuizForm";
-import { quizApi } from "../../constants/Quiz";
-import { useNavigate } from "react-router-dom";
+import QuizResult from "./QuizResult";
 
 const Quiz = () => {
+  const [isStart, setIsStart] = useState(true);
+  const [isProgress, setIsProgress] = useState(false);
+  const [isEnd, setIsEnd] = useState(false);
+  const [questionData, setQuestionData] = useState([]);
   const [correctCount, setCorrectCount] = useState(0);
-  const [nowPage, setNowPage] = useState(1);
-  const quizes = quizApi;
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (nowPage > 5) {
-      navigate(`/quiz-result?correctCount=${correctCount}`);
-    }
-  }, [nowPage]);
 
   return (
     <>
-      {quizes && nowPage <= 5 && (
+      {isStart && (
+        <QuizIntro setIsStart={setIsStart} setIsProgress={setIsProgress} />
+      )}
+      {isProgress && (
         <QuizForm
-          quizNum={nowPage}
-          quiz={quizes[nowPage - 1].question}
-          answer={quizes[nowPage - 1].answer}
-          correctCount={correctCount}
+          setIsProgress={setIsProgress}
+          setIsEnd={setIsEnd}
+          setQuestionData={setQuestionData}
           setCorrectCount={setCorrectCount}
-          nowPage={nowPage}
-          setNowPage={setNowPage}
+          correctCount={correctCount}
         />
+      )}
+      {isEnd && (
+        <QuizResult correctCount={correctCount} questionData={questionData} />
       )}
     </>
   );

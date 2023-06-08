@@ -15,7 +15,7 @@ const HomePage = () => {
         />
         <MenuItem
           title="빛공해 퀴즈"
-          url="quiz-home"
+          url="quiz"
           desc="빛공해 관련된 퀴즈를 풀어봅시다."
         />
         <MenuItem
