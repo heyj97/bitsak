@@ -1,4 +1,4 @@
-import { quizService } from '../services/QuizServices.js';
+import { quizService } from '../services/QuizService.js';
 
 const quizController = async (req,res,next) => {
     try{
