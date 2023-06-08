@@ -14,7 +14,7 @@ const QuizHome = () => {
       </div>
       <div className={styles.linkBtnContainer}>
         <Link to="/quiz">퀴즈시작</Link>
-        <Link to="/quiz">빛공해 소개</Link>
+        <Link to="/introduce">빛공해 소개</Link>
       </div>
     </div>
   );
