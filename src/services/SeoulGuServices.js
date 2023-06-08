@@ -1,18 +1,42 @@
 import { seoulGuModel } from '../models/SeoulGuModel.js';
 
 class seoulGuService {
-    //서울 자치구별 조도 평균수치 조회
     static async findAll(){
-        const seoulGu = await seoulGuModel.getAll();
-
-        if(!seoulGu) {
-            const errorMessage = 'error 발생';
-            return {errorMessage};
+        try {
+            const seoulGu = await seoulGuModel.getAll();
+            
+            if(!seoulGu) {
+                return {
+                    status: 400,
+                    message: '데이터를 불러올 수 없습니다.',
+                }
+            }
+            return {
+                status: 200,
+                data: seoulGu
+            };
+        } catch (error) {
+            return {
+                status: 500,
+                error: '서버 오류가 발생했습니다.',
+            };
         }
-
-        return seoulGu;
     }
-
 }
+
+// class seoulGuService {
+//     //서울 자치구별 조도 평균수치 조회
+//     static async findAll(){
+//         const seoulGu = await seoulGuModel.getAll();
+
+//         if(!seoulGu) {
+//             const errorMessage = 'error 발생';
+//             return {errorMessage};
+//         }
+
+//         return seoulGu;
+//     }
+
+// }
 
 export { seoulGuService };
