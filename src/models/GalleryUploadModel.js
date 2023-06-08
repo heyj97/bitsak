@@ -1,33 +1,20 @@
-const connection = require('../config/dbConfig');
+import db from '../config/dbConfig.js';
 
-// 갤러리 모델 생성
-class Gallery {
-  constructor(data) {
-    this.author = data.author;
-    this.description = data.description;
-    this.location = data.location;
-    this.take_date = data.take_date;
-    this.post_date = data.post_date;
-    this.photo = data.photo;
-  }
-
-  // 갤러리 업로드 메서드
-  upload() {
-    const { author, description, location, take_date, post_date, photo } = this;
-    
+// 사진 업로드 로직, DB에 사진 정보 저장
+// 아직 DB.....
+class galleryUploadModel {
+  static async uploadPhoto(photoData) {
     return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO gallery (author, description, location, take_date, post_date, photo) VALUES (?, ?, ?, ?, ?, ?)';
-      const values = [author, description, location, take_date, post_date, photo];
-      connection.query(sql, values, (err, result) => {
+      db.query('INSERT INTO gallery (photo_data~~) VALUES (?)', [photoData], (err, res) => {
         if (err) {
-          console.error('갤러리 업로드에 실패했습니다.', err);
+          console.log('error', err);
           reject(err);
         } else {
-          resolve(result);
+          resolve(res);
         }
       });
     });
   }
 }
 
-module.exports = Gallery;
+export { galleryUploadModel };

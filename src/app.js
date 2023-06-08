@@ -5,6 +5,7 @@ import { groupRankRouter } from "./routes/GroupRankRoute.js";
 import { koreaDecadeRouter } from "./routes/KoreaDecadeRoute.js";
 import { seoulGuRouter } from "./routes/SeoulGuRoute.js";
 import { sdmComplaintsRouter } from "./routes/SdmComplaintsRoute.js";
+import { galleryUploadRouter } from "./routes/GalleryUploadRoute.js";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(groupRankRouter);
 app.use(koreaDecadeRouter);
 app.use(seoulGuRouter);
 app.use(sdmComplaintsRouter);
+app.use(galleryUploadRouter);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);

@@ -1,24 +1,38 @@
-const uploadService = require('../services/GalleryUploadServices');
+import { galleryUploadService } from "../services/GalleryUploadService.js";
+import multer from 'multer';
+import path from "path";
+import fs from "fs";
 
-const uploadGallery = async (req, res) => {
-  const { author, description, location, take_date } = req.body;
-  const photoPath = req.file.path;
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const filename = `${path.basename(file.originalname, ext)}_${Date.now()}${ext}`;
+    cb(null, filename);
+  }
+});
 
-  const result = await uploadService.uploadGallery({
-    author,
-    description,
-    location,
-    take_date,
-    photoPath
-  });
+const upload = multer({ storage });
 
-  if (result.isSuccess) {
-    res.json(result);
-  } else {
-    res.status(result.code).json(result);
+const galleryUploadController = async (req, res, next) => {
+  try {
+    const { filename, filePath } = req.file;
+
+    const galleryUpload = await galleryUploadService.uploadPhoto(filePath);
+
+    fs.unlinkSync(filePath);
+
+    if (galleryUpload.errorMessage) {
+      throw new Error(galleryUpload.errorMessage);
+    } else {
+      return res.status(200).json(galleryUpload);
+    }
+  } catch (error) {
+    next(error);
   }
 };
 
-module.exports = {
-  uploadGallery
-};
+
+export { galleryUploadController }
