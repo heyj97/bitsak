@@ -1,7 +1,7 @@
 {
   "name": "bitsak",
   "version": "1.0.0",
-  "type" : "module",
+  "type": "module",
   "description": "- 서비스명: 빛삭\r - 팀명: 라이트형제\r - 주제: 빛공해(light pollution)\r - 기획 기간: 2023.05.29 ~ 2022.06.02\r - 개발 기간: 2023.06.03 ~ 2023.06.16\r - 목표: 객관적 수치를 활용해 **서울 서대문구 빛공해 현황 가시화 및 사진 공유, 자가진단 퀴즈를 통한 심각성 인지**\r - API 문서: 바로가기\r - 테스트 페이지: 바로가기",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,7 @@
   "author": "team04",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.4.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql": "^2.18.1",
