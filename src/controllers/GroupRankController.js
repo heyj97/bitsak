@@ -1,4 +1,4 @@
-import { groupRankService } from "../services/GroupRankServices.js";
+import { groupRankService } from "../services/GroupRankService.js";
 
 const groupRankController = async (req,res,next) => {
     try{
