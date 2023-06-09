@@ -32,4 +32,3 @@ const QuizSolutionItem = ({ q, a, d }) => {
 };
 
 export default QuizSolution;
-6;

@@ -24,6 +24,7 @@ const QuizForm = ({
     setIsEnd(true);
     setIsProgress(false);
   }
+
   return (
     <div className={styles.quizContainer}>
       {quizNum < data.length && (
