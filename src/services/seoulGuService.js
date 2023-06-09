@@ -25,4 +25,3 @@ class seoulGuService {
 }
 
 export { seoulGuService };
-//주석ㅎㅎ
