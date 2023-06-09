@@ -1,4 +1,4 @@
-import useGetFetch from "../../utils/useGetFetch";
+import useGetFetch from "../../hooks/useGetFetch";
 import { API_BASE_URL, API_PORT } from "../../constants/api";
 
 const Introduce = () => {

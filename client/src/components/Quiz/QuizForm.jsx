@@ -1,5 +1,5 @@
 import { useState } from "react";
-import useGetFetch from "../../utils/useGetFetch";
+import useGetFetch from "../../hooks/useGetFetch";
 import AnswerForm from "./AnswerForm";
 import Question from "./Question";
 import { API_BASE_URL, API_PORT } from "../../constants/api";
