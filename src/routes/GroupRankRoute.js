@@ -6,4 +6,4 @@ const groupRankRouter = Router();
 
 groupRankRouter.get('/g20-rank', groupRankController);
 
-export { groupRankRouter};
+export { groupRankRouter };
