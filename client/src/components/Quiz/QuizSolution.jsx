@@ -1,10 +1,14 @@
-const QuizSolution = ({ quizData }) => {
+import styles from "./Quiz.module.css";
+
+const QuizSolution = ({ quizData, correctIdx }) => {
   return (
-    <ul>
+    <ul className={styles.quizSolutionUl}>
       {quizData &&
         quizData.map((quiz, idx) => {
           return (
             <QuizSolutionItem
+              correctIdx={correctIdx}
+              i={quiz.question_id}
               q={quiz.question}
               a={quiz.answer}
               d={quiz.explanation}
@@ -16,15 +20,21 @@ const QuizSolution = ({ quizData }) => {
   );
 };
 
-const QuizSolutionItem = ({ q, a, d }) => {
+const QuizSolutionItem = ({ correctIdx, i, q, a, d }) => {
   const boolToOX = (bool) => {
     if (bool) return "O";
     if (!bool) return "X";
   };
   return (
-    <li>
+    <li
+      className={
+        correctIdx.includes(i)
+          ? styles.quizSolutionUlTrue
+          : styles.quizSolutionUlFalse
+      }
+    >
       <h3>
-        {q} ({boolToOX(a)})
+        {boolToOX(a)}. {q}
       </h3>
       <p>{d}</p>
     </li>
@@ -32,4 +42,3 @@ const QuizSolutionItem = ({ q, a, d }) => {
 };
 
 export default QuizSolution;
-6;
