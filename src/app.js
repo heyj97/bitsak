@@ -1,13 +1,13 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import { groupRankRouter } from "./routes/GroupRankRoute.js";
-import { MinwonRouter } from "./routes/MinwonRoute.js";
-import { QuizRouter } from './routes/QuizRoute.js';
-import { koreaDecadeRouter } from "./routes/KoreaDecadeRoute.js";
-import { seoulGuRouter } from "./routes/SeoulGuRoute.js";
-import { sdmComplaintsRouter } from "./routes/SdmComplaintsRoute.js";
-import { galleryUploadRouter } from "./routes/GalleryUploadRoute.js";
+import { groupRankRouter } from "./routes/groupRankRoute.js";
+import { minwonRouter } from "./routes/minwonRoute.js";
+import { quizRouter } from './routes/quizRoute.js';
+import { koreaDecadeRouter } from "./routes/koreaDecadeRoute.js";
+import { seoulGuRouter } from "./routes/seoulGuRoute.js";
+import { sdmComplaintsRouter } from "./routes/sdmComplaintsRoute.js";
+import { galleryUploadRouter } from "./routes/galleryUploadRoute.js";
 import multer from 'multer';
 
 const app = express();
@@ -43,6 +43,13 @@ const upload = multer({ storage });
 
 
 app.use(groupRankRouter);
+app.use(koreaDecadeRouter);
+app.use(seoulGuRouter);
+app.use(sdmComplaintsRouter);
+app.use(galleryUploadRouter);
+app.use(minwonRouter);
+app.use(quizRouter);
+
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);

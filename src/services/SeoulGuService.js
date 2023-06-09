@@ -1,4 +1,4 @@
-import { seoulGuModel } from '../models/SeoulGuModel.js';
+import { seoulGuModel } from '../models/seoulGuModel.js';
 
 class seoulGuService {
     static async findAll(){
