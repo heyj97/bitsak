@@ -1,5 +1,4 @@
-// complaints에서 받은 arr의 value를 기반으로 value가 클 수록 가운대에 위치하게 함
-const shuffleArray = (array) => {
+const shuffleArrByValue = (array) => {
   array.sort((a, b) => b.value - a.value);
   const oneThird = Math.floor(array.length / 3);
   const firstPart = array.slice(0, oneThird);
@@ -14,10 +13,7 @@ const shuffleArray = (array) => {
     return arr;
   };
 
-  shuffle(firstPart);
-  shuffle(secondPart);
-  shuffle(thirdPart);
-  return secondPart.concat(firstPart, thirdPart);
+  return shuffle(secondPart).concat(shuffle(firstPart), shuffle(thirdPart));
 };
 
-export default shuffleArray;
+export default shuffleArrByValue;

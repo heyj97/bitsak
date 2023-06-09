@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import styles from "./Introduce.module.css";
-import shuffleArray from "../../utils/shuffleArrByValue";
+import shuffleArrByValue from "../../utils/shuffleArrByValue";
 
 const randomColor = (min, max) => {
   const code = Math.floor(Math.random() * (max - min + 1)) + min;
@@ -10,7 +10,7 @@ const randomColor = (min, max) => {
 };
 
 const WordCloud = ({ resData }) => {
-  const randomArr = useMemo(() => shuffleArray(resData), [resData]);
+  const randomArr = useMemo(() => shuffleArrByValue(resData), [resData]);
 
   return (
     <div className={styles.wordCloudBox}>
