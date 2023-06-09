@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useGetFetch from "../../hooks/useGetFetch";
 import AnswerForm from "./AnswerForm";
 import Question from "./Question";
