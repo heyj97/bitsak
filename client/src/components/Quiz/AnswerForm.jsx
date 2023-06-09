@@ -4,11 +4,17 @@ const AnswerForm = ({
   answer,
   correctCount,
   setCorrectCount,
+  correctIdx,
+  setCorrectIdx,
+  answerIdx,
   quizNum,
   setQuizNum,
 }) => {
   const handleClick = (boolean) => {
     if (boolean == answer) {
+      let newArr = [...correctIdx];
+      newArr.push(answerIdx);
+      setCorrectIdx(newArr);
       setCorrectCount(correctCount + 1);
     }
     setQuizNum(quizNum + 1);
