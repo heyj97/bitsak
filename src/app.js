@@ -21,14 +21,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// 추가
 app.use("/uploads", express.static("uploads"));
 
 app.get("/", (req, res) => {
   res.send("데이터 프로젝트 API 입니다.");
 });
 
-//추가
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, 'uploads/');

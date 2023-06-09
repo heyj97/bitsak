@@ -15,4 +15,4 @@ const groupRankController = async (req,res,next) => {
     }
 }
 
-export { groupRankController }
+export { groupRankController };
