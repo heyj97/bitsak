@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { quizController } from '../controllers/QuizController.js';
+import { quizController } from '../controllers/quizController.js';
 
-const QuizRouter = Router();
+const quizRouter = Router();
 
 
-QuizRouter.get('/quiz', quizController);
+quizRouter.get('/quiz', quizController);
 
-export { QuizRouter };
+export { quizRouter };
