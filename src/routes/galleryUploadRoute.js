@@ -3,8 +3,9 @@ import { galleryUploadController } from '../controllers/galleryUploadController.
 import multer from 'multer';
 
 const galleryUploadRouter = Router();
-const upload = multer({ dest: 'uploads/' });
 
-galleryUploadRouter.post('/gallery', upload.single('photo'), (req, res, next) => galleryUploadController(req, res, next));
+const upload = multer({ dest: 'uploads/' }).single('filePath');
+
+galleryUploadRouter.post('/gallery', upload, galleryUploadController);
 
 export { galleryUploadRouter };

@@ -15,4 +15,4 @@ const seoulGuController = async (req,res,next) => {
     }
 }
 
-export { seoulGuController }
+export { seoulGuController };

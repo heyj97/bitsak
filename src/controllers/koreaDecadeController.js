@@ -15,4 +15,4 @@ const koreaDecadeController = async (req,res,next) => {
     }
 }
 
-export { koreaDecadeController }
+export { koreaDecadeController };
