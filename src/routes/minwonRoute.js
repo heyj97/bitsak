@@ -4,9 +4,9 @@ import axios from 'axios';
 
 dotenv.config();
 
-const MinwonRouter = Router();
+const minwonRouter = Router();
 
-MinwonRouter.get("/complaints", async (req, res) => {
+minwonRouter.get("/complaints", async (req, res) => {
     const serviceKey = process.env.SERVICE_KEY;
     const apiUrl = "http://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5?";
   
@@ -25,4 +25,4 @@ MinwonRouter.get("/complaints", async (req, res) => {
   });
 
 
-export {MinwonRouter};
+export {minwonRouter};

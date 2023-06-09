@@ -1,11 +1,11 @@
-import { seoulGuModel } from '../models/SeoulGuModel.js';
+import { koreaDecadeModel } from '../models/koreaDecadeModel.js';
 
-class seoulGuService {
+class koreaDecadeService {
     static async findAll(){
         try {
-            const seoulGu = await seoulGuModel.getAll();
+            const koreaDecade = await koreaDecadeModel.getAll();
             
-            if(!seoulGu) {
+            if(!koreaDecade) {
                 return {
                     status: 400,
                     message: '데이터를 불러올 수 없습니다.',
@@ -13,7 +13,7 @@ class seoulGuService {
             }
             return {
                 status: 200,
-                data: seoulGu
+                data: koreaDecade
             };
         } catch (error) {
             return {
@@ -24,4 +24,4 @@ class seoulGuService {
     }
 }
 
-export { seoulGuService };
+export { koreaDecadeService };
