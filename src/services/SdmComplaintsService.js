@@ -1,4 +1,4 @@
-import { sdmComplaintsModel } from '../models/SdmComplaintsModel.js';
+import { sdmComplaintsModel } from '../models/sdmComplaintsModel.js';
 
 class sdmComplaintsService {
     // 서대문구 위치별 민원량 조회

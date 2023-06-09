@@ -1,4 +1,4 @@
-import { koreaDecadeModel } from '../models/KoreaDecadeModel.js';
+import { koreaDecadeModel } from '../models/koreaDecadeModel.js';
 
 class koreaDecadeService {
     static async findAll(){

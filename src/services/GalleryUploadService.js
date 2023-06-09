@@ -1,4 +1,4 @@
-import { galleryUploadModel } from '../models/GalleryUploadModel.js';
+import { galleryUploadModel } from '../models/galleryUploadModel.js';
 
 class galleryUploadService {
   static async uploadPhoto(photoData) {

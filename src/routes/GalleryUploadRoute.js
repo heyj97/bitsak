@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { galleryUploadController } from '../controllers/GalleryUploadController.js';
+import { galleryUploadController } from '../controllers/galleryUploadController.js';
 import multer from 'multer';
 
 const galleryUploadRouter = Router();
