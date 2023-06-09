@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { seoulGuController } from '../controllers/SeoulGuController.js';
+import { seoulGuController } from '../controllers/seoulGuController.js';
 
 const seoulGuRouter = Router();
 

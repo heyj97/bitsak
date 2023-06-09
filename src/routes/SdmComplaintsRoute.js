@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { sdmComplaintsController } from '../controllers/SdmComplaintsController.js';
+import { sdmComplaintsController } from '../controllers/sdmComplaintsController.js';
 
 const sdmComplaintsRouter = Router();
 

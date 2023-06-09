@@ -1,16 +1,17 @@
 const QuizSolution = ({ quizData }) => {
   return (
     <ul>
-      {quizData.map((quiz, idx) => {
-        return (
-          <QuizSolutionItem
-            q={quiz.question}
-            a={quiz.answer}
-            d={quiz.description}
-            key={idx}
-          />
-        );
-      })}
+      {quizData &&
+        quizData.map((quiz, idx) => {
+          return (
+            <QuizSolutionItem
+              q={quiz.question}
+              a={quiz.answer}
+              d={quiz.explanation}
+              key={idx}
+            />
+          );
+        })}
     </ul>
   );
 };
@@ -23,7 +24,7 @@ const QuizSolutionItem = ({ q, a, d }) => {
   return (
     <li>
       <h3>
-        {q} {`(${boolToOX(a)})`}
+        {q} ({boolToOX(a)})
       </h3>
       <p>{d}</p>
     </li>

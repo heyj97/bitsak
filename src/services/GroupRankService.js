@@ -1,4 +1,4 @@
-import {groupRankModel} from '../models/GroupRankModel.js';
+import {groupRankModel} from '../models/groupRankModel.js';
 
 class groupRankService {
     //그룹 랭킹 전체 조회

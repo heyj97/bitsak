@@ -1,4 +1,4 @@
-import { quizModel } from '../models/QuizModel.js';
+import { quizModel } from '../models/quizModel.js';
 
 class quizService {
     // 질문 5개씩 랜덤으로 불러오기

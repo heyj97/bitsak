@@ -4,14 +4,14 @@ const AnswerForm = ({
   answer,
   correctCount,
   setCorrectCount,
-  nowPage,
-  setNowPage,
+  quizNum,
+  setQuizNum,
 }) => {
   const handleClick = (boolean) => {
-    if (boolean === answer) {
+    if (boolean == answer) {
       setCorrectCount(correctCount + 1);
     }
-    setNowPage(nowPage + 1);
+    setQuizNum(quizNum + 1);
   };
   return (
     <div className={styles.answerContainer}>
