@@ -4,7 +4,7 @@ import db from '../config/dbConfig.js';
 class galleryUploadModel {
   static async uploadPhoto(photoData) {
     return new Promise((resolve, reject) => {
-      db.query('INSERT INTO gallery (authro, description, location, take_date, file_path) VALUES (?, ?, ?, ?, ?)',
+      db.query('INSERT INTO gallery (author, description, location, take_date, file_path) VALUES (?, ?, ?, ?, ?)',
       [photoData.author, photoData.description, photoData.location, photoData.take_date, photoData.filePath],
       (err, res) => {
         if (err) {

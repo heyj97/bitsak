@@ -25,4 +25,4 @@ minwonRouter.get("/complaints", async (req, res) => {
   });
 
 
-export {minwonRouter};
+export { minwonRouter };
