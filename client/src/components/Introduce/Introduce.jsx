@@ -2,7 +2,7 @@ import useGetFetch from "../../hooks/useGetFetch";
 import { API_BASE_URL, API_PORT } from "../../constants/api";
 import WordCloud from "./WordCloud";
 import styles from "./Introduce.module.css";
-import Spinner from "../../utils/Spinner";
+import Spinner from "../../utils/Spinner/Spinner";
 
 const Introduce = () => {
   const url = `http://${API_BASE_URL}:${API_PORT}/complaints`;
