@@ -5,20 +5,15 @@ import fs from "fs";
 
 const galleryUploadController = async (req, res, next) => {
   try {
+    const currentDate = new Date();
     const filePath = req.file.path;
 
-    // const photoData = new Map();
-
-    // photoData.set('author', req.body.author);
-    // photoData.set('description', req.body.description);
-    // photoData.set('location',req.body.location);
-    // photoData.set('take_date', req.body.take_date);
-    // photoData.set('file_path', filePath);
     const photoData = {
       author: req.body.author,
       description: req.body.description,
       location: req.body.location,
       take_date: req.body.take_date,
+      post_date: currentDate,
       file_path: filePath,
     };
     
