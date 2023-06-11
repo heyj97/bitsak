@@ -3,7 +3,6 @@
   width: 100%;
   height: 100%;
 }
-
 .body {
   display: flexbox;
   flex-direction: column;
@@ -11,40 +10,57 @@
   color: white;
 }
 
-.header {
+/*----------------------------*/
+
+.Header {
   background-color: #070032;
   display: flex;
   align-items: center;
+  width:100%;
 }
-.headerspan {
+.Nav {
   display: inline-block;
+  width: 100%;
 }
-.headerUl {
+.Logo {
   display: flex;
   justify-content: center;
   padding: 30px 10%;
   height: 20px;
   align-items: center;
+  float: left;
+}
+.MenuBox {
   float: right;
+  height: 20px;
+  margin: 0 auto;
+  padding: 20px 10%;
+  justify-content: center;
+  align-items: center;
 }
 
-.header li a {
+.Logo a{
+  text-decoration: none;
+  color: #ffdd1b;
+}
+
+
+.Menubox a {
+  text-decoration: none;
   font-weight: bold;
   font-size: 16px;
   color: #ffffff;
-  text-decoration: none;
+  
   transition: all 0.3s ease 0s;
+  float: right;
 }
 
-.header li a:hover {
+.MenuBox a:hover {
   color: #ffdd1b;
 }
 
-.header li {
+.MenuBox a {
+  display: inline-block;
   padding: 0px 50px;
   list-style-type: none;
-}
-
-.Logo {
-  color: #ffdd1b;
 }

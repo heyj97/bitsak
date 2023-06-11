@@ -158,23 +158,8 @@
   margin-top: 20px;
 }
 
-.quizSkyImg,
 .quizCityImg {
   width: 100%;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-.quizSkyImg {
-  z-index: 1;
-  position: relative;
-}
-
-.quizCityImg {
-  position: relative;
-  top: -300px;
-  left: 0;
 }
 
 .quizResultContent {
@@ -200,46 +185,6 @@
 
 .pointSpan {
   color: #ffe600;
-}
-
-.opacity100 {
-  opacity: 1;
-}
-
-.opacity80 {
-  opacity: 0.8;
-}
-
-.opacity60 {
-  opacity: 0.6;
-}
-
-.opacity40 {
-  opacity: 0.4;
-}
-
-.opacity20 {
-  opacity: 0.2;
-}
-
-.opacity0 {
-  opacity: 0;
-}
-
-.bright100 {
-  filter: grayscale(10%);
-}
-
-.bright70 {
-  filter: grayscale(40%);
-}
-
-.bright40 {
-  filter: grayscale(70%);
-}
-
-.bright0 {
-  filter: grayscale(100%);
 }
 
 .quizSolutionUl {
