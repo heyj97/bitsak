@@ -1,7 +1,7 @@
 import db from '../config/dbConfig.js';
 
 // 사진 업로드 로직, DB에 사진 정보 저장
-class galleryUploadModel {
+class galleryModel {
   static async uploadPhoto(photoData) {
     return new Promise((resolve, reject) => {
       db.query('INSERT INTO gallery (author, description, location, take_date, post_date, file_path) VALUES (?, ?, ?, ?, ?, ?)',
@@ -18,4 +18,4 @@ class galleryUploadModel {
   }
 }
 
-export { galleryUploadModel };
+export { galleryModel };

@@ -1,6 +1,6 @@
-import { galleryUploadModel } from '../models/galleryUploadModel.js';
+import { galleryModel } from '../models/galleryModel.js';
 
-class galleryUploadService {
+class galleryService {
   static async uploadPhoto(photoData) {
     try {
       const galleryUpload = await galleryUploadModel.uploadPhoto(photoData);
@@ -24,4 +24,4 @@ class galleryUploadService {
   }
 }
 
-export { galleryUploadService };
+export { galleryService };
