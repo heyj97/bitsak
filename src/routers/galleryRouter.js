@@ -5,8 +5,8 @@ import uploadMiddleware from '../middlewares/uploadMiddleware.js';
 const galleryRouter = Router();
 
 
-galleryRouter.post('/gallery', uploadMiddleware, galleryController);
-galleryRouter.put('/gallery/:galleryId', galleryController);
-galleryRouter.delete('/gallery/:galleryId', galleryController);
+galleryRouter.post('/api/gallery', uploadMiddleware, galleryController);
+galleryRouter.put('/api/gallery/:galleryId', galleryController);
+galleryRouter.delete('/api/gallery/:galleryId', galleryController);
 
 export { galleryRouter };

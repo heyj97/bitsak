@@ -4,6 +4,6 @@ import { quizController } from '../controllers/quizController.js';
 const quizRouter = Router();
 
 
-quizRouter.get('/quiz', quizController);
+quizRouter.get('/api/quiz', quizController);
 
 export { quizRouter };
