@@ -71,7 +71,7 @@ class galleryService {
     }
   }
 
-
+//getPhotosById 만들기..
   static async getPhotosByLocation(location) {
     try {
       const photos = await galleryModel.getPhotosByLocation(location);
