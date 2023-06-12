@@ -4,6 +4,6 @@ import { sdmComplaintsController } from '../controllers/sdmComplaintsController.
 const sdmComplaintsRouter = Router();
 
 
-sdmComplaintsRouter.get('/seodaemun-complaints', sdmComplaintsController);
+sdmComplaintsRouter.get('/api/seodaemun-complaints', sdmComplaintsController);
 
 export { sdmComplaintsRouter };
