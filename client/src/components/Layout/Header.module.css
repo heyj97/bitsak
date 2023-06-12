@@ -1,0 +1,66 @@
+.Home {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.body {
+  display: flexbox;
+  flex-direction: column;
+  height: 80px;
+  color: white;
+}
+
+/*----------------------------*/
+
+.Header {
+  background-color: #070032;
+  display: flex;
+  align-items: center;
+  width:100%;
+}
+.Nav {
+  display: inline-block;
+  width: 100%;
+}
+.Logo {
+  display: flex;
+  justify-content: center;
+  padding: 30px 10%;
+  height: 20px;
+  align-items: center;
+  float: left;
+}
+.MenuBox {
+  float: right;
+  height: 20px;
+  margin: 0 auto;
+  padding: 20px 10%;
+  justify-content: center;
+  align-items: center;
+}
+
+.Logo a{
+  text-decoration: none;
+  color: #ffdd1b;
+}
+
+
+.Menubox a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffffff;
+  
+  transition: all 0.3s ease 0s;
+  float: right;
+}
+
+.MenuBox a:hover {
+  color: #ffdd1b;
+}
+
+.MenuBox a {
+  display: inline-block;
+  padding: 0px 50px;
+  list-style-type: none;
+}
