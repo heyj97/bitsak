@@ -47,7 +47,7 @@ async function updatePhoto(req, res, next) {
 // 사진 삭제
 async function deletePhoto(req, res, next) {
   try {
-    const galleryId = req.params.gallery_id;
+    const galleryId = req.params.galleryId;
 
     const galleryDelete = await galleryService.deletePhoto(galleryId);
 
