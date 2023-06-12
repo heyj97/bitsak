@@ -1,28 +1,33 @@
-import useGetFetch from "../../utils/useGetFetch";
-import { API_BASE_URL, API_PORT } from "../../constants/api";
+import useGetFetch from "../../hooks/useGetFetch";
+import WordCloud from "./WordCloud";
+import styles from "./Introduce.module.css";
+import Spinner from "../common/Spinner/Spinner";
+import GlobalLightPollutionChart from "./GlobalLightPollutionChart";
+import Error from "../common/Error/Error";
 
 const Introduce = () => {
-  const url = `http://${API_BASE_URL}:${API_PORT}/g20-rank`;
-  const { data, isLoading, error } = useGetFetch(url);
+  const { data, isLoading, error } = useGetFetch("complaints");
 
-  if (error) {
-    console.log("에러발생:", error);
-  }
-
-  if (isLoading) {
-    return <div>로딩중</div>;
-  }
-
+  if (error)
+    return (
+      <div>
+        <Error />
+      </div>
+    );
   return (
-    <div>
-      {data &&
-        data.map((country) => (
-          <div key={country.country}>
-            <h2>{country.country}</h2>
-            <h3>{country.avg_mean}</h3>
-            <h4>{country.trend}</h4>
-          </div>
-        ))}
+    <div className={styles.wholeContainer}>
+      <GlobalLightPollutionChart />
+      <div className={styles.wordCloudBox}>
+        <div className={styles.wordCloudTitle}>
+          <h2>1년 동안 가장 많이 발생한 빛공해 관련 민원</h2>
+          <h4>2023.06.01 기준</h4>
+        </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          Array.isArray(data) && data.length > 0 && <WordCloud resData={data} />
+        )}
+      </div>
     </div>
   );
 };

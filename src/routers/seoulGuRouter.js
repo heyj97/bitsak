@@ -4,6 +4,6 @@ import { seoulGuController } from '../controllers/seoulGuController.js';
 const seoulGuRouter = Router();
 
 
-seoulGuRouter.get('/seoul-lightpollution', seoulGuController);
+seoulGuRouter.get('/api/seoul-lightpollution', seoulGuController);
 
 export { seoulGuRouter };

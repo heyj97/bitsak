@@ -7,20 +7,16 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className={styles.body}>
-      <nav className={styles.header}>
-        <h1 className={styles.headerspan}>빛삭</h1>
-        <ul className={styles.headerUl}>
-          <li>
-            <Link to="/infor">소개</Link>
-          </li>
-          <li>
-            <Link to="/quize">퀴즈</Link>
-          </li>
-          <li>
-            <Link to="/map">지도</Link>
-          </li>
-        </ul>
+    <header className={styles.Header}>
+      <nav className={styles.Nav}>
+        <div className={styles.Logo}>
+          <Link to="/"><h1>빛삭</h1></Link>
+        </div>
+        <div className={styles.MenuBox}>
+            <Link to="/infor"><h2>소개</h2></Link>
+            <Link to="/quiz-home"><h2>퀴즈</h2></Link>
+            <Link to="/map"><h2>지도</h2></Link>
+        </div>
       </nav>
     </header>
     // <div>

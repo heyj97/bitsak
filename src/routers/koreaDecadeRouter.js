@@ -4,6 +4,6 @@ import { koreaDecadeController } from '../controllers/koreaDecadeController.js';
 const koreaDecadeRouter = Router();
 
 
-koreaDecadeRouter.get('/korea-lightpollution', koreaDecadeController);
+koreaDecadeRouter.get('/api/korea-lightpollution', koreaDecadeController);
 
 export { koreaDecadeRouter };
