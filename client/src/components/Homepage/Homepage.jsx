@@ -3,7 +3,7 @@
 import styles from "./Homepage.module.css";
 import MenuItem from "./MenuItem";
 
-const HomePage = () => {
+const Homepage = () => {
   return (
     <div className={styles.homeContainer}>
       <div className={styles.homeImgFrame}></div>
@@ -28,4 +28,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default Homepage;

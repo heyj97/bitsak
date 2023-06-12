@@ -10,11 +10,10 @@ import { sdmComplaintsRouter } from "./routers/sdmComplaintsRouter.js";
 import { galleryRouter } from "./routers/galleryRouter.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
+dotenv.config();
 const app = express();
 
 const PORT = process.env.SERVER_PORT;
-
-dotenv.config();
 
 app.use(cors());
 
