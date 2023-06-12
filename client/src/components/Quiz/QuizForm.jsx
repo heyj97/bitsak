@@ -29,21 +29,20 @@ const QuizForm = ({
         <Error />
       </div>
     );
-  if (quizNum === data.length) {
-    const newQArr = [...data];
+  if (quizNum === data.data.length) {
+    const newQArr = [...data.data];
     setQuestionData(newQArr);
     setIsProgress(false);
     setIsEnd(true);
   }
-
   return (
     <div className={styles.quizContainer}>
-      {quizNum < data.length && (
+      {quizNum < data.data.length && (
         <div className={styles.quizTitleContainer}>
-          <Question quizNum={quizNum + 1} quiz={data[quizNum].question} />
+          <Question quizNum={quizNum + 1} quiz={data.data[quizNum].question} />
           <AnswerForm
-            answer={data[quizNum].answer}
-            answerIdx={data[quizNum].question_id}
+            answer={data.data[quizNum].answer}
+            answerIdx={data.data[quizNum].question_id}
             correctCount={correctCount}
             setCorrectCount={setCorrectCount}
             setCorrectIdx={setCorrectIdx}
