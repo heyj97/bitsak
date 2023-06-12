@@ -10,11 +10,10 @@ import { sdmComplaintsRouter } from "./routes/sdmComplaintsRoute.js";
 import { galleryUploadRouter } from "./routes/galleryUploadRoute.js";
 import multer from "multer";
 
+dotenv.config();
 const app = express();
 
 const PORT = process.env.SERVER_PORT;
-
-dotenv.config();
 
 app.use(cors());
 
