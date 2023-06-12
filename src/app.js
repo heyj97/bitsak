@@ -8,6 +8,7 @@ import { koreaDecadeRouter } from "./routers/koreaDecadeRouter.js";
 import { seoulGuRouter } from "./routers/seoulGuRouter.js";
 import { sdmComplaintsRouter } from "./routers/sdmComplaintsRouter.js";
 import { galleryRouter } from "./routers/galleryRouter.js";
+import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 
 const app = express();
 
@@ -33,6 +34,9 @@ app.use(sdmComplaintsRouter);
 app.use(galleryRouter);
 app.use(minwonRouter);
 app.use(quizRouter);
+
+app.use(errorMiddleware);
+
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);
