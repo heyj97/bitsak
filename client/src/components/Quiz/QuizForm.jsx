@@ -2,8 +2,9 @@ import { useState } from "react";
 import useGetFetch from "../../hooks/useGetFetch";
 import AnswerForm from "./AnswerForm";
 import Question from "./Question";
-import { API_BASE_URL, API_PORT } from "../../constants/api";
 import styles from "./Quiz.module.css";
+import Error from "../common/Error/Error";
+import Spinner from "../common/Spinner/Spinner";
 
 const QuizForm = ({
   setQuestionData,
@@ -14,12 +15,20 @@ const QuizForm = ({
   correctIdx,
   setCorrectIdx,
 }) => {
-  const { data, isLoading, error } = useGetFetch(
-    `http://${API_BASE_URL}:${API_PORT}/quiz`
-  );
+  const { data, isLoading, error } = useGetFetch("quiz");
   const [quizNum, setQuizNum] = useState(0);
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>error...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  if (error)
+    return (
+      <div>
+        <Error />
+      </div>
+    );
   if (quizNum === data.length) {
     const newQArr = [...data];
     setQuestionData(newQArr);

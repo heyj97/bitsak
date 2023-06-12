@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-
-const useGetFetch = (url) => {
+import { API_BASE_URL, API_PORT } from "../constants/api";
+const useGetFetch = (param) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const url = `http://${API_BASE_URL}:${API_PORT}/${param}`;
 
   useEffect(() => {
     const abortController = new AbortController();
