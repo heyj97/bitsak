@@ -65,6 +65,20 @@ class galleryModel {
       });
     });
   }
+
+
+  static async getPhotosById(galleryId) {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT * FROM gallery WHERE gallery_id = ?', [galleryId], (err, res) => {
+        if (err) {
+          console.log('error', err);
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
+  }
 }
 
 
