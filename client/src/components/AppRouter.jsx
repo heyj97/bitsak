@@ -3,7 +3,7 @@
 
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import Homepage from "./HomePage/Homepage";
+import Homepage from "./Homepage/Homepage";
 import Spinner from "./common/Spinner/Spinner";
 
 const Introduce = lazy(() => import("./Introduce/Introduce"));
