@@ -17,12 +17,3 @@ const randomImg = () => {
 };
 
 export default randomImg;
-
-// const imgURL = (url) => {
-//   let arr1 = url.split("/");
-//   return console.log(arr1[arr1.length - 2]);
-// };
-
-// imgURL(
-//   "https://drive.google.com/file/d/125uMVKMH7kych8uKwRMlIJm8Xi4pfbrW/view?usp=sharing"
-// );
