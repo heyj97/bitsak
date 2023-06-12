@@ -1,6 +1,6 @@
 import { groupRankService } from "../services/groupRankService.js";
 
-const groupRankController = async (req,res,next) => {
+const groupRankController = async (req, res, next) => {
     try{
         const groupRank = await groupRankService.findAll();
 
