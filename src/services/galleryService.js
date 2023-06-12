@@ -70,6 +70,30 @@ class galleryService {
       };
     }
   }
+
+
+  static async getPhotosByLocation(location) {
+    try {
+      const photos = await galleryModel.getPhotosByLocation(location);
+  
+      if (!photos || photos.length === 0) {
+        return {
+          status: 404,
+          message: '해당 위치의 사진을 찾을 수 없습니다.',
+        };
+      }
+  
+      return {
+        status: 200,
+        data: photos,
+      };
+    } catch (error) {
+      return {
+        status: 500,
+        error: '서버 오류가 발생했습니다.',
+      };
+    }
+  }
 }
 
 export { galleryService };

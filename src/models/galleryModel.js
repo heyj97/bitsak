@@ -23,7 +23,7 @@ class galleryModel {
     return new Promise((resolve, reject) => {
       db.query(
         'UPDATE gallery SET author = ?, description = ?, location = ?, take_date = ? WHERE gallery_id = ?',
-        [photoData.author, photoData.description, photoData.location, photoData.take_date],
+        [photoData.author, photoData.description, photoData.location, photoData.take_date, photoData.galleryId],
         (err, res) => {
           if (err) {
             console.log('error', err);
@@ -41,6 +41,21 @@ class galleryModel {
   static async deletePhoto(photoId) {
     return new Promise((resolve, reject) => {
       db.query('DELETE FROM gallery WHERE gallery_id = ?', [photoId], (err, res) => {
+        if (err) {
+          console.log('error', err);
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
+  }
+
+
+  // 특정 location(동)의 사진 데이터 불러오기
+  static async getPhotosByLocation(location) {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT * FROM gallery WHERE location = ?', [location], (err, res) => {
         if (err) {
           console.log('error', err);
           reject(err);
