@@ -1,8 +1,9 @@
+
 /* eslint-disable no-undef */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 // 작업자 : 김한빈
-import geojson from "./SIG.json";
+import json from "./seodemunguMap.json";
 import styles from "./MapPage.module.css";
 import { useEffect } from 'react';
 
@@ -13,9 +14,9 @@ const MapPage = () => {
         //화면좌표 set -----------------------------
         const { kakao } = window;
 
-        var data = geojson.features;
+        var data = json.features;
         var coordinates = []; //좌표 저장 배열
-        var name = ""; //행정구 이름
+        var name = ""; //행정동 이름
         var polygons = [];
         
         //지도화면 set -----------------------------
@@ -57,13 +58,13 @@ const MapPage = () => {
 
            var polygon = new kakao.maps.Polygon({
             map: map,
-            path: path, //그려질 다각형의 좌표 배열
-            strokeWeight: 2, //선의 두께
-            strokeColor: '#004c80', //선의 색깔
-            strokeOpacity: 0.8, //선의 불투명도
-            strokeStyle: 'solid', //선의 스타일
-            fillColor: '#fff', //채우기 색깔
-            fillOpacity: 0.7, //채우기 불투명도
+            path: path, //다각형의 좌표 배열
+            strokeWeight: 2, 
+            strokeColor: '#004c80',
+            strokeOpacity: 0.8, 
+            strokeStyle: 'solid', 
+            fillColor: '#fff',
+            fillOpacity: 0.7,
            });
 
            polygons.push(polygon);
@@ -107,7 +108,7 @@ const MapPage = () => {
 
         data.forEach((val) => {
             coordinates = val.geometry.coordinates;
-            name = val.properties.SIG_KOR_NM;
+            name = val.properties.EMD_KOR_NM;
 
             displayArea(coordinates, name);
         });
