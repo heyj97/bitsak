@@ -17,13 +17,8 @@ const galleryController = async (req, res, next) => {
         file_path: filePath,
       };
 
-      const galleryUpload = await galleryService.uploadPhoto(photoData);
 
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          throw err;
-        }
-      });
+      const galleryUpload = await galleryService.uploadPhoto(photoData);
 
       return res.status(200).send(galleryUpload);
     } else if (req.method === 'PUT') {
@@ -32,19 +27,22 @@ const galleryController = async (req, res, next) => {
         description: req.body.description,
         location: req.body.location,
         take_date: req.body.take_date,
-        galleryId: req.params.galleryId,
+        galleryId: req.params.gallery_id,
       };
+
 
       const galleryUpdate = await galleryService.updatePhoto(photoData);
 
       return res.status(galleryUpdate.status).send(galleryUpdate);
     } else if (req.method === 'DELETE') {
-      const galleryId = req.params.galleryId;
+      const galleryId = req.params.gallery_id;
+
 
       const galleryDelete = await galleryService.deletePhoto(galleryId);
 
       return res.status(galleryDelete.status).send(galleryDelete);
     }
+    
   } catch (error) {
     next(error);
   }
