@@ -1,0 +1,25 @@
+.wholeContainer {
+  width: 100vw;
+  height: 100vh;
+}
+
+.wordCloudBox {
+  width: 900px;
+  height: fit-content;
+  text-align: center;
+  margin: auto;
+}
+
+.wordCloudTitle {
+  width: 800px;
+  margin: 100px auto;
+}
+
+.wordCloudBox h2 {
+  font-size: 40px;
+  text-align: left;
+}
+.wordCloudBox h4 {
+  font-size: 20px;
+  text-align: right;
+}
