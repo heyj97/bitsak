@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import styles from "./Introduce.module.css";
 import shuffleArrByValue from "../../utils/shuffleArrByValue";
 
 const randomColor = (min, max) => {
@@ -14,13 +13,12 @@ const WordCloud = ({ resData }) => {
 
   return (
     <>
-      
       {randomArr.map((item) => {
         return (
           <CloudItem key={item.label} label={item.label} value={item.value} />
         );
       })}
-      </>
+    </>
   );
 };
 
@@ -28,12 +26,11 @@ const CloudItem = ({ label, value }) => {
   return (
     <span
       style={{
-        fontSize:
-          value > 30 ? `${value}px` : `${value * (1 + Math.random())}px`,
+        fontSize: value > 30 ? `${value}px` : `${value * 1.4}px`,
         fontWeight: "bold",
         display: "inline-block",
         padding: "5px",
-        color: randomColor(40, 200),
+        color: randomColor(50, 240),
       }}
     >
       {label}
