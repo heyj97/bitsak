@@ -3,7 +3,7 @@
 
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import HomePage from "./HomePage/HomePage";
+import Homepage from "./HomePage/Homepage";
 import Spinner from "./common/Spinner/Spinner";
 
 const Introduce = lazy(() => import("./Introduce/Introduce"));
@@ -20,7 +20,7 @@ const AppRouter = () => {
       }
     >
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/" element={<Homepage />} />
         <Route path="/introduce" element={<Introduce />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/map" element={<MapPage />} />
