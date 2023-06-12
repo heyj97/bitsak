@@ -6,7 +6,7 @@ dotenv.config();
 
 const minwonRouter = Router();
 
-minwonRouter.get("/complaints", async (req, res) => {
+minwonRouter.get("/api/complaints", async (req, res) => {
     const serviceKey = process.env.SERVICE_KEY;
     const apiUrl = "http://apis.data.go.kr/1140100/minAnalsInfoView5/minWdcloudInfo5?";
   
@@ -25,4 +25,4 @@ minwonRouter.get("/complaints", async (req, res) => {
   });
 
 
-export {minwonRouter};
+export { minwonRouter };

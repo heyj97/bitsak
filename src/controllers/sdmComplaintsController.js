@@ -15,4 +15,4 @@ const sdmComplaintsController = async (req,res,next) => {
     }
 }
 
-export { sdmComplaintsController }
+export { sdmComplaintsController };
