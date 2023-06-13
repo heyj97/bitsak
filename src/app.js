@@ -1,8 +1,7 @@
 import express from "express";
 import cors from "cors";
-import express from "express";
-import cors from "cors";
 import dotenv from "dotenv";
+import multer from "multer";
 import { groupRankRouter } from "./routers/groupRankRouter.js";
 import { minwonRouter } from "./routers/minwonRouter.js";
 import { quizRouter } from "./routers/quizRouter.js";
