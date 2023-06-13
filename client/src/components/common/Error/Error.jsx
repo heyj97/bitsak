@@ -10,7 +10,7 @@ const Error = ({ error }) => {
       <div className={styles.errorContainer}>
         <h2>오류발생</h2>
         <h3>오류가 발생했습니다. 다시 시도해주세요.</h3>
-        <p>상세{error}</p>
+        <p>{error}</p>
         <button onClick={handleClick}>확인</button>
       </div>
     </div>

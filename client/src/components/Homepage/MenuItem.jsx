@@ -2,9 +2,6 @@
 
 import styles from "./Homepage.module.css";
 import { useNavigate } from "react-router-dom";
-import introduce from "/Homepage/introduce.webp";
-import map from "/Homepage/map.webp";
-import quiz from "/Homepage/quiz.webp";
 
 const MenuItem = ({ title, url, desc }) => {
   const navigate = useNavigate();
