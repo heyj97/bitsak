@@ -13,17 +13,13 @@ const WordCloud = ({ resData }) => {
   const randomArr = useMemo(() => shuffleArrByValue(resData), [resData]);
 
   return (
-    <div className={styles.wordCloudBox}>
-      <div className={styles.wordCloudTitle}>
-        <h2>1년 동안 가장 많이 발생한 빛공해 관련 민원</h2>
-        <h4>2023.06.01 기준</h4>
-      </div>
+    <>
       {randomArr.map((item) => {
         return (
           <CloudItem key={item.label} label={item.label} value={item.value} />
         );
       })}
-    </div>
+    </>
   );
 };
 
