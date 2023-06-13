@@ -1,5 +1,7 @@
 import express from "express";
 import cors from "cors";
+import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import { groupRankRouter } from "./routes/groupRankRoute.js";
 import { minwonRouter } from "./routes/minwonRoute.js";
@@ -12,7 +14,10 @@ import multer from "multer";
 
 const app = express();
 
+
 const PORT = process.env.SERVER_PORT;
+
+dotenv.config();
 
 dotenv.config();
 

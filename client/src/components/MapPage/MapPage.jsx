@@ -1,33 +1,36 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-undef */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable no-unused-vars */
 // 작업자 : 김한빈
-import geojson from "./SIG.json";
+import json from "./seodemunguMap.json";
 import styles from "./MapPage.module.css";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const MapPage = () => {
-    
+
     useEffect( ()=> {
 
         //화면좌표 set -----------------------------
         const { kakao } = window;
 
-        var data = geojson.features;
+        var data = json.features;
         var coordinates = []; //좌표 저장 배열
-        var name = ""; //행정구 이름
+        var name = ""; //행정동 이름
         var polygons = [];
         
         //지도화면 set -----------------------------
-        const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+        const mapRef = useRef();
+        // const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
         const options = { //지도 생성 시 필요한 기본 옵션
             center: new kakao.maps.LatLng(37.5807597279754, 126.931557440644),
             level: 6
         };
-        const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        const map = new kakao.maps.Map(mapRef.current, options); //지도 생성 및 객체 리턴
         
         //지도마커 set -----------------------------
-        const content = document.getElementById('marker');
+        const markerRef = useRef();
+        // const content = document.getElementById('marker');
         const position = new kakao.maps.LatLng(37.5807597279754, 126.931557440644); //마커가 표시 될 위치
         const customOverlay = new kakao.maps.CustomOverlay({
             position: position,
@@ -35,6 +38,23 @@ const MapPage = () => {
             xAnchor: 0.3,
             yAnchor: 0.91
         });
+
+        // // 마커 클러스터러
+        // const clusterer = new kakao.maps.MarkerClusterer({
+        //     map: mal,
+        //     averageCenter: true,
+        //     minLevel: 9
+        // });
+
+        // // 데이터
+        // $.get("./seodemunguMal.json", functon(data)){
+        //     var markers = $(data.positions).map(function(i, position)){
+        //         return new kakao.maps.Marker({
+        //             position: new kakao.maps.LatLng(position.lat, position.lng)
+        //         });
+        //     };
+        //     clusterer.addMarkers(markers);
+        // };
         
         const infowindow = new kakao.maps.InfoWindow({ removable: true });
         customOverlay.setMap(map); //마커가 지도 위에 표시되도록 설정
@@ -57,13 +77,13 @@ const MapPage = () => {
 
            var polygon = new kakao.maps.Polygon({
             map: map,
-            path: path, //그려질 다각형의 좌표 배열
-            strokeWeight: 2, //선의 두께
-            strokeColor: '#004c80', //선의 색깔
-            strokeOpacity: 0.8, //선의 불투명도
-            strokeStyle: 'solid', //선의 스타일
-            fillColor: '#fff', //채우기 색깔
-            fillOpacity: 0.7, //채우기 불투명도
+            path: path, //다각형의 좌표 배열
+            strokeWeight: 2, 
+            strokeColor: '#004c80',
+            strokeOpacity: 0.8, 
+            strokeStyle: 'solid', 
+            fillColor: '#fff',
+            fillOpacity: 0.7,
            });
 
            polygons.push(polygon);
@@ -86,17 +106,9 @@ const MapPage = () => {
             customOverlay.setMap(null);
            });
 
-           kakao.maps.event.addListener(polygon, 'click', function(mouseEvnet){
+           kakao.maps.event.addListener(polygon, 'click', function(mouseEvent){
             const content = 
-            '<div style="padding:2px;"><p><b>' +
-            name +
-            '</b></p><p>이산화질소농도: ' +
-            areaResult[1] +
-            '</p><p>오존농도: ' +
-            areaResult[2] +
-            '</p><p>일산화탄소농도: ' +
-            areaResult[3] +
-            '</div>';
+            '<div style="padding:2px;"></div>';
 
             infowindow.setContent(content);
             infowindow.setPosition(mouseEvent.latLng);
@@ -107,7 +119,7 @@ const MapPage = () => {
 
         data.forEach((val) => {
             coordinates = val.geometry.coordinates;
-            name = val.properties.SIG_KOR_NM;
+            name = val.properties.EMD_KOR_NM;
 
             displayArea(coordinates, name);
         });
@@ -116,9 +128,9 @@ const MapPage = () => {
     
     return (
         <div>
-            <div id="map" className={styles.Map}>지도화면</div>
-            <div id="marker">
-                <div className={styles.overlaybox}>
+            <div ref={mapRef} className={styles.Map}>지도화면</div>
+            <div ref={markerRef}>
+                {/* <div className={styles.overlaybox}>
                     <div className={styles.boxtitle}>빛공해 정보</div>
                     <div className={styles.first}>
                         <div className={styles.triangleText}>1</div>
@@ -150,7 +162,7 @@ const MapPage = () => {
                             <span className={styles.count}></span>
                         </li>
                     </ul>
-                </div>
+                </div> */}
             </div>
         </div>
 
