@@ -6,8 +6,8 @@ import { loginMiddleware } from '../middlewares/loginMiddleware.js';
 const galleryRouter = Router();
 
 galleryRouter.post('/api/gallery', uploadMiddleware, uploadPhoto);
-galleryRouter.put('/api/gallery/:id/:galleryId', loginMiddleware, updatePhoto);
-galleryRouter.delete('/api/gallery/:id/:galleryId', loginMiddleware, deletePhoto);
+galleryRouter.put('/api/gallery/:id/:galleryId',updatePhoto);
+galleryRouter.delete('/api/gallery/:id',deletePhoto);
 galleryRouter.get('/api/gallery/:location', getPhotosByLocation);
 
 export { galleryRouter };

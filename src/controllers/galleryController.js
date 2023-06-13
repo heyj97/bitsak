@@ -1,7 +1,7 @@
 import { galleryService } from "../services/galleryService.js";
 import path from "path";
 import fs from "fs";
-
+import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
 import multer from 'multer';
@@ -14,14 +14,13 @@ async function uploadPhoto(req, res, next) {
   try {
 
     const filePath = req.file.path;
-    const currentDate = new Date();
+  
 
     const photoData = {
-      author: req.body.author,
       description: req.body.description,
       location: req.body.location,
       take_date: req.body.take_date,
-      post_date: currentDate,
+      //post_date: currentDate,
       file_path: `/${filePath}`,
       password: req.body.password,
       username: req.body.username,
@@ -39,16 +38,8 @@ async function uploadPhoto(req, res, next) {
 async function updatePhoto(req, res, next) {
   try {
 
-    const id = req.params.id;
-
-    // jwt 토큰으로부터 추출한 galleryId
-    const id_jwt = req.id;
-    //console.log(id_jwt);
-
-    // 본인 일치 확인
-    if(id_jwt !== id) {
-      return next(new Error('게시물을 수정할 수 있는 권한이 없습니다.'));
-    }
+    //username, password 일치 확인
+    
 
     const photoData = {
       description: req.body.description,
@@ -69,17 +60,26 @@ async function updatePhoto(req, res, next) {
 // 사진 삭제
 async function deletePhoto(req, res, next) {
   try {
-    const id = req.params.id;
     const galleryId = req.params.galleryId;
 
-    // jwt 토큰으로부터 추출한 galleryId
-    const id_jwt = req.id;
+    const password = req.body.password;
 
-    // 본인 일치 확인
-    if(id_jwt !== id) {
-      return next(new Error('게시물을 삭제할 수 있는 권한이 없습니다.'));
+    // 비밀번호 일치 여부 확인
+    const correctPasswordHash = await galleryService.getPassword(galleryId);
+    console.log(correctPasswordHash);
+
+    const isPasswordCorrect = await bcrypt.compare(
+       password,
+       correctPasswordHash,
+    );
+
+    //console.log(isPasswordCorrect);
+    
+    if (!isPasswordCorrect) {
+       const errorMessage =
+         '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.';
+       return { errorMessage };
     }
-
 
     // Database에서 photo 정보를 불러옵니다.
     const photoData = await galleryService.getPhotosById(galleryId);
