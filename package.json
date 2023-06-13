@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "description": "- 서비스명: 빛삭\r - 팀명: 라이트형제\r - 주제: 빛공해(light pollution)\r - 기획 기간: 2023.05.29 ~ 2022.06.02\r - 개발 기간: 2023.06.03 ~ 2023.06.16\r - 목표: 객관적 수치를 활용해 **서울 서대문구 빛공해 현황 가시화 및 사진 공유, 자가진단 퀴즈를 통한 심각성 인지**\r - API 문서: 바로가기\r - 테스트 페이지: 바로가기",
+  "description": "- 서비스명: 빛삭\r - 팀명: 라이트형제\r - 주제: 빛공해(light pollution)\r - 기획 기간: 2023.05.29 ~ 2022.06.02\r - 개발 기간: 2023.06.03 ~ 2023.06.16\r - 목표: 객관적 수치를 활용해 **서울 서대문구 빛공해 현황 가시화 및 사진 공유, 자가진단 퀴즈를 통한 심각성 인지**\r - API 문서: 바로가기\r - 테스트 페이지: 바로가기",
   "main": "index.js",
   "scripts": {
     "server": "nodemon ./src/app.js",
     "client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "react-scripts start"
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "start": "react-scripts start"
   },
@@ -23,6 +26,8 @@
   "devDependencies": {
     "concurrently": "^8.0.1",
     "dotenv": "^16.1.3",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
     "nodemon": "^2.0.22",
     "prettier": "^2.8.8"
   }
