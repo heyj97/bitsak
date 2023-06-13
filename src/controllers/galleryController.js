@@ -24,7 +24,7 @@ async function uploadPhoto(req, res, next) {
       post_date: currentDate,
       file_path: `/${filePath}`,
       password: req.body.password,
-      username: req.body.username
+      username: req.body.username,
     };
 
     const galleryUpload = await galleryService.uploadPhoto(photoData);
@@ -40,23 +40,22 @@ async function updatePhoto(req, res, next) {
   try {
 
     const id = req.params.id;
-    //const galleryId = req.params.galleryId;
 
     // jwt 토큰으로부터 추출한 galleryId
     const id_jwt = req.id;
-    console.log(id_jwt);
+    //console.log(id_jwt);
 
     // 본인 일치 확인
-    if( id_jwt !== id) {
-      return next(new Error('게시물을 삭제할 수 있는 권한이 없습니다.'));
+    if(id_jwt !== id) {
+      return next(new Error('게시물을 수정할 수 있는 권한이 없습니다.'));
     }
 
     const photoData = {
-      author: req.body.author,
       description: req.body.description,
       location: req.body.location,
       take_date: req.body.take_date,
-      galleryId: req.params.gallery_id,
+      //file_path: req.file.path,
+      galleryId: req.params.galleryId,
     };
 
     const galleryUpdate = await galleryService.updatePhoto(photoData);
@@ -75,10 +74,9 @@ async function deletePhoto(req, res, next) {
 
     // jwt 토큰으로부터 추출한 galleryId
     const id_jwt = req.id;
-    console.log(id_jwt);
 
     // 본인 일치 확인
-    if( id_jwt !== id) {
+    if(id_jwt !== id) {
       return next(new Error('게시물을 삭제할 수 있는 권한이 없습니다.'));
     }
 

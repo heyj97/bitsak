@@ -30,17 +30,21 @@ class galleryService {
 
   static async uploadPhoto(photoData) {
     try {
+
       const galleryUpload = await galleryModel.uploadPhoto(photoData);
 
       const data = {}
       data.galleryId = galleryUpload.insertId;
 
-      // 비밀번호 해쉬화
-      //const hashedPassword = await bcrypt.hash(photoData.password, 10);
-
       // id 는 유니크 값 부여
       const id = uuidv4();
       data.id = id;
+      //const addData = { id, galleryId};
+      //await galleryModel.addId(addData)
+
+      // 비밀번호 해쉬화
+      //const hashedPassword = await bcrypt.hash(photoData.password, 10);
+
 
       //암호화 후 
       const password_jwt = process.env.JWT_SECRET_KEY || 'jwt-secret-key';
@@ -62,11 +66,10 @@ class galleryService {
     } catch (error) {
       return {
         status: 500,
-        error: '서버 오류가 발생했습니다.',
+        error: "서버 오류가 발생했습니다.",
       };
     }
   }
-
 
 
   static async updatePhoto(photoData) {
@@ -115,7 +118,7 @@ class galleryService {
     }
   }
 
-//getPhotosById 만들기..
+
   static async getPhotosByLocation(location) {
     try {
       const photos = await galleryModel.getPhotosByLocation(location);

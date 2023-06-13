@@ -22,7 +22,13 @@ class galleryModel {
   static async uploadPhoto(photoData) {
     return new Promise((resolve, reject) => {
       db.query('INSERT INTO gallery (username, description, location, take_date, post_date, file_path, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [photoData.username, photoData.description, photoData.location, photoData.take_date, photoData.post_date, photoData.file_path, photoData.password],
+      [photoData.username,
+       photoData.description,
+       photoData.location,
+       photoData.take_date,
+       photoData.post_date,
+       photoData.file_path,
+       photoData.password],
       (err, res) => {
         if (err) {
           console.log('error', err);
@@ -55,14 +61,34 @@ class galleryModel {
   //   }
   // }
 
+  static async addId(addData) {
+    return new Promise((resolve, reject) => {
+      db.query(
+        'UPDATE gallery SET id = ? WHERE gallery_id = ?',
+        [addData.id,
+         addData.galleryId],
+        (err, res) => {
+          if (err) {
+            console.log('error', err);
+            reject(err);
+          } else {
+            resolve(res);
+          }
+        }
+      );
+    });
+  }
   
   // 사진 수정
- 
   static async updatePhoto(photoData) {
     return new Promise((resolve, reject) => {
       db.query(
-        'UPDATE gallery SET author = ?, description = ?, location = ?, take_date = ? WHERE gallery_id = ?',
-        [photoData.author, photoData.description, photoData.location, photoData.take_date, photoData.galleryId],
+        'UPDATE gallery SET description = ?, location = ?, take_date = ? WHERE gallery_id = ?',
+        [photoData.description,
+         photoData.location,
+         photoData.take_date,
+         //photoData.file_path,
+         photoData.galleryId],
         (err, res) => {
           if (err) {
             console.log('error', err);
