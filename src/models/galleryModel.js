@@ -1,29 +1,39 @@
 import db from '../config/dbConfig.js';
 
-// 사진 업로드, DB에 사진 정보 저장
-class galleryModel {
-  static async uploadPhoto(photoData) {
-    return new Promise((resolve, reject) => {
-      db.query('INSERT INTO gallery (author, description, location, take_date, post_date, file_path) VALUES (?, ?, ?, ?, ?, ?)',
-      [photoData.author, photoData.description, photoData.location, photoData.take_date, photoData.post_date, photoData.file_path],
-      (err, res) => {
-        if (err) {
-          console.log('error', err);
-          reject(err);
-        } else {
-          resolve(res);
-        }
-      });
-    });
-  }
 
+class galleryModel {
+
+  // 사진 업로드, DB에 사진 정보 저장
+  static async uploadPhoto(newPhotoInfo) {
+    try{
+      const newPhoto = await db.query('INSERT INTO gallery (username, description, location, take_date, post_date, file_path, password) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      [newPhotoInfo.username,
+       newPhotoInfo.description,
+       newPhotoInfo.location,
+       newPhotoInfo.take_date,
+       newPhotoInfo.post_date,
+       newPhotoInfo.file_path,
+       newPhotoInfo.password],
+      );
+
+      return newPhoto;
+    }
+    catch(err) {
+      throw err;
+    }
+  }
+  
   
   // 사진 수정
   static async updatePhoto(photoData) {
     return new Promise((resolve, reject) => {
       db.query(
-        'UPDATE gallery SET author = ?, description = ?, location = ?, take_date = ? WHERE gallery_id = ?',
-        [photoData.author, photoData.description, photoData.location, photoData.take_date, photoData.galleryId],
+        'UPDATE gallery SET  description = ?, location = ?, take_date = ? WHERE gallery_id = ?',
+        [photoData.description,
+         photoData.location,
+         photoData.take_date,
+         //photoData.file_path,
+         photoData.galleryId],
         (err, res) => {
           if (err) {
             console.log('error', err);
@@ -36,6 +46,18 @@ class galleryModel {
     });
   }
 
+
+  //비밀번호 일치 확인
+  static async getPassword(galleryId) {
+    try {
+      const password = db.query('select password from gallery where gallery_id = ?', [galleryId]);
+
+      return password;
+    }
+    catch(err) {
+      throw err;
+    }
+  }
 
   // 사진 삭제
   static async deletePhoto(photoId) {
@@ -55,7 +77,7 @@ class galleryModel {
   // 특정 location(동)의 사진 데이터 불러오기
   static async getPhotosByLocation(location) {
     return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM gallery WHERE location = ?', [location], (err, res) => {
+      db.query('SELECT file_path, description, location, take_date, post_date FROM gallery WHERE location = ?', [location], (err, res) => {
         if (err) {
           console.log('error', err);
           reject(err);
@@ -69,7 +91,7 @@ class galleryModel {
 
   static async getPhotosById(galleryId) {
     return new Promise((resolve, reject) => {
-      db.query('SELECT * FROM gallery WHERE gallery_id = ?', [galleryId], (err, res) => {
+      db.query('SELECT file_path FROM gallery WHERE gallery_id = ?', [galleryId], (err, res) => {
         if (err) {
           console.log('error', err);
           reject(err);
