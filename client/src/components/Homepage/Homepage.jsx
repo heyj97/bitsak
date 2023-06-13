@@ -6,7 +6,6 @@ import MenuItem from "./MenuItem";
 const Homepage = () => {
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.homeImgFrame}></div>
       <div className={styles.homepageFlexContainer}>
         <MenuItem
           title="빛공해 소개"
@@ -20,7 +19,7 @@ const Homepage = () => {
         />
         <MenuItem
           title="빛공해 갤러리"
-          url="gallery"
+          url="map"
           desc="빛공해를 사진을 통해 알아봅시다."
         />
       </div>

@@ -2,6 +2,9 @@
 
 import styles from "./Homepage.module.css";
 import { useNavigate } from "react-router-dom";
+import introduce from "/Homepage/introduce.webp";
+import map from "/Homepage/map.webp";
+import quiz from "/Homepage/quiz.webp";
 
 const MenuItem = ({ title, url, desc }) => {
   const navigate = useNavigate();
@@ -9,6 +12,7 @@ const MenuItem = ({ title, url, desc }) => {
   const handleClick = (param) => {
     navigate(`/${param}`);
   };
+  const style = { backgroundImage: `url("/Homepage/${url}.webp")` };
 
   return (
     <>
@@ -17,9 +21,12 @@ const MenuItem = ({ title, url, desc }) => {
         onClick={() => {
           handleClick(url);
         }}
+        style={style}
       >
-        <h3 className={styles.menuTitle}>{title}</h3>
-        <h4 className={styles.menuDesc}>{desc}</h4>
+        <div className={styles.menuCover}>
+          <h3 className={styles.menuTitle}>{title}</h3>
+          <h4 className={styles.menuDesc}>{desc}</h4>
+        </div>
       </button>
     </>
   );
