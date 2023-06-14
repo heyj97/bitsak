@@ -6,7 +6,6 @@ class galleryService {
 
   static async uploadPhoto(photoData) {
     try {
-
       // 비밀번호 해쉬화
       const hashedPassword = await bcrypt.hash(photoData.password, 10);
 
@@ -166,4 +165,5 @@ class galleryService {
   }
 
 }
+
 export { galleryService };

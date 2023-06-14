@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { uploadPhoto, updatePhoto, deletePhoto, getPhotosByLocation, getCountByLocation } from '../controllers/galleryController.js';
-import uploadMiddleware from '../middlewares/uploadMiddleware.js';
+import { uploadMiddleware } from '../middlewares/uploadMiddleware.js';
 
 const galleryRouter = Router();
 

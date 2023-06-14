@@ -12,7 +12,6 @@ const __dirname = dirname(__filename);
 // 사진 업로드
 async function uploadPhoto(req, res, next) {
   try {
-
     const filePath = req.file.path;
     const currentDate = new Date();
 
@@ -39,8 +38,6 @@ async function updatePhoto(req, res, next) {
   try {
 
     //username, password 일치 확인
-    
-
     const photoData = {
       description: req.body.description,
       location: req.body.location,
@@ -61,7 +58,6 @@ async function updatePhoto(req, res, next) {
 async function deletePhoto(req, res, next) {
   try {
     const galleryId = req.params.galleryId;
-    const plainPassword = req.body.password;
     const password = req.body.password;
     // 비밀번호 일치 여부 확인
     const correctPasswordHash = await galleryService.getPassword(galleryId);
@@ -77,8 +73,8 @@ async function deletePhoto(req, res, next) {
     // Database에서 photo 정보를 불러옵니다.
     const photoData = await galleryService.getPhotosById(galleryId);
     const filePath = photoData.data[0].file_path;
-    const rootDir = path.join(__dirname, '..', '..'); // root
-    const absoluteFilePath = path.join(rootDir, filePath); // root/uploads/...
+    const rootDir = path.join(__dirname, '..', '..');
+    const absoluteFilePath = path.join(rootDir, filePath);
     const standardizedPath = path.normalize(absoluteFilePath);
 
     const galleryDelete = await galleryService.deletePhoto(galleryId);

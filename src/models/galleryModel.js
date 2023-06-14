@@ -17,8 +17,7 @@ class galleryModel {
       );
 
       return newPhoto;
-    }
-    catch(err) {
+    } catch(err) {
       throw err;
     }
   }
@@ -48,10 +47,21 @@ class galleryModel {
 
 
   //비밀번호 가져오기
+  static async getPassword(galleryId) {
+    try {
+      const password = db.query('SELECT password FROM gallery WHERE gallery_id = ?', [galleryId]);
+
+      return password;
+    } catch(err) {
+      throw err;
+    }
+  }
+
   // static async getPassword(galleryId) {
   //   try {
-  //     const password = db.query('SELECT password FROM gallery WHERE gallery_id = ?', [galleryId]);
-
+  //     const result = await db.query('SELECT password FROM gallery WHERE gallery_id = ?', [galleryId]);
+  //     const password = result[0]?.password || null; // 쿼리 결과에서 비밀번호 값만 추출
+  
   //     return password;
   //   }
   //   catch(err) {
@@ -59,20 +69,6 @@ class galleryModel {
   //   }
   // }
 
-  static async getPassword(galleryId) {
-    try {
-      const result = await db.query('SELECT password FROM gallery WHERE gallery_id = ?', [galleryId]);
-      const password = result[0]?.password || null; // 쿼리 결과에서 비밀번호 값만 추출
-  
-      return password;
-    }
-    catch(err) {
-      throw err;
-    }
-  }
-  
-
-  
 
   // 사진 삭제
   static async deletePhoto(photoId) {
