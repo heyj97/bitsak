@@ -1,10 +1,9 @@
 //커스텀 에러
-//{ NotFoundError, ConflictError, InternalServerError }
 
 //1. 요청이 잘 못 되었을 때 - BadRequest (400)
 class BadRequestError extends Error {
     status = 400;
-    constructor(message = '잘못된 요청입니다.') {
+    constructor(message) {
       super(message);
       this.name = 'Bad Request';
     }

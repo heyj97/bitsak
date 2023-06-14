@@ -4,8 +4,7 @@ import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { gallery_Model } from '../models/gallery_model.js';
-import { InternalServerError } from "../error.js";
-import { galleryService } from "./galleryService.js";
+import { CustomError, InternalServerError } from "../error.js";
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -14,88 +13,81 @@ const __dirname = dirname(__filename);
 
 class gallery_Service {
 
-  static async uploadPhoto({username, description, location, take_date, file_path, password}) {
-    try {
+    //1. 갤러리 업로드
+    static async uploadPhoto({username, description, location, take_date, file_path, password}) {
 
-      const post_date = new Date();
+        const post_date = new Date();
 
-      // 비밀번호 해쉬화
-      const hashedPassword = await bcrypt.hash(password, 10);
-      console.log(hashedPassword);
+        // 비밀번호 해쉬화
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-      
-      //갤러리 DB 저장
-      await gallery_Model.uploadPhoto({username, description, location,take_date, post_date, file_path, password:hashedPassword});
+        try {
+            //갤러리 DB 저장
+            await gallery_Model.uploadPhoto({username, description, location,take_date, post_date, file_path, password:hashedPassword});
 
-      return {
-        status: 200,
-        data: {username, description, location, take_date,post_date, file_path, password},
-        message: "사진을 업로드 하였습니다.",
-      };
-    } catch (error) {
-      throw error;
+            return {
+                status: 200,
+                data: {username, description, location, take_date,post_date, file_path, password},
+                message: "사진을 업로드 하였습니다.",
+            };
+        } 
+        catch (error) {
+            throw new InternalServerError('게시물을 등록하는 데 실패하였습니다.');
+        }
     }
-  }
+    
+    //2. 갤러리 수정 
+    static async updatePhoto({galleryId, description, location, take_date, file_path, password}) {
+        
+        //DB에 저장된 비밀번호 가져오기
+        const correctPasswordHash = await gallery_Model.getPassword({galleryId});
+    
 
+        // 비밀번호 일치 여부 확인
+        const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash.password);
+        if (!isPasswordCorrect) {
+            throw new CustomError('비밀번호가 일치하지 않습니다.', 401);
+        }
 
-  static async updatePhoto(photoData) {
-    try {
-      const galleryUpdate = await gallery_Model.updatePhoto(photoData);
+        try {
+            //update
+            await gallery_Model.updatePhoto({galleryId, description, location, take_date, file_path});
 
-      if (!galleryUpdate) {
-        return {
-          status: 404,
-          message: '사진을 찾을 수 없습니다.',
-        };
-      }
-      return {
-        status: 200,
-        data: photoData,
-      };
-    } catch (error) {
-      return {
-        status: 500,
-        error: '서버 오류가 발생했습니다.',
-      };
+            return {
+                status: 200,
+                data: {galleryId, description, location, take_date, file_path},
+                message: "게시물이 수정되었습니다.",
+            };
+
+        } 
+        catch (error) {
+            throw new InternalServerError('게시물을 수정하는 데 실패했습니다.');
+        }
     }
-  }
 
 
-  // static async getPassword({galleryId}) {
-  //   try{
-  //     
-  //     return password;
-  //   }
-  //   catch(err) {
-  //     throw err;
-  //   }
-  // }
-
-  static async deletePhoto({galleryId,password}) {
+  static async deletePhoto({galleryId, password}) {
 
     const correctPasswordHash = await gallery_Model.getPassword({galleryId});
-
+    
       // 비밀번호 일치 여부 확인
-      //const correctPasswordHash = await gallery_service.getPassword(galleryId);
-      const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
+      const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash.password);
 
       if (!isPasswordCorrect) {
-        const errorMessage =
-          '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.';
-        return res.status(401).send({ errorMessage });
-     }
-
+        throw new CustomError('비밀번호가 일치하지 않습니다.', 401);
+    }
 
       // Database에서 photo 정보를 불러옵니다.
     const photoData = await gallery_Model.getPhotosById({galleryId});
-    const filePath = photoData.data[0].file_path;
+    const filePath = photoData.file_path;
     const rootDir = path.join(__dirname, '..', '..'); // root
+
     const absoluteFilePath = path.join(rootDir, filePath); // root/uploads/...
     const standardizedPath = path.normalize(absoluteFilePath);
-
+    
 
     try {
-      await gallery_Model.deletePhoto({photoId});
+      await gallery_Model.deletePhoto({galleryId});
 
        // 파일 시스템에서 photo를 삭제합니다.
     fs.unlink(`${standardizedPath}`, (err) => {
@@ -107,7 +99,7 @@ class gallery_Service {
 
       return {
         status: 200,
-        message: '사진을 삭제했습니다.',
+        message: '게시물이 삭제되었습니다.',
       };
     } 
     catch (error) {

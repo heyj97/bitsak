@@ -1,4 +1,4 @@
-//import { BadRequestError, MethodNotAllowedError, NotFoundError, DatabaseError, InternalServerError, CustomError } from '../error.js';
+import { BadRequestError, MethodNotAllowedError, NotFoundError, DatabaseError, InternalServerError, CustomError } from '../error.js';
 
 const errorMiddleware = (error, req, res, next) => {
   //터미널 출력

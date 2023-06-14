@@ -3,15 +3,15 @@ import db from '../config/dbConfig.js';
 
 class gallery_Model {
 
-  // 사진 업로드, DB에 사진 정보 저장
-  static async uploadPhoto({username, description, location,take_date, post_date, file_path, password})
-   {
+    // 사진 업로드, DB에 사진 정보 저장
+    static async uploadPhoto({username, description, location,take_date, post_date, file_path, password})
+    {
         const insertPhoto = 
             'INSERT INTO gallery \
             (username, description, location, take_date, post_date, file_path, password) \
             VALUES (?, ?, ?, ?, ?, ?, ?)';
         await db.query(insertPhoto,
-            [
+            [                    
                 username,
                 description,
                 location,
@@ -21,30 +21,22 @@ class gallery_Model {
                 password
             ]
         );
-  }
+    }
   
   
-  // 사진 수정
-  static async updatePhoto(photoData) {
-    return new Promise((resolve, reject) => {
-      db.query(
-        'UPDATE gallery SET  description = ?, location = ?, take_date = ? WHERE gallery_id = ?',
-        [photoData.description,
-         photoData.location,
-         photoData.take_date,
-         photoData.file_path,
-         photoData.galleryId],
-        (err, res) => {
-          if (err) {
-            console.log('error', err);
-            reject(err);
-          } else {
-            resolve(res);
-          }
-        }
-      );
-    });
-  }
+    // 사진 수정
+    static async updatePhoto({galleryId, description, location, take_date, file_path}) 
+    {
+        const updatePhoto = 'UPDATE gallery SET  description = ?, location = ?, take_date = ?, file_path = ? WHERE gallery_id = ?';
+        await db.query(updatePhoto, 
+            [
+                description,
+                location,
+                take_date,
+                file_path,
+                galleryId
+            ]);
+    }
 
 
   //비밀번호 가져오기
@@ -59,17 +51,9 @@ class gallery_Model {
 
 
   // 사진 삭제
-  static async deletePhoto(photoId) {
-    return new Promise((resolve, reject) => {
-      db.query('DELETE FROM gallery WHERE gallery_id = ?', [photoId], (err, res) => {
-        if (err) {
-          console.log('error', err);
-          reject(err);
-        } else {
-          resolve(res);
-        }
-      });
-    });
+  static async deletePhoto({galleryId}) {
+    const deletePhoto = 'DELETE FROM gallery WHERE gallery_id = ?';
+    await db.query(deletePhoto, [galleryId]);
   }
 
 
@@ -110,16 +94,10 @@ class gallery_Model {
 
 
   static async getPhotosById({galleryId}) {
-    return new Promise((resolve, reject) => {
-      db.query('SELECT file_path FROM gallery WHERE gallery_id = ?', [galleryId], (err, res) => {
-        if (err) {
-          console.log('error', err);
-          reject(err);
-        } else {
-          resolve(res);
-        }
-      });
-    });
+    const selectPhotos = 'SELECT file_path FROM gallery WHERE gallery_id = ?';
+    const [rows] = await db.query(selectPhotos, [galleryId]);
+    return rows[0];
+   
   }
 
 
