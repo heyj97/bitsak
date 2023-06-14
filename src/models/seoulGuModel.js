@@ -5,7 +5,7 @@ import db from '../config/dbConfig.js';
 class seoulGuModel {
   static async getAll() {
     return new Promise((resolve, reject) => {
-      db.query('SELECT gu, illum_avg FROM illum_avg', (err, res) => {
+      db.query('SELECT illum_avg_id, illum_avg FROM illum_avg', (err, res) => {
         if (err) {
           console.log('error', err);
           reject(err);
