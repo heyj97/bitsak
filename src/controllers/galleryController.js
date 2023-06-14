@@ -50,7 +50,7 @@ async function updatePhoto(req, res, next) {
         file_path : `/${filePath}`,
         password: req.body.password,
     };
-    console.log(photoData.file_path);
+    //console.log(photoData.file_path);
     if(!photoData){
         throw new BadRequestError('요청 값을 다시 확인해주세요.');
     }
@@ -95,18 +95,18 @@ async function getPhotosByLocation(req, res, next) {
         next(error);
     }
 
-// }
+}
 
 
 async function getCountByLocation(req, res, next) {
   try {
     const photoCounts = await galleryService.getCountByLocation();
 
-//     return res.status(photoCounts.status).send(photoCounts);
-//   } catch (error) {
-//     next(error);
-//   }
-// }
+    return res.status(photoCounts.status).send(photoCounts);
+  } catch (error) {
+    next(error);
+  }
+}
 
 
-// export { uploadPhoto, updatePhoto, deletePhoto, getPhotosByLocation, getCountByLocation };
+export { uploadPhoto, updatePhoto, deletePhoto, getPhotosByLocation, getCountByLocation };

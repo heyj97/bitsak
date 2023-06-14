@@ -25,4 +25,4 @@ const filter = (req, file, callback) => {
 const uploadMiddleware = multer({ storage: storage, fileFilter: filter }).single('file_path');
 
 
-export { uploadMiddleware };
+export default uploadMiddleware;

@@ -37,33 +37,29 @@ class galleryService {
     }
     
     //2. 갤러리 수정 
-    static async updatePhoto({galleryId, description, location, take_date, file_path, password}) {
-        
-        //DB에 저장된 비밀번호 가져오기
-        const correctPasswordHash = await galleryModel.getPassword({galleryId});
-    
-
-        // 비밀번호 일치 여부 확인
-        const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash.password);
-        if (!isPasswordCorrect) {
-            throw new CustomError('비밀번호가 일치하지 않습니다.', 401);
-        }
-
-        try {
-            //update
-            await galleryModel.updatePhoto({galleryId, description, location, take_date, file_path});
-
-            return {
-                status: 200,
-                data: {galleryId, description, location, take_date, file_path},
-                message: "게시물이 수정되었습니다.",
-            };
-
-        } 
-        catch (error) {
-            throw new InternalServerError('게시물을 수정하는 데 실패했습니다.');
-        }
-    }
+    static async updatePhoto({ galleryId, description, location, take_date, file_path, password }) {
+      try {
+          // update
+          await galleryModel.updatePhoto({ galleryId, description, location, take_date, file_path });
+  
+          // DB에 저장된 비밀번호 가져오기
+          const correctPasswordHash = await galleryModel.getPassword({ galleryId });
+  
+          // 비밀번호 일치 여부 확인
+          const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash.password);
+          if (!isPasswordCorrect) {
+              throw new CustomError('비밀번호가 일치하지 않습니다.', 401);
+          }
+  
+          return {
+              status: 200,
+              data: { galleryId, description, location, take_date, file_path },
+              message: '게시물이 수정되었습니다.',
+          };
+      } catch (error) {
+          throw new InternalServerError('게시물을 수정하는 데 실패했습니다.');
+      }
+  }
 
 
   static async deletePhoto({galleryId, password}) {

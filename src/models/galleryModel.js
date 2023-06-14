@@ -1,7 +1,7 @@
-// import db from '../config/dbConfig.js';
+import db from '../config/dbConfig.js';
 
 
-// class galleryModel {
+class galleryModel {
 
     // 사진 업로드, DB에 사진 정보 저장
     static async uploadPhoto({username, description, location,take_date, post_date, file_path, password})
@@ -25,9 +25,8 @@
   
   
     // 사진 수정
-    static async updatePhoto({galleryId, description, location, take_date, file_path}) 
-    {
-        const updatePhoto = 'UPDATE gallery SET  description = ?, location = ?, take_date = ?, file_path = ? WHERE gallery_id = ?';
+    static async updatePhoto({galleryId, description, location, take_date, file_path}) {
+        const updatePhoto = 'UPDATE gallery SET description = ?, location = ?, take_date = ?, file_path = ? WHERE gallery_id = ?';
         await db.query(updatePhoto, 
             [
                 description,
