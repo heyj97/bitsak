@@ -31,7 +31,7 @@ class galleryModel {
         [photoData.description,
          photoData.location,
          photoData.take_date,
-         //photoData.file_path,
+         photoData.file_path,
          photoData.galleryId],
         (err, res) => {
           if (err) {
@@ -46,6 +46,20 @@ class galleryModel {
   }
 
 
+  //비밀번호 일치 확인
+  static async getPassword({galleryId}) {
+    try {
+      const getPassword = 'select password from gallery where gallery_id = ?';
+      const password = await db.query(getPassword, [galleryId]);
+
+      //const password = rows[0];
+      console.log(password);
+      return password[0];
+    }
+    catch(err){
+      throw err;
+    }
+  }
   //비밀번호 가져오기
   // static async getPassword(galleryId) {
   //   try {
@@ -56,20 +70,6 @@ class galleryModel {
   //     throw err;
   //   }
   // }
-
-  static async getPassword({galleryId}) {
-    try {
-      const getPassword = 'SELECT password FROM gallery WHERE gallery_id = ?';
-      const password = await db.query(getPassword, [galleryId]);
-
-      return password[0];
-   
-    }
-    catch(err) {
-      throw err;
-    }
-  }
-
 
 
   // 사진 삭제
@@ -100,6 +100,30 @@ class galleryModel {
       });
     });
   }
+
+ // 'location' 그룹 별로 개수 count 
+ static async getCountByLocation() {
+  return new Promise((resolve, reject) => {
+    db.query('SELECT location, COUNT(*) AS count FROM gallery GROUP BY location', (err, res) => {
+      if (err) {
+        console.log('error', err);
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+}
+
+//  static async getCountByLocation() {
+//   try{
+//     const photoCounts = await db.query('SELECT location, COUNT(*) AS count FROM gallery GROUP BY location');
+
+//     return photoCounts;
+//   } catch(err) {
+//     throw err;
+//   }
+// }
 
 
   static async getPhotosById(galleryId) {

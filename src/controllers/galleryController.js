@@ -1,4 +1,4 @@
-import { galleryService } from "../services/galleryService.js";
+import { gallery_Service } from "../services/gallery_service";
 import path from "path";
 import fs from "fs";
 import bcrypt from 'bcrypt';
@@ -13,19 +13,19 @@ const __dirname = dirname(__filename);
 async function uploadPhoto(req, res, next) {
   try {
     const filePath = req.file.path;
-    const currentDate = new Date();
+  
 
     const photoData = {
       description: req.body.description,
       location: req.body.location,
       take_date: req.body.take_date,
-      post_date: currentDate,
+      //post_date: currentDate,
       file_path: `/${filePath}`,
       password: req.body.password,
       username: req.body.username,
     };
 
-    const galleryUpload = await galleryService.uploadPhoto(photoData);
+    const galleryUpload = await gallery_Service.uploadPhoto(photoData);
 
     return res.status(200).send(galleryUpload);
   } catch (error) {
@@ -46,7 +46,7 @@ async function updatePhoto(req, res, next) {
       galleryId: req.params.galleryId,
     };
 
-    const galleryUpdate = await galleryService.updatePhoto(photoData);
+    const galleryUpdate = await gallery_Service.updatePhoto(photoData);
 
     return res.status(galleryUpdate.status).send(galleryUpdate);
   } catch (error) {
@@ -60,8 +60,7 @@ async function deletePhoto(req, res, next) {
     const galleryId = req.params.galleryId;
     const password = req.body.password;
     // 비밀번호 일치 여부 확인
-    const correctPasswordHash = await galleryService.getPassword(galleryId);
-    console.log('correcPasswordHash:' + correctPasswordHash);
+    const correctPasswordHash = await gallery_Service.getPassword(galleryId);
     const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
 
     
@@ -72,13 +71,13 @@ async function deletePhoto(req, res, next) {
     }
 
     // Database에서 photo 정보를 불러옵니다.
-    const photoData = await galleryService.getPhotosById(galleryId);
+    const photoData = await gallery_Service.getPhotosById(galleryId);
     const filePath = photoData.data[0].file_path;
     const rootDir = path.join(__dirname, '..', '..');
     const absoluteFilePath = path.join(rootDir, filePath);
     const standardizedPath = path.normalize(absoluteFilePath);
 
-    const galleryDelete = await galleryService.deletePhoto(galleryId);
+    const galleryDelete = await gallery_Service.deletePhoto(galleryId);
 
     // 파일 시스템에서 photo를 삭제합니다.
     fs.unlink(`${standardizedPath}`, (err) => {
@@ -99,18 +98,19 @@ async function getPhotosByLocation(req, res, next) {
   try {
     const location = req.params.location;
 
-    const photosByLocation = await galleryService.getPhotosByLocation(location);
+    const photosByLocation = await gallery_Service.getPhotosByLocation(location);
 
     return res.status(photosByLocation.status).send(photosByLocation);
   } catch (error) {
     next(error);
   }
+
 }
 
 
 async function getCountByLocation(req, res, next) {
   try {
-    const photoCounts = await galleryService.getCountByLocation();
+    const photoCounts = await gallery_Service.getCountByLocation();
 
     return res.status(photoCounts.status).send(photoCounts);
   } catch (error) {

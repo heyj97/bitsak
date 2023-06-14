@@ -21,7 +21,11 @@
     "leaflet": "^1.9.4",
     "multer": "^1.4.5-lts.1",
     "mysql": "^2.18.1",
+<<<<<<< HEAD
     "react-leaflet": "^4.2.1",
+=======
+    "mysql2": "^3.3.5",
+>>>>>>> 2025715748ed13267bf288da8d5d8ea2af03642b
     "react-router-dom": "^6.11.2",
     "uuid": "^9.0.0"
   },

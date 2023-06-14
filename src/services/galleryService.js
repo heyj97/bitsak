@@ -1,18 +1,19 @@
 import bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
 import { galleryModel } from '../models/galleryModel.js';
 
 class galleryService {
 
   static async uploadPhoto(photoData) {
     try {
+
       // 비밀번호 해쉬화
       const hashedPassword = await bcrypt.hash(photoData.password, 10);
+
       const newPhotoInfo = { 
         description: photoData.description,
         location: photoData.location,
         take_date: photoData.take_date,
-        post_date: photoData.post_date,
+        post_date: post_date,
         file_path: photoData.file_path,
         password: hashedPassword,
         username: photoData.username,
@@ -116,6 +117,29 @@ class galleryService {
     }
   }
 
+  static async getCountByLocation() {
+    try {
+      const photoCounts = await galleryModel.getCountByLocation();
+  
+      if (!photoCounts || photoCounts.length === 0) {
+        return {
+          status: 404,
+          message: '사진 데이터 개수를 가져올 수 없습니다.',
+        };
+      }
+  
+      return {
+        status: 200,
+        data: photoCounts,
+      };
+    } catch (error) {
+      return {
+        status: 500,
+        error: '서버 오류가 발생했습니다.',
+      };
+    }
+  }
+  
 
   static async getPhotosById(galleryId) {
     try {
