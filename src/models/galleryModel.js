@@ -93,15 +93,17 @@ class galleryModel {
   }
 
  // 'location' 그룹 별로 개수 count 
- static async findPhotos() {
-  try{
-    const Photos = await db.query('SELECT * FROM gallery');
-    
-    return Photos;
-  } 
-  catch(error) {
-    throw error;
-  }
+ static async getCountByLocation() {
+  return new Promise((resolve, reject) => {
+    db.query('SELECT location, COUNT(*) AS count FROM gallery GROUP BY location', (err, res) => {
+      if (err) {
+        console.log('error', err);
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
 }
 
   static async getPhotosById(galleryId) {

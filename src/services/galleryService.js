@@ -122,7 +122,7 @@ class galleryService {
     }
   }
 
-  static async findPhotos() {
+  static async getCountByLocation() {
     try {
       const photoCount = await galleryModel.findPhotos();
   
