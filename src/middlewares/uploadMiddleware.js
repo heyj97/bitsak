@@ -15,10 +15,10 @@ const storage = multer.diskStorage({
 const filter = (req, file, callback) => {
   const fileType = file.mimetype.split('/')[1];
 
-  if (fileType === 'jpg' || fileType === 'jpeg' || fileType === 'png') {
+  if (fileType === 'jpg' || fileType === 'jpeg' || fileType === 'png' || fileType === 'heic') {
     callback(null, true);
   } else {
-    callback({ message: '지정된 확장자만 가능합니다. (jpg, jpeg, png)' }, false);
+    callback({ message: '지정된 확장자만 가능합니다. (jpg, jpeg, png, HEIC)' }, false);
   }
 };
 
