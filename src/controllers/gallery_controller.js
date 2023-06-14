@@ -48,7 +48,7 @@ async function updatePhoto(req, res, next) {
         location: req.body.location,
         take_date: req.body.take_date,
         file_path : `/${filePath}`,
-        password: req.body,
+        password: req.body.password,
     };
     console.log(photoData.file_path);
     if(!photoData){
@@ -85,15 +85,15 @@ async function updatePhoto(req, res, next) {
 
 // 특정 location(동)의 사진 데이터 불러오기
 async function getPhotosByLocation(req, res, next) {
-  try {
     const location = req.params.location;
 
-    const photosByLocation = await gallery_Service.getPhotosByLocation(location);
-
-    return res.status(photosByLocation.status).send(photosByLocation);
-  } catch (error) {
-    next(error);
-  }
+    try {
+        const photosByLocation = await gallery_Service.getPhotosByLocation({location});
+        return res.status(photosByLocation.status).send(photosByLocation);
+    } 
+    catch (error) {
+        next(error);
+    }
 
 }
 

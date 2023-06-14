@@ -109,9 +109,9 @@ class gallery_Service {
   }
 
 
-  static async getPhotosByLocation(location) {
+  static async getPhotosByLocation({location}) {
     try {
-      const photos = await gallery_Model.getPhotosByLocation(location);
+      const photos = await gallery_Model.getPhotosByLocation({location});
   
       return {
         status: 200,

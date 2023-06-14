@@ -10,7 +10,8 @@ class koreaDecadeService {
                 status: 200,
                 data: koreaDecade
             };
-        } catch (error) {
+        } 
+        catch (error) {
             throw new InternalServerError('대한민국의 10년간 빛공해 데이터를 불러오는 데 실패했습니다.');
         }
     }
