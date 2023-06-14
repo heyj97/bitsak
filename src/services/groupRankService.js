@@ -1,4 +1,6 @@
+import { InternalServerError } from "../error.js";
 import { groupRankModel } from "../models/groupRankModel.js";
+
 
 class groupRankService {
   //그룹 랭킹 전체 조회
@@ -6,21 +8,13 @@ class groupRankService {
     try {
       const groupRank = await groupRankModel.getAll();
 
-      if (!groupRank) {
-        return {
-          status: 400,
-          message: "데이터를 불러올 수 없습니다.",
-        };
-      }
       return {
         status: 200,
         data: groupRank,
       };
+
     } catch (error) {
-      return {
-        status: 500,
-        error: "서버 오류가 발생했습니다.",
-      };
+      throw new InternalServerError('G20 국가 빛공해 데이터를 불러오는 데 실패했습니다.')
     }
   }
 }
