@@ -5,19 +5,9 @@ class quizModel {
     static async getQuestions() {
         const selectQuiz = 'SELECT question_id, question, answer, explanation FROM quiz ORDER BY RAND() LIMIT 5';
         const [rows] = await db.query(selectQuiz);
-        console.log(rows);
 
         return rows;
     }
 }
-
-// class koreaDecadeModel {
-//     static async getAll() {
-//         const selectKoreaDecade = 'SELECT year, mean, sum FROM korea_lightpollution';
-//         const [rows] = await db.query(selectKoreaDecade);
-
-//         return rows;
-//     }
-// }
 
 export { quizModel };
