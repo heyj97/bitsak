@@ -14,13 +14,12 @@ const WordCloud = ({ resData }) => {
 
   return (
     <>
-      
       {randomArr.map((item) => {
         return (
           <CloudItem key={item.label} label={item.label} value={item.value} />
         );
       })}
-      </>
+    </>
   );
 };
 
