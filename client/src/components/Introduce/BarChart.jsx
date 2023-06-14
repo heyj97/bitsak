@@ -9,15 +9,15 @@ import {
 
 Chart.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
-const BarChart = ({ label, data }) => {
+const BarChart = ({ label, data, dataName }) => {
   const chartData = {
     labels: label,
     datasets: [
       {
         type: "bar",
-        label: "G20 야간조도",
+        label: dataName,
         backgroundColor: (context) => {
-          if (context.raw > 3.9) {
+          if (context.raw === 3.959 || context.raw === 17551.4) {
             return "rgb(255, 99, 132)";
           } else {
             return "#ccc";

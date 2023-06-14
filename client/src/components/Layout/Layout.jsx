@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import AppRouter from "../AppRouter";
 import Header from "./Header";
 import { useMemo } from "react";
+import Footer from "./Footer";
 
 const Layout = () => {
   const location = useLocation();
@@ -12,6 +13,7 @@ const Layout = () => {
     <>
       {!isHome && <Header />}
       <AppRouter />
+      {!isHome && <Footer />}
     </>
   );
 };
