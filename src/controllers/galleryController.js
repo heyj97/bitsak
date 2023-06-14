@@ -61,24 +61,17 @@ async function updatePhoto(req, res, next) {
 async function deletePhoto(req, res, next) {
   try {
     const galleryId = req.params.galleryId;
-
+    const plainPassword = req.body.password;
     const password = req.body.password;
-
     // 비밀번호 일치 여부 확인
     const correctPasswordHash = await galleryService.getPassword(galleryId);
-    console.log(correctPasswordHash);
+    const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
 
-    const isPasswordCorrect = await bcrypt.compare(
-       password,
-       correctPasswordHash,
-    );
-
-    //console.log(isPasswordCorrect);
     
     if (!isPasswordCorrect) {
        const errorMessage =
          '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.';
-       return { errorMessage };
+       return res.status(401).send({ errorMessage });
     }
 
     // Database에서 photo 정보를 불러옵니다.
@@ -90,13 +83,13 @@ async function deletePhoto(req, res, next) {
 
     const galleryDelete = await galleryService.deletePhoto(galleryId);
 
-          // // 파일 시스템에서 photo를 삭제합니다.
-          fs.unlink(`${standardizedPath}`, (err) => {
-            if (err) {
-              console.error(`Failed to delete file: ${err}`);
-              return;
-            }
-          });
+    // 파일 시스템에서 photo를 삭제합니다.
+    fs.unlink(`${standardizedPath}`, (err) => {
+      if (err) {
+        console.error(`Failed to delete file: ${err}`);
+        return;
+      }
+    });
         
     return res.status(galleryDelete.status).send(galleryDelete);
   } catch (error) {
@@ -118,15 +111,16 @@ async function getPhotosByLocation(req, res, next) {
 
 }
 
+
 async function getCountByLocation(req, res, next) {
-  try{
+  try {
     const photoCounts = await galleryService.getCountByLocation();
-   
+
     return res.status(photoCounts.status).send(photoCounts);
-  }
-  catch(error) {
-    next(error)
+  } catch (error) {
+    next(error);
   }
 }
+
 
 export { uploadPhoto, updatePhoto, deletePhoto, getPhotosByLocation, getCountByLocation };

@@ -56,12 +56,20 @@ class galleryModel {
       //const password = rows[0];
       console.log(password);
       return password[0];
-   
-    }
-    catch(err) {
-      throw err;
     }
   }
+  //비밀번호 가져오기
+  // static async getPassword(galleryId) {
+  //   try {
+  //     const password = db.query('SELECT password FROM gallery WHERE gallery_id = ?', [galleryId]);
+
+  //     return password;
+  //   }
+  //   catch(err) {
+  //     throw err;
+  //   }
+  // }
+
 
   // 사진 삭제
   static async deletePhoto(photoId) {
@@ -129,6 +137,22 @@ class galleryModel {
       });
     });
   }
+
+
+  // location(동)의 사진 데이터 개수(count) 가져오기
+  static async getCountByLocation() {
+    return new Promise((resolve, reject) => {
+      db.query('SELECT location, COUNT(*) AS count FROM gallery GROUP BY location', (err, res) => {
+        if (err) {
+          console.log('error', err);
+          reject(err);
+        } else {
+          resolve(res);
+        }
+      });
+    });
+  }
+
 }
 
 

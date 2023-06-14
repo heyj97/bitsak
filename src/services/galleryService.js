@@ -70,7 +70,6 @@ class galleryService {
   static async getPassword(galleryId) {
     try{
       const password = await galleryModel.getPassword(galleryId);
-
       return password;
     }
     catch(err) {
@@ -83,7 +82,7 @@ class galleryService {
       const galleryDelete = await galleryModel.deletePhoto(photoId);
 
       // if (!galleryDelete) {
-      //   throw error(new )
+      //   throw error(new)
       // }
 
       return {
@@ -98,7 +97,7 @@ class galleryService {
     }
   }
 
-//getPhotosById 만들기..
+
   static async getPhotosByLocation(location) {
     try {
       const photos = await galleryModel.getPhotosByLocation(location);
@@ -145,28 +144,52 @@ class galleryService {
     }
   }
   
-static async getPhotosById(galleryId) {
-  try {
-    const photos = await galleryModel.getPhotosById(galleryId);
 
-    if (!photos || photos.length === 0) {
+  static async getPhotosById(galleryId) {
+    try {
+      const photos = await galleryModel.getPhotosById(galleryId);
+
+      if (!photos || photos.length === 0) {
+        return {
+          status: 404,
+          message: '해당 사진을 찾을 수 없습니다.',
+        };
+      }
+
       return {
-        status: 404,
-        message: '해당 사진을 찾을 수 없습니다.',
+        status: 200,
+        data: photos,
+      };
+    } catch (error) {
+      return {
+        status: 500,
+        error: '서버 오류가 발생했습니다.',
       };
     }
-
-    return {
-      status: 200,
-      data: photos,
-    };
-  } catch (error) {
-    return {
-      status: 500,
-      error: '서버 오류가 발생했습니다.',
-    };
   }
-}
+
+  static async getCountByLocation() {
+    try {
+      const photoCounts = await galleryModel.getCountByLocation();
+  
+      if (!photoCounts || photoCounts.length === 0) {
+        return {
+          status: 404,
+          message: '사진 데이터 개수를 가져올 수 없습니다.',
+        };
+      }
+  
+      return {
+        status: 200,
+        data: photoCounts,
+      };
+    } catch (error) {
+      return {
+        status: 500,
+        error: '서버 오류가 발생했습니다.',
+      };
+    }
+  }
 
 }
 export { galleryService };
