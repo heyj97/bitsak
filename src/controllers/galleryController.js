@@ -61,6 +61,7 @@ async function deletePhoto(req, res, next) {
     const password = req.body.password;
     // 비밀번호 일치 여부 확인
     const correctPasswordHash = await galleryService.getPassword(galleryId);
+    console.log('correcPasswordHash:' + correctPasswordHash);
     const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
 
     

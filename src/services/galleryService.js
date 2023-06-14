@@ -8,7 +8,6 @@ class galleryService {
     try {
       // 비밀번호 해쉬화
       const hashedPassword = await bcrypt.hash(photoData.password, 10);
-
       const newPhotoInfo = { 
         description: photoData.description,
         location: photoData.location,
