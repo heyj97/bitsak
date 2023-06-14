@@ -10,5 +10,4 @@ class quizModel {
     }
 }
 
-
 export { quizModel };

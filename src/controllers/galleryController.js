@@ -37,9 +37,9 @@ async function uploadPhoto(req, res, next) {
 // 사진 수정
 async function updatePhoto(req, res, next) {
 
-    const filePath = req.file.path;
+    const filePath = req.file.path; // file_path ...
     if (!filePath) {
-        throw BadRequestError('BadRequestError','파일 경로 값을 다시 확인해주세요.');
+        throw new BadRequestError('파일 경로 값을 다시 확인해주세요.');
     }
 
     const photoData = {
@@ -50,7 +50,7 @@ async function updatePhoto(req, res, next) {
         file_path : `/${filePath}`,
         password: req.body.password,
     };
-    //console.log(photoData.file_path);
+
     if(!photoData){
         throw new BadRequestError('요청 값을 다시 확인해주세요.');
     }
