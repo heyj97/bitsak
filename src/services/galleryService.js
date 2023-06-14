@@ -27,7 +27,6 @@ class galleryService {
 
             return {
                 status: 200,
-                data: {username, description, location, take_date,post_date, file_path, password},
                 message: "사진을 업로드 하였습니다.",
             };
         } 
@@ -55,7 +54,6 @@ class galleryService {
 
             return {
                 status: 200,
-                data: {galleryId, description, location, take_date, file_path},
                 message: "게시물이 수정되었습니다.",
             };
 
