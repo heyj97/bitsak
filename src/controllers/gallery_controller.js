@@ -48,7 +48,7 @@ async function updatePhoto(req, res, next) {
         location: req.body.location,
         take_date: req.body.take_date,
         file_path : `/${filePath}`,
-        password: req.body,
+        password: req.body.password,
     };
     console.log(photoData.file_path);
     if(!photoData){
@@ -72,7 +72,6 @@ async function updatePhoto(req, res, next) {
         const password = req.body.password;
 
         try {
-
             //게시물 삭제
             const galleryDelete = await gallery_Service.deletePhoto({galleryId, password});
             return res.status(galleryDelete.status).send(galleryDelete);

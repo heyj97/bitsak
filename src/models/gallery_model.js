@@ -44,7 +44,6 @@ class gallery_Model {
     
       const getPassword = 'select password from gallery where gallery_id = ?';
       const [rows] = await db.query(getPassword, [galleryId]);
-      console.log('rows:',rows[0]);
       return rows[0];
   }
 

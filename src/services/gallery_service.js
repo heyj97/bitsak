@@ -41,7 +41,7 @@ class gallery_Service {
         
         //DB에 저장된 비밀번호 가져오기
         const correctPasswordHash = await gallery_Model.getPassword({galleryId});
-    
+
 
         // 비밀번호 일치 여부 확인
         const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash.password);
