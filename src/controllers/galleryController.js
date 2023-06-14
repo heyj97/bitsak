@@ -118,15 +118,15 @@ async function getPhotosByLocation(req, res, next) {
 
 }
 
-async function findPhotos(req, res, next) {
+async function getCountByLocation(req, res, next) {
   try{
-    const photoCount = await galleryService.findPhotos();
+    const photoCounts = await galleryService.getCountByLocation();
    
-    return res.status(photoCount.status).send(photoCount);
+    return res.status(photoCounts.status).send(photoCounts);
   }
   catch(error) {
     next(error)
   }
 }
 
-export { uploadPhoto, updatePhoto, deletePhoto, getPhotosByLocation, findPhotos };
+export { uploadPhoto, updatePhoto, deletePhoto, getPhotosByLocation, getCountByLocation };

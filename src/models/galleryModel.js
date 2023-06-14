@@ -32,7 +32,7 @@ class galleryModel {
         [photoData.description,
          photoData.location,
          photoData.take_date,
-         //photoData.file_path,
+         photoData.file_path,
          photoData.galleryId],
         (err, res) => {
           if (err) {
@@ -105,6 +105,17 @@ class galleryModel {
     });
   });
 }
+
+//  static async getCountByLocation() {
+//   try{
+//     const photoCounts = await db.query('SELECT location, COUNT(*) AS count FROM gallery GROUP BY location');
+
+//     return photoCounts;
+//   } catch(err) {
+//     throw err;
+//   }
+// }
+
 
   static async getPhotosById(galleryId) {
     return new Promise((resolve, reject) => {

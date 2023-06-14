@@ -124,25 +124,24 @@ class galleryService {
 
   static async getCountByLocation() {
     try {
-      const photoCount = await galleryModel.findPhotos();
+      const photoCounts = await galleryModel.getCountByLocation();
   
-      // if (!photos || photos.length === 0) {
-      //   return {
-      //     status: 404,
-      //     message: '해당 사진을 찾을 수 없습니다.',
-      //   };
-      // }
+      if (!photoCounts || photoCounts.length === 0) {
+        return {
+          status: 404,
+          message: '사진 데이터 개수를 가져올 수 없습니다.',
+        };
+      }
   
       return {
         status: 200,
-        data: photoCount,
+        data: photoCounts,
       };
     } catch (error) {
-      // return {
-      //   status: 500,
-      //   error: '서버 오류가 발생했습니다.',
-      // };
-      throw err;
+      return {
+        status: 500,
+        error: '서버 오류가 발생했습니다.',
+      };
     }
   }
   
