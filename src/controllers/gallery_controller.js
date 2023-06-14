@@ -1,13 +1,6 @@
-import { gallery_Service } from "../services/gallery_service";
-import path from "path";
-import fs from "fs";
-import bcrypt from 'bcrypt';
-import { fileURLToPath } from 'url';
-import { join, dirname } from 'path';
-import multer from 'multer';
+import path from 'path';
+import { gallery_Service } from "../services/gallery_service.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 // 사진 업로드
 async function uploadPhoto(req, res, next) {
@@ -45,7 +38,7 @@ async function updatePhoto(req, res, next) {
       description: req.body.description,
       location: req.body.location,
       take_date: req.body.take_date,
-      //file_path: req.file.path,
+      file_path: req.file.path,
       galleryId: req.params.galleryId,
     };
 
@@ -60,41 +53,19 @@ async function updatePhoto(req, res, next) {
 // 사진 삭제
 async function deletePhoto(req, res, next) {
   try {
-    const galleryId = req.params.galleryId;
+    const galleryId = parseInt(req.params.galleryId);
+    console.log(typeof(galleryId));
     const password = req.body.password;
-    // 비밀번호 일치 여부 확인
-    const correctPasswordHash = await gallery_Service.getPassword(galleryId);
-    const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
-
     
-    if (!isPasswordCorrect) {
-       const errorMessage =
-         '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.';
-       return res.status(401).send({ errorMessage });
-    }
 
-    // Database에서 photo 정보를 불러옵니다.
-    const photoData = await gallery_Service.getPhotosById(galleryId);
-    const filePath = photoData.data[0].file_path;
-    const rootDir = path.join(__dirname, '..', '..'); // root
-    const absoluteFilePath = path.join(rootDir, filePath); // root/uploads/...
-    const standardizedPath = path.normalize(absoluteFilePath);
-
-    const galleryDelete = await gallery_Service.deletePhoto(galleryId);
-
-    // 파일 시스템에서 photo를 삭제합니다.
-    fs.unlink(`${standardizedPath}`, (err) => {
-      if (err) {
-        console.error(`Failed to delete file: ${err}`);
-        return;
-      }
-    });
+    const galleryDelete = await gallery_Service.deletePhoto({galleryId, password});
         
     return res.status(galleryDelete.status).send(galleryDelete);
   } catch (error) {
     next(error);
   }
 }
+
 
 // 특정 location(동)의 사진 데이터 불러오기
 async function getPhotosByLocation(req, res, next) {
