@@ -48,11 +48,15 @@ class galleryModel {
 
 
   //비밀번호 일치 확인
-  static async getPassword(galleryId) {
+  static async getPassword({galleryId}) {
     try {
-      const password = db.query('select password from gallery where gallery_id = ?', [galleryId]);
+      const getPassword = 'select password from gallery where gallery_id = ?';
+      const password = await db.query(getPassword, [galleryId]);
 
-      return password;
+      //const password = rows[0];
+      console.log(password);
+      return password[0];
+   
     }
     catch(err) {
       throw err;
@@ -88,6 +92,17 @@ class galleryModel {
     });
   }
 
+ // 'location' 그룹 별로 개수 count 
+ static async findPhotos() {
+  try{
+    const Photos = await db.query('SELECT * FROM gallery');
+    
+    return Photos;
+  } 
+  catch(error) {
+    throw error;
+  }
+}
 
   static async getPhotosById(galleryId) {
     return new Promise((resolve, reject) => {

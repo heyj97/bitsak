@@ -122,7 +122,30 @@ class galleryService {
     }
   }
 
-
+  static async findPhotos() {
+    try {
+      const photoCount = await galleryModel.findPhotos();
+  
+      // if (!photos || photos.length === 0) {
+      //   return {
+      //     status: 404,
+      //     message: '해당 사진을 찾을 수 없습니다.',
+      //   };
+      // }
+  
+      return {
+        status: 200,
+        data: photoCount,
+      };
+    } catch (error) {
+      // return {
+      //   status: 500,
+      //   error: '서버 오류가 발생했습니다.',
+      // };
+      throw err;
+    }
+  }
+  
 static async getPhotosById(galleryId) {
   try {
     const photos = await galleryModel.getPhotosById(galleryId);
