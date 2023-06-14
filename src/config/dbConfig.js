@@ -1,17 +1,18 @@
-import mysql from "mysql";
+import mysql from "mysql2/promise";
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const connection = mysql.createConnection({
+const connection = mysql.createPool({
   host: process.env.SERVER_HOST,
   user: process.env.SERVER_USER,
   password: process.env.SERVER_PASSWORD,
   database: process.env.SERVER_DATABASE,
-  port : 3306,
+  port : process.env.DB_PORT,
+
 });
 
-connection.connect(function (err) {
+connection.getConnection(function (err) {
     if (err) throw err;
     console.log("Connected to MySQL server!");
   });

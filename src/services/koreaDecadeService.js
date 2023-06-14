@@ -1,3 +1,4 @@
+import { InternalServerError } from '../error.js';
 import { koreaDecadeModel } from '../models/koreaDecadeModel.js';
 
 class koreaDecadeService {
@@ -5,21 +6,13 @@ class koreaDecadeService {
         try {
             const koreaDecade = await koreaDecadeModel.getAll();
             
-            if(!koreaDecade) {
-                return {
-                    status: 400,
-                    message: '데이터를 불러올 수 없습니다.',
-                }
-            }
             return {
                 status: 200,
                 data: koreaDecade
             };
-        } catch (error) {
-            return {
-                status: 500,
-                error: '서버 오류가 발생했습니다.',
-            };
+        } 
+        catch (error) {
+            throw new InternalServerError('대한민국의 10년간 빛공해 데이터를 불러오는 데 실패했습니다.');
         }
     }
 }
