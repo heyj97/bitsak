@@ -1,13 +1,13 @@
-import { Line } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 import {
-  CategoryScale,
   Chart,
+  CategoryScale,
   LinearScale,
-  PointElement,
   BarElement,
+  Tooltip,
 } from "chart.js";
 
-Chart.register(CategoryScale, LinearScale, PointElement, BarElement);
+Chart.register(CategoryScale, LinearScale, BarElement, Tooltip);
 
 const BarChart = ({ label, data }) => {
   const chartData = {
@@ -15,7 +15,7 @@ const BarChart = ({ label, data }) => {
     datasets: [
       {
         type: "bar",
-        label: "Global Light Pollution Chart",
+        label: "G20 야간조도",
         backgroundColor: (context) => {
           if (context.raw > 3.9) {
             return "rgb(255, 99, 132)";
@@ -32,7 +32,7 @@ const BarChart = ({ label, data }) => {
 
   return (
     <div style={{ width: "800px", height: "fit-content" }}>
-      <Line type="line" data={chartData} />
+      <Bar type="bar" data={chartData} />
     </div>
   );
 };

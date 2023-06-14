@@ -27,10 +27,6 @@ const QuizSolutionItem = ({
   answer,
   explanation,
 }) => {
-  const boolToOX = (bool) => {
-    if (bool) return "O";
-    if (!bool) return "X";
-  };
   return (
     <li
       className={
@@ -40,7 +36,7 @@ const QuizSolutionItem = ({
       }
     >
       <h3>
-        {boolToOX(answer)}. {question}
+        {correctIdx.includes(id) ? "정답" : "오답"}) {question}
       </h3>
       <p>{explanation}</p>
     </li>

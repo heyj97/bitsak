@@ -16,18 +16,18 @@ const GlobalLightPollutionChart = () => {
     );
   return (
     <div>
-      <h2>Global Light Pollution Chart</h2>
+      <h2>세계 속 우리 나라는..</h2>
       {isLoading ? (
         <Spinner />
       ) : (
         Array.isArray(data.data) &&
-        data.data.length > 0 && <DataTest resData={data.data} />
+        data.data.length > 0 && <ChartComp resData={data.data} />
       )}
     </div>
   );
 };
 
-const DataTest = ({ resData }) => {
+const ChartComp = ({ resData }) => {
   const [avgMeanArr, setAvgMeanArr] = useState([]);
   const [countryArr, setCountryArr] = useState([]);
   const newarr1 = useMemo(() => objResToArr(resData, "avg_mean"), [resData]);
