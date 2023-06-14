@@ -16,8 +16,8 @@ const ComplaintsMarker = ({ complaint }) => {
   return (
     <Marker position={[complaint.latitude, complaint.longitude]}>
       <Popup>
-        휘도: {complaint.illuminance} <br />
-        조도: {complaint.luminance}
+        조도: {complaint.illuminance} <br />
+        휘도: {complaint.luminance}
       </Popup>
     </Marker>
   );
@@ -59,30 +59,29 @@ const ComplaintsMarkerMap = () => {
   if (error) return <Error error={error} />;
 
   return (
-    <MapContainer
-      center={position}
-      zoom={14}
-      style={{ height: "800px", width: "900px", backgroundColor: "white" }}
-      dragging={false}
-      zoomControl={false}
-      touchZoom={false}
-      doubleClickZoom={false}
-      scrollWheelZoom={false}
-    >
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        opacity={0}
-      />
-      {coordinatesToPolygon(seodaemunData.features)}
-      {data.data.length > 0 &&
-        data.data.map((complaint, idx) => {
-          return <ComplaintsMarker complaint={complaint} key={idx} />;
-        })}
-
-      <Marker position={[37.5835, 126.931557440644]}>
-        <Popup>testtest</Popup>
-      </Marker>
-    </MapContainer>
+    <div>
+      <h3>서대문구 주요 빛공해 민원 발생 지역</h3>
+      <MapContainer
+        center={position}
+        zoom={14}
+        style={{ height: "800px", width: "900px", backgroundColor: "white" }}
+        dragging={false}
+        zoomControl={false}
+        touchZoom={false}
+        doubleClickZoom={false}
+        scrollWheelZoom={false}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          opacity={0}
+        />
+        {coordinatesToPolygon(seodaemunData.features)}
+        {data.data.length > 0 &&
+          data.data.map((complaint, idx) => {
+            return <ComplaintsMarker complaint={complaint} key={idx} />;
+          })}
+      </MapContainer>
+    </div>
   );
 };
 
