@@ -8,7 +8,7 @@ const SideMenu = () => {
 
   return (
     <>
-      <div className={styles.sideMenuContainer}>
+      <div className={styles.sideMenuFeedContainer}>
         {/* 컨테이너 Header------------------------------------- */}
         <div className={styles.Header}>
           <h2>빛공해 사례 목록</h2>
@@ -19,7 +19,7 @@ const SideMenu = () => {
 
           <div className={styles.ContentOverView}>
           
-            <Link to="/map-item">
+            <Link to="/">
               {/* 게시물 리스트 1set--- */}
               <div className={styles.ListSet}>
                 <div className={styles.ListImg}></div>

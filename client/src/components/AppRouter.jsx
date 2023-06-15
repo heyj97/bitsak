@@ -8,6 +8,7 @@ import Spinner from "./common/Spinner/Spinner";
 
 const Introduce = lazy(() => import("./Introduce/Introduce"));
 const MapPage = lazy(() => import("./MapPage/MapPage"));
+const SideMenuFeed = lazy(() => import("./MapPage/SideMenuFeed"));
 const Quiz = lazy(() => import("./Quiz/Quiz"));
 
 const AppRouter = () => {
@@ -24,6 +25,7 @@ const AppRouter = () => {
         <Route path="/introduce" element={<Introduce />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/map" element={<MapPage />} />
+        <Route path="/map-item" element={<SideMenuFeed />} />
         <Route path="*" element={<div>There's nothing here!</div>} />
       </Routes>
     </Suspense>
