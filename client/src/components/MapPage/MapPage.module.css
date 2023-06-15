@@ -1,3 +1,15 @@
+/* ------------------ 주현 --------------------- */
+
+.mapContainer {
+  margin-top: 20px;
+  margin-left: 200px;
+  width: 900px;
+  height: 815px;
+  background-color: white;
+}
+
+/* ------------------ 주현 --------------------- */
+
 .sideMenuContainer {
   position: absolute;
   top: 70px;

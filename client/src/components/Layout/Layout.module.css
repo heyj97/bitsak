@@ -1,67 +1,48 @@
-.Home {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
-.body {
-  display: flexbox;
-  flex-direction: column;
-  height: 80px;
-  color: white;
-}
-
-/*----------------------------*/
-
-.Header {
-  background-color: #070032;
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
 .Nav {
-  display: inline-block;
   width: 100%;
+  height: 70px;
+  background-color: #000237;
+  color: #ffe600;
 }
+
 .Logo {
-  display: flex;
-  justify-content: center;
-  padding: 30px 10%;
-  height: 20px;
-  align-items: center;
-  float: left;
-}
-.MenuBox {
-  float: right;
-  height: 20px;
-  margin: 0 auto;
-  padding: 20px 10%;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
 }
 
 .Logo a {
   text-decoration: none;
-  color: #ffdd1b;
+  color: #ffe600;
 }
 
-.Menubox a {
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 16px;
-  color: #ffffff;
-
-  transition: all 0.3s ease 0s;
-  float: right;
-}
-
-.MenuBox a:hover {
-  color: #ffdd1b;
-}
-
-.MenuBox a {
+.navRight {
+  width: fit-content;
+  height: 100%;
   display: inline-block;
-  padding: 0px 50px;
-  list-style-type: none;
+  float: right;
+  margin-right: 20px;
+}
+
+.navRight li {
+  display: inline-block;
+  margin: 0 20px;
+  font-size: 20px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navRight a {
+  text-decoration: none;
+  color: #ffe600;
+  transition: color 0.3s ease-in-out;
+}
+.navRight a:hover {
+  text-decoration: hover;
+  color: #6e6300;
 }
 
 .Footer {

@@ -1,12 +1,13 @@
 import seodaemunData from "./seodaemunData.js";
 import styles from "./MapPage.module.css";
 import SideMenu from "./SideMenu.jsx";
+import SeodaemunMap from "./SeodaemunMap.jsx";
 
 const MapPage = () => {
   return (
     <>
       <div>
-        <h2>test</h2>
+        <SeodaemunMap />
         <SideMenu />
       </div>
     </>

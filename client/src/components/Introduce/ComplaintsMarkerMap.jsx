@@ -26,7 +26,6 @@ const ComplaintsMarker = ({ complaint }) => {
 
 const coordinatesToPolygon = (arr) => {
   return arr.map((item) => {
-    // map 함수의 결과를 반환합니다.
     return (
       <Polygon
         pathOptions={{
@@ -35,7 +34,7 @@ const coordinatesToPolygon = (arr) => {
           fillOpacity: 1,
           weight: 1,
         }}
-        positions={item.geometry.coordinates[0].map((coord) => [
+        positions={item.geometry.coordinates[0][0].map((coord) => [
           coord[1],
           coord[0],
         ])}
@@ -46,7 +45,7 @@ const coordinatesToPolygon = (arr) => {
         //   },
         // }}
       >
-        <Tooltip sticky>{item.properties.EMD_KOR_NM}</Tooltip>
+        <Tooltip sticky>{item.properties.temp}</Tooltip>
       </Polygon>
     );
   });
@@ -83,7 +82,7 @@ const ComplaintsMarkerMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           opacity={0}
         />
-        {coordinatesToPolygon(seodaemunData.features)}
+        {coordinatesToPolygon(seodaemunData)}
         {data.data.length > 0 &&
           data.data.map((complaint, idx) => {
             return <ComplaintsMarker complaint={complaint} key={idx} />;
