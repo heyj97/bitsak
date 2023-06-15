@@ -11,8 +11,8 @@ class BadRequestError extends Error {
 
 // 2. 속성을 찾을 수 없을 때 - NotFoundError (404)
 class NotFoundError extends Error {
-    constructor(resource) {
-      const message = `${resource} not found.`;
+    constructor(message) {
+      //const message = `${resource} not found.`;
       super(message);
       this.name = 'NotFoundError';
       this.statusCode = 404;
@@ -56,14 +56,9 @@ class CustomError extends Error {
     constructor(message, statusCode) {
       super(message);
       this.statusCode = statusCode;
-      Error.captureStackTrace(this, this.constructor);
+      //Error.captureStackTrace(this, this.constructor);
     }
 }
   
-// 사용자를 찾을 수 없는 경우
-// if (!userExists(userId)) {
-//     const error = new CustomError('사용자를 찾을 수 없습니다.', 404);
-//     return next(error);
-//   }
 
 export { BadRequestError, MethodNotAllowedError, NotFoundError, DatabaseError, InternalServerError, CustomError }

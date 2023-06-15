@@ -16,7 +16,15 @@ const app = express();
 
 const PORT = process.env.SERVER_PORT;
 
-app.use(cors());
+const clientHost = process.env.CLIENT_HOST
+const corsOptions = {
+  origin: clientHost,
+  methods: ["GET", "POST", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
