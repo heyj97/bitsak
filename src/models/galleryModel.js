@@ -92,7 +92,7 @@ class galleryModel {
     // location(동)의 사진 데이터 개수(count) 가져오기
     static async getCountByLocation() {
 
-        const selectPhotoCounts = 'SELECT location, COUNT(*) AS count FROM gallery GROUP BY location';
+        const selectPhotoCounts = 'SELECT location, COUNT(*) AS count FROM gallery GROUP BY location ';
         const [rows] = await db.query(selectPhotoCounts);
 
         return rows;
