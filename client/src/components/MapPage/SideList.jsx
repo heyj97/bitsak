@@ -33,21 +33,21 @@ const ListItem = ({ setIsSelected }) => {
       <div className={styles.ListSet}>
         <div className={styles.ListImg}></div>
         <div className={styles.ListContents}>
-          <div className={styles.location}>
-            <div>위치</div>
-            <div></div>
+          <div className={styles.userName}>
+            <div className={styles.InfName}>작성자</div>
+            <div>ㅁㅇㅀㄴㅀ</div>
           </div>
           <div className={styles.takeDate}>
-            <div>날짜</div>
-            <div></div>
+            <div className={styles.InfName}>등록일</div>
+            <div>ㄴㅇㅀㄴㅇㅀㄴㅇㅀ</div>
           </div>
-          <div className={styles.userName}>
-            <div>작성자</div>
-            <div></div>
+          <div className={styles.location}>
+            <div className={styles.InfName}>위치</div>
+            <div>ㄴㅇㅀㄴㅇㅀㄴㅇㅀㄴㅇㅀ</div>
           </div>
           <div className={styles.description}>
-            <div>내용</div>
-            <div></div>
+            <div className={styles.InfName}>내용</div>
+            <div>ㄴㅇㅀㄴㅇㅀㄴㅇㅀ</div>
           </div>
         </div>
       </div>
