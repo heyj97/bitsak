@@ -5,6 +5,7 @@ import Spinner from "../common/Spinner/Spinner";
 import objResToArr from "../../utils/objResToArr";
 import LineChart from "./LineChart";
 import KoreaLightPollutionTable from "./KoreaLightPollutionTable";
+import styles from "./Introduce.module.css";
 
 const KoreaLightPollutionChart = () => {
   const { data, isLoading, error } = useGetFetch("korea-lightpollution");
@@ -16,8 +17,12 @@ const KoreaLightPollutionChart = () => {
       </div>
     );
   return (
-    <div>
-      <h2>지금 우리 나라는..</h2>
+    <div className={styles.globalLPChart}>
+      <h2 className={styles.ChartTitle}>
+        우리나라의 평균조도는{" "}
+        <span className={styles.ChartTitleHightlight}>지속적으로 상승중</span>
+        입니다.
+      </h2>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -29,6 +34,18 @@ const KoreaLightPollutionChart = () => {
           </>
         )
       )}
+      <p className={styles.ChartParagraph}>
+        <a
+          href="https://www.lightpollutionmap.info/LP_Stats/country.html?country=South%20Korea&type="
+          target="_blank"
+        >
+          Light pollution map
+        </a>
+        <br />
+        <br />
+        2012년부터 2022년까지 지난 10년동안
+        <br /> 우리나라의 야간조도는 지속적으로 상승중입니다.{" "}
+      </p>
     </div>
   );
 };

@@ -10,17 +10,17 @@ const Homepage = () => {
         <MenuItem
           title="빛공해 소개"
           url="introduce"
-          desc="빛공해에 대해서 알고 계시나요?"
+          desc="빛공해에 대해 알아봅시다."
         />
         <MenuItem
           title="빛공해 퀴즈"
           url="quiz"
-          desc="빛공해 관련된 퀴즈를 풀어봅시다."
+          desc="빛공해에 대해 얼마나 알고있나요?"
         />
         <MenuItem
-          title="빛공해 갤러리"
+          title="빛공해 사례"
           url="map"
-          desc="빛공해를 사진을 통해 알아봅시다."
+          desc="빛공해를 제보하고 공유해봅시다"
         />
       </div>
     </div>

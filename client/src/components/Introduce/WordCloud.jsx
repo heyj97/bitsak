@@ -13,13 +13,13 @@ const WordCloud = ({ resData }) => {
   const randomArr = useMemo(() => shuffleArrByValue(resData), [resData]);
 
   return (
-    <>
+    <div className={styles.wordCloudBox}>
       {randomArr.map((item) => {
         return (
           <CloudItem key={item.label} label={item.label} value={item.value} />
         );
       })}
-    </>
+    </div>
   );
 };
 
@@ -28,11 +28,12 @@ const CloudItem = ({ label, value }) => {
     <span
       style={{
         fontSize:
-          value > 30 ? `${value}px` : `${value * (1 + Math.random())}px`,
+          value > 23 ? `${value}px` : `${value * (1 + Math.random())}px`,
         fontWeight: "bold",
         display: "inline-block",
         padding: "5px",
-        color: randomColor(40, 200),
+        color:
+          value > 25 || value === 24.146341 ? randomColor(50, 255) : "#ccc",
       }}
     >
       {label}
