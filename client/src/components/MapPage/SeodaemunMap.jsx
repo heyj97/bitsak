@@ -27,9 +27,10 @@ function ClickHandler() {
 }
 
 const coordinatesToPolygon = (arr) => {
-  return arr.map((item) => {
+  return arr.map((item, idx) => {
     return (
       <Polygon
+        key={idx}
         pathOptions={{
           color: "#FFE600",
           fillColor: "#000237",

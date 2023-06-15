@@ -1,7 +1,6 @@
 import styles from "./MapPage.module.css";
-import { Link } from "react-router-dom";
 
-const SideList = ({ setIsSelected }) => {
+const SideList = ({ setIsSelected, data }) => {
   return (
     <>
       <div className={styles.Header}>
@@ -11,7 +10,12 @@ const SideList = ({ setIsSelected }) => {
       {/* 컨테이너 Content------------------------------------- */}
       <div className={styles.ContentView}>
         <div className={styles.ContentOverView}>
-          <ListItem setIsSelected={setIsSelected} />
+          {data &&
+            data.map((item, idx) => {
+              return (
+                <ListItem setIsSelected={setIsSelected} data={item} key={idx} />
+              );
+            })}
         </div>
 
         {/* 컨테이너 Footer------------------------------------- */}
@@ -26,7 +30,7 @@ const SideList = ({ setIsSelected }) => {
   );
 };
 
-const ListItem = ({ setIsSelected }) => {
+const ListItem = ({ setIsSelected, data }) => {
   return (
     <button onClick={() => setIsSelected(true)} className={styles.listItem}>
       {/* 게시물 리스트 1set--- */}
@@ -34,19 +38,21 @@ const ListItem = ({ setIsSelected }) => {
         <div className={styles.ListImg}></div>
         <div className={styles.ListContents}>
           <div className={styles.location}>
-            <div>위치</div>
+            <div>{data.location}</div>
             <div></div>
           </div>
           <div className={styles.takeDate}>
-            <div>날짜</div>
+            <div>
+              찍은 날짜: {data.take_date} <br /> 게시 날짜: {data.post_date}
+            </div>
             <div></div>
           </div>
           <div className={styles.userName}>
-            <div>작성자</div>
+            <div>{data.name || "익명"}</div>
             <div></div>
           </div>
           <div className={styles.description}>
-            <div>내용</div>
+            <div>{data.description}</div>
             <div></div>
           </div>
         </div>
