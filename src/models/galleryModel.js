@@ -22,8 +22,8 @@ class galleryModel {
             ]
         );
     }
-  
-  
+
+
     // 사진 수정
     static async updatePhoto({galleryId, description, location, take_date, file_path}) 
     {
@@ -91,20 +91,22 @@ class galleryModel {
 
     // location(동)의 사진 데이터 개수(count) 가져오기
     static async getCountByLocation() {
-
-        const selectPhotoCounts = 'SELECT location, COUNT(*) AS count FROM gallery GROUP BY location';
+        const selectPhotoCounts = `
+        SELECT location, COUNT(*) AS count
+        FROM gallery
+        GROUP BY location
+        ORDER BY location COLLATE utf8mb4_unicode_ci
+        `;
         const [rows] = await db.query(selectPhotoCounts);
-
+        
         return rows;
     }
 
-
-  static async getPhotosById({galleryId}) {
-    const selectPhotos = 'SELECT file_path FROM gallery WHERE gallery_id = ?';
-    const [rows] = await db.query(selectPhotos, [galleryId]);
-    return rows[0];
-   
-  }
+    static async getPhotosById({galleryId}) {
+        const selectPhotos = 'SELECT file_path FROM gallery WHERE gallery_id = ?';
+        const [rows] = await db.query(selectPhotos, [galleryId]);
+        return rows[0];
+    }
 
 }
 
