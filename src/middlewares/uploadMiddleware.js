@@ -15,14 +15,14 @@ const storage = multer.diskStorage({
 const filter = (req, file, callback) => {
   const fileType = file.mimetype.split('/')[1];
 
-  if (fileType === 'jpg' || fileType === 'jpeg' || fileType === 'png' || fileType === 'heic') {
+  if (fileType === 'jpg' || fileType === 'jpeg' || fileType === 'png' || fileType === 'heic' || fileType === 'webp') {
     callback(null, true);
   } else {
-    callback({ message: '지정된 확장자만 가능합니다. (jpg, jpeg, png, HEIC)' }, false);
+    callback({ message: '지정된 확장자만 가능합니다. (jpg, jpeg, png, HEIC, webp)' }, false);
   }
 };
 
 const uploadMiddleware = multer({ storage: storage, fileFilter: filter }).single('file_path');
 
 
-export default uploadMiddleware;
+export { uploadMiddleware };
