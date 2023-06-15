@@ -10,6 +10,7 @@ import { seoulGuRouter } from "./routers/seoulGuRouter.js";
 import { sdmComplaintsRouter } from "./routers/sdmComplaintsRouter.js";
 import { galleryRouter } from "./routers/galleryRouter.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import { uploadMiddleware } from "./middlewares/uploadMiddleware.js";
 
 dotenv.config();
 const app = express();
@@ -59,6 +60,7 @@ app.use(minwonRouter);
 app.use(quizRouter);
 
 app.use(errorMiddleware);
+app.use(uploadMiddleware);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);
