@@ -11,13 +11,13 @@ class BadRequestError extends Error {
 
 // 2. 속성을 찾을 수 없을 때 - NotFoundError (404)
 class NotFoundError extends Error {
-  constructor(message) {
-    //const message = `${resource} not found.`;
-    super(message);
-    this.name = 'NotFoundError';
-    this.statusCode = 404;
-    Error.captureStackTrace(this, this.constructor);
-  }
+    constructor(message) {
+      //const message = `${resource} not found.`;
+      super(message);
+      this.name = 'NotFoundError';
+      this.statusCode = 404;
+      Error.captureStackTrace(this, this.constructor);
+    }
 }
 
 //3. 메소드가 잘 못 되었을 때 -  MethodNotAllowed (405)
@@ -53,11 +53,11 @@ class DatabaseError extends Error {
 
 //6. 커스텀 에러 - CustomError
 class CustomError extends Error {
-  constructor(message, statusCode) {
-    super(message);
-    this.statusCode = statusCode;
-    //Error.captureStackTrace(this, this.constructor);
-  }
+    constructor(message, statusCode) {
+      super(message);
+      this.statusCode = statusCode;
+      //Error.captureStackTrace(this, this.constructor);
+    }
 }
 
 
