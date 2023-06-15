@@ -1,7 +1,18 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 import styles from "./MapPage.module.css";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import CreateFeedModal from './Modals/CreateFeedModal';
 
 const SideList = ({ setIsSelected }) => {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <>
       <div className={styles.Header}>
@@ -17,7 +28,8 @@ const SideList = ({ setIsSelected }) => {
         {/* 컨테이너 Footer------------------------------------- */}
         <div className={styles.Footer}>
           <div>
-            <button>글쓰기</button>
+            <button onClick={showModal}>글쓰기</button>
+            {modalOpen && <CreateFeedModal setModalOpen={setModalOpen} />}
           </div>
         </div>
       </div>

@@ -1,7 +1,16 @@
+/* eslint-disable react/prop-types */
 import styles from "./MapPage.module.css";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import CreateFeedModal from './Modals/CreateFeedModal';
 
 const SideMenuFeed = ({ setIsSelected }) => {
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
@@ -44,7 +53,10 @@ const SideMenuFeed = ({ setIsSelected }) => {
                 <div>
                   <button>수정</button>
                   <button>삭제</button>
-                  <button>글쓰기</button>
+                  <button onClick={showModal}>글쓰기</button>
+                  {/* {modalOpen && <CreateFeedModal setModalOpen={setModalOpen} />} */}
+                  
+                  
                 </div>
               </div>
             </div>
