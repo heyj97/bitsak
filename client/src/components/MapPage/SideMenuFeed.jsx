@@ -8,35 +8,46 @@ const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
-        <div className={styles.ContentView}>
-          <div className={styles.ContentOverView}>
+        {/* 컨테이너 Content------------------------------------- */}
+        <div className={styles.FeedContentView}>
+          <div className={styles.FeedContentOverView}>
             <button
               onClick={() => setIsSelected(false)}
               style={{ cursor: "pointer", border: "none", marginLeft: "10px" }}
             >
-              뒤로가기
+              ←
             </button>
             {/* 게시물 리스트 1set--- */}
-            <div className={styles.ListSet}>
-              <div className={styles.ListImg}>
-                <img src={`http://${IMG_BASE_URL}${selectedItem.file_path}`} alt={`${selectedItem.location}${selectedItem.file_path}`}/>
+            <div className={styles.FeedSet}>
+              <div className={styles.FeedImg}></div>
+              <div className={styles.FeedContents}>
+                <div className={styles.FeedUserName}>
+                  <div className={styles.figure}>
+                    <div className={styles.InfName}>작성자</div>
+                    <div>익명</div>
+                  </div>
+                    <div className={styles.FeedTakeDate}>
+                      <div className={styles.InfName}>등록일</div>
+                      <div>2023-12-12</div>
+                    </div>
+                </div>
+
+                
+                <div className={styles.FeedLocation}>
+                  <div className={styles.InfName}>위치</div>
+                  <div>서울시 서대문구 연희로32길 51</div>
+                </div>
+                
+                <div className={styles.FeedDescription}>
+                  <div className={styles.InfName}>내용</div>
+                  <div>빛공해게시물내용</div>
+                </div>
               </div>
-              <div className={styles.ListContents}>
-                <div className={styles.location}>
-                  <div>{selectedItem.location}</div>
-                  <div></div>
-                </div>
-                <div className={styles.takeDate}>
-                  <div>찍은 날짜: {selectedItem.take_date}<br/>포스팅 날짜: {selectedItem.post_date}</div>
-                  <div></div>
-                </div>
-                <div className={styles.userName}>
-                  <div>{selectedItem.username}</div>
-                  <div></div>
-                </div>
-                <div className={styles.description}>
-                  <div>{selectedItem.description}</div>
-                  <div></div>
+              <div className={styles.FeedFooter}>
+                <div>
+                  <button>수정</button>
+                  <button>삭제</button>
+                  <button>글쓰기</button>
                 </div>
               </div>
             </div>

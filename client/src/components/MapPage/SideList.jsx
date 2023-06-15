@@ -43,23 +43,21 @@ const ListItem = ({ setIsSelected, data, setSelectedId }) => {
           <img src={`http://localhost:5001${data.file_path}`} alt={`${data.location}${data.file_path}`}/>
         </div>
         <div className={styles.ListContents}>
-          <div className={styles.location}>
-            <div>No.{data.gallery_id}  </div>
-            <div>{data.location}</div>
+          <div className={styles.userName}>
+            <div className={styles.InfName}>작성자</div>
+            <div>ㅁㅇㅀㄴㅀ</div>
           </div>
           <div className={styles.takeDate}>
-            <div>
-              찍은 날짜: {data.take_date} <br /> 게시 날짜: {data.post_date}
-            </div>
-            <div></div>
+            <div className={styles.InfName}>등록일</div>
+            <div>ㄴㅇㅀㄴㅇㅀㄴㅇㅀ</div>
           </div>
-          <div className={styles.userName}>
-            <div>{data.username || "익명"}</div>
-            <div></div>
+          <div className={styles.location}>
+            <div className={styles.InfName}>위치</div>
+            <div>ㄴㅇㅀㄴㅇㅀㄴㅇㅀㄴㅇㅀ</div>
           </div>
           <div className={styles.description}>
-            <div>{data.description}</div>
-            <div></div>
+            <div className={styles.InfName}>내용</div>
+            <div>ㄴㅇㅀㄴㅇㅀㄴㅇㅀ</div>
           </div>
         </div>
       </div>
