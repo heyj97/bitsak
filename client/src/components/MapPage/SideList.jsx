@@ -1,7 +1,7 @@
+import { IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
-import { Link } from "react-router-dom";
 
-const SideList = ({ setIsSelected }) => {
+const SideList = ({ setIsSelected, data, setSelectedId }) => {
   return (
     <>
       <div className={styles.Header}>
@@ -11,7 +11,12 @@ const SideList = ({ setIsSelected }) => {
       {/* 컨테이너 Content------------------------------------- */}
       <div className={styles.ContentView}>
         <div className={styles.ContentOverView}>
-          <ListItem setIsSelected={setIsSelected} />
+          {data &&
+            data.map((item, idx) => {
+              return (
+                <ListItem setIsSelected={setIsSelected} data={item} key={idx} setSelectedId={setSelectedId} />
+              );
+            })}
         </div>
 
         {/* 컨테이너 Footer------------------------------------- */}
@@ -26,12 +31,17 @@ const SideList = ({ setIsSelected }) => {
   );
 };
 
-const ListItem = ({ setIsSelected }) => {
+const ListItem = ({ setIsSelected, data, setSelectedId }) => {
   return (
-    <button onClick={() => setIsSelected(true)} className={styles.listItem}>
+    <button onClick={() => {
+      setSelectedId(data.gallery_id)
+      setIsSelected(true)
+      }} className={styles.listItem}>
       {/* 게시물 리스트 1set--- */}
       <div className={styles.ListSet}>
-        <div className={styles.ListImg}></div>
+        <div className={styles.ListImg}>
+          <img src={`http://localhost:5001${data.file_path}`} alt={`${data.location}${data.file_path}`}/>
+        </div>
         <div className={styles.ListContents}>
           <div className={styles.userName}>
             <div className={styles.InfName}>작성자</div>

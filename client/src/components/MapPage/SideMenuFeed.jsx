@@ -1,7 +1,10 @@
+import { IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
 import { Link } from "react-router-dom";
 
-const SideMenuFeed = ({ setIsSelected }) => {
+const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
+  const selectedItem = data.find(item => item.gallery_id === selectedId);
+  console.log(selectedItem)
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
@@ -10,7 +13,7 @@ const SideMenuFeed = ({ setIsSelected }) => {
           <div className={styles.FeedContentOverView}>
             <button
               onClick={() => setIsSelected(false)}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", border: "none", marginLeft: "10px" }}
             >
               ←
             </button>
@@ -50,9 +53,7 @@ const SideMenuFeed = ({ setIsSelected }) => {
             </div>
           </div>
         </div>
-        {/* 컨테이너 제목------------------------------------- */}
       </div>
-      {/* 사이드메뉴 컨테이너-------------------------------- */}
     </>
   );
 };

@@ -12,7 +12,7 @@ const SeoulLightPollution = () => {
   if (error)
     return (
       <div>
-        <Error error={error} />
+        <Error error={error.message} />
       </div>
     );
   return (

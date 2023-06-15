@@ -1,8 +1,8 @@
 import {
   MapContainer,
   TileLayer,
-  Marker,
-  Popup,
+  CircleMarker,
+  SVGOverlay,
   Polygon,
   Tooltip,
 } from "react-leaflet";
@@ -15,12 +15,25 @@ import styles from "./Introduce.module.css";
 
 const ComplaintsMarker = ({ complaint }) => {
   return (
-    <Marker position={[complaint.latitude, complaint.longitude]}>
-      <Popup>
+    <CircleMarker
+      center={[complaint.latitude, complaint.longitude]}
+      pathOptions={{
+        color:
+          complaint.luminance > 7
+            ? "red"
+            : complaint.luminance > 4
+            ? "orange"
+            : complaint.luminance > 3
+            ? "yellow"
+            : "green",
+      }}
+      radius={3}
+    >
+      <Tooltip>
         조도: {complaint.illuminance} <br />
         휘도: {complaint.luminance}
-      </Popup>
-    </Marker>
+      </Tooltip>
+    </CircleMarker>
   );
 };
 
@@ -56,7 +69,12 @@ const ComplaintsMarkerMap = () => {
   const { data, isLoading, error } = useGetFetch("seodaemun-complaints");
 
   if (isLoading) return <Spinner />;
-  if (error) return <Error error={error} />;
+  if (error) return <Error error={error.message} />;
+
+  const bounds = [
+    [37.59, 126.90],
+    [37.595, 126.91],
+  ]
 
   return (
     <div className={styles.globalLPChart}>
@@ -83,6 +101,27 @@ const ComplaintsMarkerMap = () => {
           opacity={0}
         />
         {coordinatesToPolygon(seodaemunData)}
+        <SVGOverlay attributes={{ stroke: "grey"}} bounds={bounds}>
+          <rect x="0" y="0" width="100%" height="100%" fill="#000237" />
+          <text x="10" y="20px" stroke="white">
+            휘도 7이상 :
+          </text>
+          <text x="75" y="20px" stroke="red">
+            빨간색
+          </text>
+          <text x="10" y="40px" stroke="white">
+            휘도 4이상 :
+          </text>
+          <text x="75" y="40px" stroke="orange">
+            주황색
+          </text>
+          <text x="10" y="60px" stroke="white">
+            휘도 3이상 :
+          </text>
+          <text x="75" y="60px" stroke="yellow">
+            노란색
+          </text>
+        </SVGOverlay>
         {data.data.length > 0 &&
           data.data.map((complaint, idx) => {
             return <ComplaintsMarker complaint={complaint} key={idx} />;

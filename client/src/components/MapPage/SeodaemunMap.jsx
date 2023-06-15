@@ -15,21 +15,12 @@ import Error from "../common/Error/Error";
 import { circleCoordinates } from "./boundConstants";
 import styles from "./MapPage.module.css";
 
-function ClickHandler() {
-  const map = useMapEvents({
-    click: (e) => {
-      const { lat, lng } = e.latlng;
-      alert(`Clicked at latitude: ${lat}, longitude: ${lng}`);
-    },
-  });
-
-  return null;
-}
-
-const coordinatesToPolygon = (arr) => {
-  return arr.map((item) => {
+const coordinatesToPolygon = (arr, setLocation) => {
+  
+  return arr.map((item, idx) => {
     return (
       <Polygon
+        key={idx}
         pathOptions={{
           color: "#FFE600",
           fillColor: "#000237",
@@ -40,12 +31,11 @@ const coordinatesToPolygon = (arr) => {
           coord[1],
           coord[0],
         ])}
-        // onClick 예제
-        // eventHandlers={{
-        //   click: (e) => {
-        //     alert(item.properties.EMD_KOR_NM + "이 클릭되었습니다.");
-        //   },
-        // }}
+        eventHandlers={{
+          click: (e) => {
+            setLocation(item.properties.temp)
+          },
+        }}
       >
         <Tooltip sticky>{item.properties.temp}</Tooltip>
       </Polygon>
@@ -75,12 +65,12 @@ const PostNumberCircle = ({ data, bounds, postCount, name }) => {
   );
 };
 
-const SeodaemunMap = () => {
+const SeodaemunMap = ({setLocation}) => {
   const position = [37.5833, 126.931557440644];
   const { data, isLoading, error } = useGetFetch("gallery/count-by-location");
 
   if (isLoading) return <Spinner />;
-  if (error) return <Error error={error} />;
+  if (error) return <Error error={error.message} />;
 
   return (
     <div className={styles.mapContainer}>
@@ -98,7 +88,7 @@ const SeodaemunMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           opacity={0}
         />
-        {coordinatesToPolygon(seodaemunData)}
+        {coordinatesToPolygon(seodaemunData, setLocation)}
         {data &&
           circleCoordinates.map((item, idx) => {
             return (
@@ -113,7 +103,6 @@ const SeodaemunMap = () => {
               </>
             );
           })}
-        <ClickHandler />
       </MapContainer>
     </div>
   );
