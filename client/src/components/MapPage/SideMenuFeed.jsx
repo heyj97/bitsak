@@ -3,8 +3,8 @@ import styles from "./MapPage.module.css";
 import { Link } from "react-router-dom";
 
 const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
-  const selectedItem = data.find(item => item.gallery_id === selectedId);
-  console.log(selectedItem)
+  const selectedItem = data.find((item) => item.gallery_id === selectedId);
+  console.log(selectedItem);
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
@@ -19,28 +19,32 @@ const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
             </button>
             {/* 게시물 리스트 1set--- */}
             <div className={styles.FeedSet}>
-              <div className={styles.FeedImg}></div>
+              <div className={styles.FeedImg}>
+                <img src={`http://${IMG_BASE_URL}${selectedItem?.file_path}`} />
+              </div>
               <div className={styles.FeedContents}>
                 <div className={styles.FeedUserName}>
                   <div className={styles.figure}>
                     <div className={styles.InfName}>작성자</div>
-                    <div>익명</div>
+                    <div>{selectedItem?.username}</div>
                   </div>
-                    <div className={styles.FeedTakeDate}>
-                      <div className={styles.InfName}>등록일</div>
-                      <div>2023-12-12</div>
+                  <div className={styles.FeedTakeDate}>
+                    <div className={styles.InfName}>등록일</div>
+                    <div>
+                      {selectedItem.post_date &&
+                        selectedItem.post_date.split("T")[0]}
                     </div>
+                  </div>
                 </div>
 
-                
                 <div className={styles.FeedLocation}>
                   <div className={styles.InfName}>위치</div>
-                  <div>서울시 서대문구 연희로32길 51</div>
+                  <div>{selectedItem?.location}</div>
                 </div>
-                
+
                 <div className={styles.FeedDescription}>
                   <div className={styles.InfName}>내용</div>
-                  <div>빛공해게시물내용</div>
+                  <div>{selectedItem?.description}</div>
                 </div>
               </div>
               <div className={styles.FeedFooter}>
