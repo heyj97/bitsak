@@ -1,14 +1,8 @@
-import path from "path";
 import fs from "fs";
 import bcrypt from 'bcrypt';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import { galleryModel } from '../models/galleryModel.js';
 import { CustomError, InternalServerError } from "../error.js";
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 
 class galleryService {
@@ -29,8 +23,7 @@ class galleryService {
                 status: 200,
                 message: "사진을 업로드 하였습니다.",
             };
-        } 
-        catch (error) {
+        } catch (error) {
             throw new InternalServerError('게시물을 등록하는 데 실패하였습니다.');
         }
     }
@@ -57,8 +50,7 @@ class galleryService {
                 message: "게시물이 수정되었습니다.",
             };
 
-        } 
-        catch (error) {
+        } catch (error) {
             throw new InternalServerError('게시물을 수정하는 데 실패했습니다.');
         }
     }
@@ -78,17 +70,13 @@ class galleryService {
       // Database에서 photo 정보를 불러옵니다.
     const photoData = await galleryModel.getPhotosById({galleryId});
     const filePath = photoData.file_path;
-    const rootDir = path.join(__dirname, '..', '..'); // root
-
-    const absoluteFilePath = path.join(rootDir, filePath); // root/uploads/...
-    const standardizedPath = path.normalize(absoluteFilePath);
-    
+  
 
     try {
       await galleryModel.deletePhoto({galleryId});
 
        // 파일 시스템에서 photo를 삭제합니다.
-    fs.unlink(`${standardizedPath}`, (err) => {
+    fs.unlink(filePath, (err) => {
         if (err) {
             console.error(`Failed to delete file: ${err}`);
             return;
@@ -99,8 +87,7 @@ class galleryService {
         status: 200,
         message: '게시물이 삭제되었습니다.',
       };
-    } 
-    catch (error) {
+    } catch (error) {
       throw new InternalServerError('사진을 삭제하는 데 실패했습니다.');
     }
     
@@ -115,8 +102,7 @@ class galleryService {
         status: 200,
         data: photos,
       };
-    } 
-    catch (error) {
+    } catch (error) {
         throw new InternalServerError('${location}의 갤러리를 조회하는 데 실패했습니다.');
     }
   }
