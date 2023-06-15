@@ -15,7 +15,7 @@ const CreateFeedModal = ({ setModalOpen, id, title, content, writer }) => {
                 <button className={styles.ModalClose} onClick={closeModal}>
                 X
                 </button>
-                <div><h1>게시물 작성</h1></div>
+                <div><h2>게시물 작성</h2></div>
                 <button className={styles.ModalUpload}> 완료 </button> 
             </span>
         </div> {/* ModalHeader */}

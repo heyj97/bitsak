@@ -249,14 +249,14 @@
 
 .ModalContainer {
   width: 400px;
-  height: 800px;
+  height: 780px;
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 999;
   position: absolute;
-  top: -1100%;
+  top: -760px;
   left: -100%;
 }
 
@@ -265,6 +265,10 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+}
+.ModalHeder span div {
+  text-align: center;
+  margin: 0;
 }
 
 .ModalClose {
