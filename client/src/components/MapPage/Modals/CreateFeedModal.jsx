@@ -18,6 +18,10 @@ const CreateFeedModal = ({ setModalOpen, id, title, content, writer }) => {
             </span>
         </div> {/* ModalHeader */}
         <div className={styles.ModalContent}>
+            <div className={styles.UserInfo}>
+                <div>ID</div>
+                <div>PW</div>
+            </div>
             <div className={styles.ModalDate}>
                 <div id="YY">연도</div>
                 <div id="MM">월</div>
