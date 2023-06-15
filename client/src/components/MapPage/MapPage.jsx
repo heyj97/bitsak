@@ -11,13 +11,16 @@ const MapPage = () => {
   const { data, isLoading, error } = useGetFetch(
     `gallery/by-location/${location}`
   );
-  if (error) return <Error error={error} />;
+
+  // if (error) return <Error error={error} />;
+  if (!error?.message === "Error: 404, Not Found") return <Error error={error} />;
 
   return (
     <>
       <div>
         <SeodaemunMap setLocation={setLocation} />
-        {!isLoading && <SideMenu data={data.data} />}
+        {((error?.message === "Error: 404, Not Found") || !error) && !isLoading && <SideMenu data={data.data} />}
+        {(error?.message === "Error: 404, Not Found")&& !isLoading && <SideMenu data={data.data} />}
       </div>
     </>
   );

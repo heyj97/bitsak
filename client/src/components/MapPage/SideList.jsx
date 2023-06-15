@@ -1,6 +1,7 @@
+import { IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
 
-const SideList = ({ setIsSelected, data }) => {
+const SideList = ({ setIsSelected, data, setSelectedId }) => {
   return (
     <>
       <div className={styles.Header}>
@@ -13,7 +14,7 @@ const SideList = ({ setIsSelected, data }) => {
           {data &&
             data.map((item, idx) => {
               return (
-                <ListItem setIsSelected={setIsSelected} data={item} key={idx} />
+                <ListItem setIsSelected={setIsSelected} data={item} key={idx} setSelectedId={setSelectedId} />
               );
             })}
         </div>
@@ -30,16 +31,21 @@ const SideList = ({ setIsSelected, data }) => {
   );
 };
 
-const ListItem = ({ setIsSelected, data }) => {
+const ListItem = ({ setIsSelected, data, setSelectedId }) => {
   return (
-    <button onClick={() => setIsSelected(true)} className={styles.listItem}>
+    <button onClick={() => {
+      setSelectedId(data.gallery_id)
+      setIsSelected(true)
+      }} className={styles.listItem}>
       {/* 게시물 리스트 1set--- */}
       <div className={styles.ListSet}>
-        <div className={styles.ListImg}></div>
+        <div className={styles.ListImg}>
+          <img src={`http://localhost:5001${data.file_path}`} alt={`${data.location}${data.file_path}`}/>
+        </div>
         <div className={styles.ListContents}>
           <div className={styles.location}>
+            <div>No.{data.gallery_id}  </div>
             <div>{data.location}</div>
-            <div></div>
           </div>
           <div className={styles.takeDate}>
             <div>
@@ -48,7 +54,7 @@ const ListItem = ({ setIsSelected, data }) => {
             <div></div>
           </div>
           <div className={styles.userName}>
-            <div>{data.name || "익명"}</div>
+            <div>{data.username || "익명"}</div>
             <div></div>
           </div>
           <div className={styles.description}>

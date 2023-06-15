@@ -23,7 +23,7 @@ const useGetFetch = (param) => {
         setIsLoading(false);
       } catch (error) {
         if (!abortController.signal.aborted) {
-          setError(error.message);
+          setError(error);
           setIsLoading(false);
         }
       }

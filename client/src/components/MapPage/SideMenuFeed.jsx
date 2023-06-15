@@ -1,46 +1,48 @@
+import { IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
 import { Link } from "react-router-dom";
 
-const SideMenuFeed = ({ setIsSelected }) => {
+const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
+  const selectedItem = data.find(item => item.gallery_id === selectedId);
+  console.log(selectedItem)
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
-        {/* 컨테이너 Content------------------------------------- */}
         <div className={styles.ContentView}>
           <div className={styles.ContentOverView}>
             <button
               onClick={() => setIsSelected(false)}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", border: "none", marginLeft: "10px" }}
             >
               뒤로가기
             </button>
             {/* 게시물 리스트 1set--- */}
             <div className={styles.ListSet}>
-              <div className={styles.ListImg}></div>
+              <div className={styles.ListImg}>
+                <img src={`http://${IMG_BASE_URL}${selectedItem.file_path}`} alt={`${selectedItem.location}${selectedItem.file_path}`}/>
+              </div>
               <div className={styles.ListContents}>
                 <div className={styles.location}>
-                  <div>teskljtskjl</div>
+                  <div>{selectedItem.location}</div>
                   <div></div>
                 </div>
                 <div className={styles.takeDate}>
-                  <div>ㅁㅇ나ㅣㅓ랑ㄴ미ㅓㄹㅇㅁㄴ</div>
+                  <div>찍은 날짜: {selectedItem.take_date}<br/>포스팅 날짜: {selectedItem.post_date}</div>
                   <div></div>
                 </div>
                 <div className={styles.userName}>
-                  <div>ㅁㄴㅇㄻㄹㄴ</div>
+                  <div>{selectedItem.username}</div>
                   <div></div>
                 </div>
                 <div className={styles.description}>
-                  <div>ㄴㅇㄻㅇㄹㄴㅇ</div>
+                  <div>{selectedItem.description}</div>
                   <div></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        {/* 컨테이너 제목------------------------------------- */}
       </div>
-      {/* 사이드메뉴 컨테이너-------------------------------- */}
     </>
   );
 };

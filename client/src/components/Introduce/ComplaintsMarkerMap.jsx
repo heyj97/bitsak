@@ -69,7 +69,7 @@ const ComplaintsMarkerMap = () => {
   const { data, isLoading, error } = useGetFetch("seodaemun-complaints");
 
   if (isLoading) return <Spinner />;
-  if (error) return <Error error={error} />;
+  if (error) return <Error error={error.message} />;
 
   const bounds = [
     [37.59, 126.90],
