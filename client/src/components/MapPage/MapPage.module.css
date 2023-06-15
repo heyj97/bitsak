@@ -19,6 +19,15 @@
   background-color: rgb(233, 233, 233);
 }
 
+/* ------------------ 한빈 --------------------- */
+
+.sideMenuFeedContainer {
+  background-color: rgb(233,233,233);
+  height: 100%;
+}
+
+/* [SideMenu.jsx]*/
+
 /* 헤더 - 사이드메뉴 컨테이너 제목 ------------ */
 .Header {
   text-align: center;
@@ -48,24 +57,47 @@
 }
 
 .ListImg {
-  width: 10rem;
+  width: 70%;
   height: 7rem;
   background-color: rgb(135, 135, 135);
+  
 }
 
 .ListContents {
   float: left;
   margin-left: 1rem;
   align-items: center;
+  width: 100%;
+}
+
+.location,
+.takeDate,
+.userName,
+.description
+ {
+  float: left;
+  width: 100%;
+  text-align: left;
+  
+  margin: 0.2rem;
 }
 
 .location div,
 .takeDate div,
-.userName div {
-  display: inline;
+.userName div,
+.description div {
+  display: inline-block;
+  align-items: left;
+  padding-left: 1rem;
 }
 
-.Footer {
+.InfName {
+  display: inline;
+  float: left;
+  width: 3rem;
+}
+
+.Footer, .FeedFooter {
   width: 100%;
   height: 5rem;
   background-color: gray;
@@ -78,4 +110,131 @@
 .Footer div {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+}
+
+
+
+/* [SideMenuFeed] */
+.FeedContentView{
+  height: 100%;
+}
+
+.FeedContentOverView button {
+  margin: 1rem;
+  position: relative;
+  z-index: 2;
+  top: 0;
+  color: white;
+  background-color: rgba(0,0,0,0);
+  border: 0;
+  font-size: large;
+}
+
+.FeedSet {
+  width: 100%;
+  height: 100%;
+  float: left;
+  position: absolute;
+  top: 0;
+}
+
+.FeedImg {
+  width: 100%;
+  height: 20rem;
+  background-color: rgb(135, 135, 135);
+  
+}
+
+.FeedContents {
+  width: 100%;
+  padding: 1rem;
+  float: left;
+}
+
+.FeedLocation,
+.FeedTakeDate,
+.FeedUserName,
+.FeedDescription {
+  display: flex;
+}
+
+.FeedContents div {
+  margin-top: 1rem;
+}
+
+.FeedLocation .InfName,
+.FeedDescription .InfName {
+  width: 2rem;
+  padding-right: 1rem;
+  border-right: 1px solid #848484;
+}
+
+.InfName div {
+  float: left;
+}
+
+.FeedUserName {
+  align-items: center;
+  margin-top: 0;
+}
+
+.FeedUserName .figure{
+  display: flex;
+  width: max-content;
+  border: 2px solid #000237;
+  border-radius: 100px 100px 100px 100px;
+  margin-left: 0.5rem;
+}
+
+.figure .InfName {
+  text-align: center;
+  width: 4rem;
+  margin-right: 0;
+  color: #000237;
+}
+
+.figure div {
+  margin: 0.5rem;
+  margin-right: 1rem;
+  color: gray;
+}
+
+.FeedTakeDate {
+  float: right;
+  margin-left: 3rem;
+  color: gray;
+}
+
+.FeedTakeDate div {
+  margin: 0.5rem;
+}
+
+.FeedTakeDate .InfName {
+  margin-left: 5rem;
+  width: 3rem;
+  margin-right: 0;
+}
+
+.FeedLocation {
+  margin-left: 1rem;
+  
+}
+
+.FeedDescription {
+  margin-left: 1rem;
+}
+
+.FeedLocation div,
+.FeedDescription div {
+  margin-left: 1rem;
+}
+
+.FeedFooter div{
+  height: 5rem;
+}
+
+.FeedFooter div button {
+  margin-top: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
