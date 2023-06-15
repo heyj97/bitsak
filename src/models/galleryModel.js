@@ -25,8 +25,9 @@ class galleryModel {
   
   
     // 사진 수정
-    static async updatePhoto({galleryId, description, location, take_date, file_path}) {
-        const updatePhoto = 'UPDATE gallery SET description = ?, location = ?, take_date = ?, file_path = ? WHERE gallery_id = ?';
+    static async updatePhoto({galleryId, description, location, take_date, file_path}) 
+    {
+        const updatePhoto = 'UPDATE gallery SET  description = ?, location = ?, take_date = ?, file_path = ? WHERE gallery_id = ?';
         await db.query(updatePhoto, 
             [
                 description,
