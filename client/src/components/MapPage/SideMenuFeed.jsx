@@ -1,16 +1,16 @@
-/* eslint-disable react/prop-types */
+import { IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
-// // import { useState } from 'react';
-// import CreateFeedModal from './Modals/CreateFeedModal';
+import { useState } from 'react';
+import CreateFeedModal from './Modals/CreateFeedModal';
 
-const SideMenuFeed = ({ setIsSelected }) => {
+const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
+    const [modalOpen, setModalOpen] = useState(false);
 
-  // const [modalOpen, setModalOpen] = useState(false);
-
-  // const showModal = () => {
-  //   setModalOpen(true);
-  // };
-
+  const showModal = () => {
+    setModalOpen(true);
+  };
+  const selectedItem = data.find(item => item.gallery_id === selectedId);
+  console.log(selectedItem)
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
@@ -19,7 +19,7 @@ const SideMenuFeed = ({ setIsSelected }) => {
           <div className={styles.FeedContentOverView}>
             <button
               onClick={() => setIsSelected(false)}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", border: "none", marginLeft: "10px" }}
             >
               ←
             </button>
@@ -50,19 +50,17 @@ const SideMenuFeed = ({ setIsSelected }) => {
                 </div>
               </div>
               <div className={styles.FeedFooter}>
-                {/* <div>
+                <div>
                   <button>수정</button>
                   <button>삭제</button>
                   <button onClick={showModal}>글쓰기</button>
                   {modalOpen && <CreateFeedModal setModalOpen={setModalOpen} />}
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* 컨테이너 제목------------------------------------- */}
       </div>
-      {/* 사이드메뉴 컨테이너-------------------------------- */}
     </>
   );
 };

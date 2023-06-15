@@ -1,18 +1,14 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-undef */
 import styles from "./MapPage.module.css";
 import { useState } from 'react';
 import CreateFeedModal from './Modals/CreateFeedModal';
-
-const SideList = ({ setIsSelected }) => {
-
+import { IMG_BASE_URL } from "../../constants/api";
+const SideList = ({ setIsSelected, data, setSelectedId }) => {
+  
   const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
     setModalOpen(true);
   };
-
   return (
     <>
       <div className={styles.Header}>
@@ -22,7 +18,12 @@ const SideList = ({ setIsSelected }) => {
       {/* 컨테이너 Content------------------------------------- */}
       <div className={styles.ContentView}>
         <div className={styles.ContentOverView}>
-          <ListItem setIsSelected={setIsSelected} />
+          {data &&
+            data.map((item, idx) => {
+              return (
+                <ListItem setIsSelected={setIsSelected} data={item} key={idx} setSelectedId={setSelectedId} />
+              );
+            })}
         </div>
 
         {/* 컨테이너 Footer------------------------------------- */}
@@ -38,12 +39,17 @@ const SideList = ({ setIsSelected }) => {
   );
 };
 
-const ListItem = ({ setIsSelected }) => {
+const ListItem = ({ setIsSelected, data, setSelectedId }) => {
   return (
-    <button onClick={() => setIsSelected(true)} className={styles.listItem}>
+    <button onClick={() => {
+      setSelectedId(data.gallery_id)
+      setIsSelected(true)
+      }} className={styles.listItem}>
       {/* 게시물 리스트 1set--- */}
       <div className={styles.ListSet}>
-        <div className={styles.ListImg}></div>
+        <div className={styles.ListImg}>
+          <img src={`http://localhost:5001${data.file_path}`} alt={`${data.location}${data.file_path}`}/>
+        </div>
         <div className={styles.ListContents}>
           <div className={styles.userName}>
             <div className={styles.InfName}>작성자</div>
