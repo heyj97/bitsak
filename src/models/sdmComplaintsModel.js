@@ -7,8 +7,8 @@ class sdmComplaintsModel {
     static async getAll() {
         const selectSdmComplaints = 
             'SELECT minwon_id, latitude, longitude, illuminance, luminance \
-            FROM minwon \
-            WHERE luminance >= 3';
+             FROM minwon \
+             WHERE luminance >= 3';
         
         const [rows] = await db.query(selectSdmComplaints);
 

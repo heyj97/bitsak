@@ -15,7 +15,7 @@ class quizService {
         catch (error) {
             throw new InternalServerError('퀴즈 페이지를 불러오는 데 실패했습니다.')
         }
-      }
+    }
 }
 
 export { quizService };

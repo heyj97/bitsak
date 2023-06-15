@@ -4,8 +4,7 @@ const sdmComplaintsController = async (req,res,next) => {
     try{
         const sdmComplaints = await sdmComplaintsService.findAll();
         return res.status(200).json(sdmComplaints);
-    }
-    catch (error) {
+    } catch (error) {
         next(error);
     }
 }

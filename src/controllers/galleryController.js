@@ -47,7 +47,7 @@ async function updatePhoto(req, res, next) {
         description: req.body.description,
         location: req.body.location,
         take_date: req.body.take_date,
-        file_path : `/${filePath}`,
+        file_path: `/${filePath}`,
         password: req.body.password,
     };
 

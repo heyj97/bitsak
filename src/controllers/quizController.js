@@ -5,8 +5,7 @@ const quizController = async (req,res,next) => {
         const questions = await quizService.getQuestions();
 
         return res.status(200).json(questions);
-    }
-    catch (error) {
+    } catch (error) {
         next(error);
     }
 }

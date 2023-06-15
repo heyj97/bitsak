@@ -10,13 +10,22 @@ import { seoulGuRouter } from "./routers/seoulGuRouter.js";
 import { sdmComplaintsRouter } from "./routers/sdmComplaintsRouter.js";
 import { galleryRouter } from "./routers/galleryRouter.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
+import { uploadMiddleware } from "./middlewares/uploadMiddleware.js";
 
 dotenv.config();
 const app = express();
 
 const PORT = process.env.SERVER_PORT;
 
-app.use(cors());
+const clientHost = process.env.CLIENT_HOST
+const corsOptions = {
+  origin: clientHost,
+  methods: ["GET", "POST", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -51,6 +60,7 @@ app.use(minwonRouter);
 app.use(quizRouter);
 
 app.use(errorMiddleware);
+app.use(uploadMiddleware);
 
 app.listen(PORT, () => {
   console.log(`정상적으로 서버를 시작했습니다. http://localhost:${PORT}`);
