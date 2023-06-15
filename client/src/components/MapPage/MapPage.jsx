@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-unused-vars */
 import seodaemunData from "./seodaemunData.js";
 import styles from "./MapPage.module.css";
 import SideMenu from "./SideMenu.jsx";
