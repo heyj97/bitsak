@@ -3,8 +3,8 @@
 .mapContainer {
   margin-top: 20px;
   margin-left: 200px;
-  width: 900px;
-  height: 815px;
+  width: 1000px;
+  height: 800px;
   background-color: white;
 }
 
@@ -97,7 +97,8 @@
   width: 3rem;
 }
 
-.Footer, .FeedFooter {
+.Footer, 
+.FeedFooter {
   width: 100%;
   height: 5rem;
   background-color: gray;
@@ -110,6 +111,11 @@
 .Footer div {
   margin-top: 1.5rem;
   margin-bottom: 1rem;
+}
+
+.Footer button {
+  background-color: gray;
+  bottom: 0;
 }
 
 
@@ -237,4 +243,111 @@
   margin-top: 1.5rem;
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+
+
+.ModalContainer {
+  width: 400px;
+  height: 780px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  position: absolute;
+  top: -760px;
+  left: -100%;
+}
+
+.ModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.ModalHeder span div {
+  text-align: center;
+  margin: 0;
+}
+
+.ModalClose {
+  border: none;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.ModalUpload {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 2rem;
+  height: 2rem;
+  background-color: rgb(233,233,233);
+}
+
+.UserInfo {
+  margin-bottom: 10px;
+}
+
+.InfoSet {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.InfoSet label {
+  margin-right: 8px;
+}
+
+.ModalDate {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  float:left;
+}
+
+.ModalDate div {
+  margin-right: 8px;
+  float:left;
+}
+
+.ModalLocation {
+  margin-bottom: 10px;
+  float:left;
+}
+
+.ModalImgUpload button {
+  padding: 8px 16px;
+  background-color: darkgray;
+  width: 80%;
+  height: 200px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  float:left;
+  display:flex;
+  margin-top: 2rem;
+}
+
+.ModalDescription,
+.ModalLocation {
+  margin: 0;
+  float:left;
+  display:flex;
+  width: 100%;
+}
+.ModalHeader span div {
+  position:absolute;
+  top:0;
+  margin : 0;
+  width: 100%;
 }

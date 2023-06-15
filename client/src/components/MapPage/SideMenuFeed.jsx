@@ -1,8 +1,14 @@
 import { IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import CreateFeedModal from './Modals/CreateFeedModal';
 
 const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
+    const [modalOpen, setModalOpen] = useState(false);
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
   const selectedItem = data.find(item => item.gallery_id === selectedId);
   console.log(selectedItem)
   return (
@@ -47,7 +53,8 @@ const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
                 <div>
                   <button>수정</button>
                   <button>삭제</button>
-                  <button>글쓰기</button>
+                  <button onClick={showModal}>글쓰기</button>
+                  {modalOpen && <CreateFeedModal setModalOpen={setModalOpen} />}
                 </div>
               </div>
             </div>
