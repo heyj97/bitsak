@@ -16,7 +16,15 @@ const app = express();
 
 const PORT = process.env.SERVER_PORT;
 
-app.use(cors());
+const clientHost = process.env.CLIENT_HOST
+const corsOptions = {
+  origin: clientHost,
+  methods: ["GET", "POST", "PUT"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,6 +34,21 @@ app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => {
   res.send("데이터 프로젝트 API 입니다.");
 });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    const filename = `${path.basename(
+      file.originalname,
+      ext
+    )}_${Date.now()}${ext}`;
+    cb(null, filename);
+  },
+});
+const upload = multer({ storage });
 
 app.use(groupRankRouter);
 app.use(koreaDecadeRouter);
