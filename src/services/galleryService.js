@@ -11,23 +11,24 @@ const __dirname = dirname(__filename);
 
 
 class galleryService {
+           
 
     //1. 갤러리 업로드
     static async uploadPhoto({username, description, location, take_date, file_path, password}) {
-
+        
         const post_date = new Date();
 
         // 비밀번호 해쉬화
         const hashedPassword = await bcrypt.hash(password, 10);
 
         try {
-            //갤러리 DB 저장
-            await galleryModel.uploadPhoto({username, description, location,take_date, post_date, file_path, password:hashedPassword});
+                //갤러리 DB 저장
+                await galleryModel.uploadPhoto({username, description, location,take_date, post_date, file_path, password:hashedPassword});
 
-            return {
-                status: 200,
-                message: "사진을 업로드 하였습니다.",
-            };
+                return {
+                    status: 200,
+                    message: "사진을 업로드 하였습니다.",
+                };
         } 
         catch (error) {
             throw new InternalServerError('게시물을 등록하는 데 실패하였습니다.');
@@ -165,20 +166,21 @@ class galleryService {
         catch (error) {
             throw new InternalServerError('${location}의 갤러리를 조회하는 데 실패했습니다.');
         }
-  }
-
-  static async getCountByLocation() {
-    try {
-      const photoCounts = await galleryModel.getCountByLocation();
-  
-      return {
-        status: 200,
-        data: photoCounts,
-      };
-    } catch (error) {
-        throw new InternalServerError('서대문구의 갤러리 데이터를 조회하는 데 실패했습니다.');
     }
-  }
+
+    static async getCountByLocation() {
+        try {
+        const photoCounts = await galleryModel.getCountByLocation();
+    
+        return {
+            status: 200,
+            data: photoCounts,
+        };
+        } 
+        catch (error) {
+            throw new InternalServerError('서대문구의 갤러리 데이터를 조회하는 데 실패했습니다.');
+        }
+    }
 
 }
 
