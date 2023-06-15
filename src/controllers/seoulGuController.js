@@ -9,8 +9,7 @@ const seoulGuController = async (req,res,next) => {
         } else {
             return res.status(200).json(seoulGu);
         }
-    }
-    catch (error) {
+    } catch (error) {
         next(error);
     }
 }

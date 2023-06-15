@@ -6,8 +6,8 @@ import objResToArr from "../../utils/objResToArr";
 import BarChart from "./BarChart";
 import styles from "./Introduce.module.css";
 
-const GlobalLightPollutionChart = () => {
-  const { data, isLoading, error } = useGetFetch("g20-rank");
+const SeoulLightPollution = () => {
+  const { data, isLoading, error } = useGetFetch("seoul-lightpollution");
 
   if (error)
     return (
@@ -18,8 +18,10 @@ const GlobalLightPollutionChart = () => {
   return (
     <div className={styles.globalLPChart}>
       <h2 className={styles.ChartTitle}>
-        G20 국가들 중 우리나라의 빛 공해수준은{" "}
-        <span className={styles.ChartTitleHightlight}>1등</span>입니다.
+        서울의 모든 행정구들 중 평균조도는
+        <br />
+        <span className={styles.ChartTitleHightlight}>서대문구</span>가 가장
+        높습니다.
       </h2>
       {isLoading ? (
         <Spinner />
@@ -27,19 +29,20 @@ const GlobalLightPollutionChart = () => {
         Array.isArray(data.data) &&
         data.data.length > 0 && (
           <>
-            <p className={styles.unitParagraph}>단위: lux</p>
+            {/* <p className={styles.unitParagraph}>단위: lux</p> */}
             <ChartComp resData={data.data} />
           </>
         )
       )}
       <p className={styles.ChartParagraph}>
-        <a href="https://www.lightpollutionmap.info/LP_Stats/" target="_blank">
-          Light pollution map
+        <a
+          href="http://data.seoul.go.kr/dataList/OA-15969/S/1/datasetView.do"
+          target="_black"
+        >
+          공공데이터 포털 : 스마트서울 도시데이터 센서(S-DoT) 환경정보
         </a>
         <br />
         <br />
-        G20국가들의 평균 야간조도를 비교해보았을 때, <br />
-        우리나라의 야간조도가 가장 높습니다.
       </p>
     </div>
   );
@@ -48,8 +51,8 @@ const GlobalLightPollutionChart = () => {
 const ChartComp = ({ resData }) => {
   const [avgMeanArr, setAvgMeanArr] = useState([]);
   const [countryArr, setCountryArr] = useState([]);
-  const newarr1 = useMemo(() => objResToArr(resData, "avg_mean"), [resData]);
-  const newarr2 = useMemo(() => objResToArr(resData, "country"), [resData]);
+  const newarr1 = useMemo(() => objResToArr(resData, "illum_avg"), [resData]);
+  const newarr2 = useMemo(() => objResToArr(resData, "gu_name"), [resData]);
 
   useEffect(() => {
     setAvgMeanArr(newarr1);
@@ -58,10 +61,10 @@ const ChartComp = ({ resData }) => {
   return (
     <>
       {resData && resData.length > 0 && (
-        <BarChart label={countryArr} data={avgMeanArr} dataName="야간조도" />
+        <BarChart label={countryArr} data={avgMeanArr} dataName="조도" />
       )}
     </>
   );
 };
 
-export default GlobalLightPollutionChart;
+export default SeoulLightPollution;

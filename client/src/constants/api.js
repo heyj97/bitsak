@@ -1,2 +1,2 @@
-export const API_BASE_URL = "localhost";
-export const API_PORT = 5001;
+export const API_BASE_URL =
+  process.env.NODE_ENV === "production" ? "34.64.158.180" : "localhost:5001";

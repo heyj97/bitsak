@@ -1,30 +1,17 @@
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable no-undef */
-// 담당: 김한빈
-
-import styles from "./Header.module.css";
+import styles from "./Layout.module.css";
 import { Link } from "react-router-dom";
+import RightNav from "./rightNav";
 
 const Header = () => {
   return (
-    <header className={styles.Header}>
+    <header>
       <nav className={styles.Nav}>
-        <div className={styles.Logo}>
-          <Link to="/"><h1>빛삭</h1></Link>
-        </div>
-        <div className={styles.MenuBox}>
-            <Link to="/infor"><h2>소개</h2></Link>
-            <Link to="/quiz-home"><h2>퀴즈</h2></Link>
-            <Link to="/map"><h2>지도</h2></Link>
-        </div>
+        <h1 className={styles.Logo}>
+          <Link to={"/"}>빛삭</Link>
+        </h1>
+        <RightNav />
       </nav>
     </header>
-    // <div>
-    //   <div>
-    //
-    //     </span>
-    //   </div>
-    // </div>
   );
 };
 

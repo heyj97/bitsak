@@ -4,8 +4,7 @@ const groupRankController = async (req, res, next) => {
   try {
     const groupRank = await groupRankService.findAll();
     return res.status(200).json(groupRank);
-  } 
-  catch (error) {
+  } catch (error) {
     next(error);
   }
 };
