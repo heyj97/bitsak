@@ -12,15 +12,17 @@ const CreateFeedModal = ({ setModalOpen, id, title, content, writer }) => {
     <div className={styles.ModalContainer}>
         <div className={styles.ModalHeader}>
             <span>
-                <button> X </button>
-                <div> 게시물 작성 </div>
-                <button> 완료 </button> 
+                <button className={styles.ModalClose} onClick={closeModal}>
+                X
+                </button>
+                <div><h1>게시물 작성</h1></div>
+                <button className={styles.ModalUpload}> 완료 </button> 
             </span>
         </div> {/* ModalHeader */}
         <div className={styles.ModalContent}>
             <div className={styles.UserInfo}>
-                <div>ID</div>
-                <div>PW</div>
+                <div className={styles.InfoSet}>ID<div id="id"></div></div>
+                <div className={styles.InfoSet}>PW<div id="pw"></div></div>
             </div>
             <div className={styles.ModalDate}>
                 <div id="YY">연도</div>
@@ -29,16 +31,14 @@ const CreateFeedModal = ({ setModalOpen, id, title, content, writer }) => {
             </div>
             <div className={styles.ModalLocation}>위치주소</div>
             <div className={styles.ModalImgUpload}>
-                <button></button>
+                <button>이미지업로드</button>
             </div>
             <div className={styles.ModalDescription}>
                 내용
             </div>
 
         </div> {/* ModalContent */}
-      <button className={styles.ModalClose} onClick={closeModal}>
-        X
-      </button>
+      
     </div>
   );
 };
