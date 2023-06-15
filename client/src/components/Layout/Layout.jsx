@@ -9,11 +9,12 @@ import Footer from "./Footer";
 const Layout = () => {
   const location = useLocation();
   const isHome = useMemo(() => location.pathname === "/", [location]);
+  const isMap = useMemo(() => location.pathname === "/map", [location]);
   return (
     <>
       {!isHome && <Header />}
       <AppRouter />
-      {!isHome && <Footer />}
+      {!isHome && !isMap && <Footer />}
     </>
   );
 };
