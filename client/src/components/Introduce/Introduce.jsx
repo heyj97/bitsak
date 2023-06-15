@@ -6,17 +6,19 @@ import KoreaLightPollutionChart from "./KoreaLightPollutionChart";
 import ComplaintsMarkerMap from "./ComplaintsMarkerMap";
 import SeoulLightPollution from "./SeoulLightPollution";
 import { useNavigate } from "react-router-dom";
+import LPIntroduce from "./LPIntroduce";
 
 const Introduce = () => {
   const navigate = useNavigate();
   return (
     <>
       <div className={styles.wholeContainer}>
-        {/* <GlobalLightPollutionChart /> */}
-        {/* <KoreaLightPollutionChart /> */}
-        {/* <SeoulLightPollution /> */}
-        {/* <ComplaintsMarkerMap /> */}
-        {/* <YearlyComplaints /> */}
+        <LPIntroduce />
+        <GlobalLightPollutionChart />
+        <KoreaLightPollutionChart />
+        <SeoulLightPollution />
+        <ComplaintsMarkerMap />
+        <YearlyComplaints />
         <div
           className={btnStyles.linkBtnContainer}
           style={{ marginTop: "100px", marginBottom: "100px" }}
