@@ -5,6 +5,7 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { galleryModel } from '../models/galleryModel.js';
 import { CustomError, InternalServerError, NotFoundError } from "../error.js";
+import { type } from "os";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -100,6 +101,7 @@ class galleryService {
     static async deletePhoto({galleryId, password}) {
 
     //galleryId 가 DB에 존재하는지 확인
+    console.log(galleryId, typeof galleryId)
     const isGalleryId = await galleryModel.getGalleryId({galleryId});
     if (!isGalleryId || isGalleryId === 0) {
         throw new NotFoundError('존재하지 않는 파일입니다.');

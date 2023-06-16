@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { API_BASE_URL } from "../constants/api";
 
-const usePostFetch = (param, postData) => {
+const usePostFetch = (param, postData, triggerFetch) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,7 +36,7 @@ const usePostFetch = (param, postData) => {
     return () => {
       abortController.abort();
     };
-  }, [url, postData]);
+  }, [url, postData, triggerFetch]); // triggerFetch를 의존성 배열에 추가했습니다.
 
   return { data, isLoading, error };
 };

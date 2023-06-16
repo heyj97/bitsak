@@ -21,6 +21,7 @@ const coordinatesToPolygon = (arr, setLocation) => {
     return (
       <Polygon
         key={idx}
+        interactive={true}
         pathOptions={{
           color: "#FFE600",
           fillColor: "#000237",

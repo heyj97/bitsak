@@ -1,13 +1,6 @@
 import styles from "./MapPage.module.css";
-import { useState } from "react";
-import CreateFeedModal from "./Modals/CreateFeedModal";
-import { IMG_BASE_URL } from "../../constants/api";
-const SideList = ({ setIsSelected, data, setSelectedId }) => {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const showModal = () => {
-    setModalOpen(true);
-  };
+import { API_BASE_URL } from "../../constants/api";
+const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
   return (
     <>
       <div className={styles.Header}>
@@ -39,12 +32,6 @@ const SideList = ({ setIsSelected, data, setSelectedId }) => {
         </div>
 
         {/* 컨테이너 Footer------------------------------------- */}
-        <div className={styles.Footer}>
-          <div>
-            <button onClick={showModal}>글쓰기</button>
-            {modalOpen && <CreateFeedModal setModalOpen={setModalOpen} />}
-          </div>
-        </div>
       </div>
       {/* 컨테이너 제목------------------------------------- */}
     </>
@@ -64,7 +51,7 @@ const ListItem = ({ setIsSelected, data, setSelectedId }) => {
       <div className={styles.ListSet}>
         <div className={styles.ListImg}>
           <img
-            src={`http://localhost:5001${data.file_path}`}
+            src={`http://${API_BASE_URL}${data.file_path}`}
             alt={`${data.location}${data.file_path}`}
           />
         </div>

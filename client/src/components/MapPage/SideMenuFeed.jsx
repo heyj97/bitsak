@@ -1,16 +1,81 @@
-import { IMG_BASE_URL } from "../../constants/api";
-import styles from "./MapPage.module.css";
 import { useState } from "react";
-import CreateFeedModal from "./Modals/CreateFeedModal";
+import { API_BASE_URL } from "../../constants/api";
+import styles from "./MapPage.module.css";
 
-const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+const PasswordCheck = ({selectedItemId}) => {
+  const [checkPW, setCheckPW] = useState("")
 
-  const showModal = () => {
-    setModalOpen(true);
-  };
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(`http://${API_BASE_URL}/api/gallery/delete`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          galleryId: selectedItemId,
+          password: checkPW
+        }),
+      });
+
+      if(response.ok){
+        // Successful deletion
+        const responseData = await response.json();
+        setIsSelected(false)
+        window.location.reload()
+        // Reset the password field
+        setCheckPW("");
+      } else {
+        // Handle error
+        console.error("삭제에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("삭제에 실패했습니다.", error);
+    }
+  }
+
+  return (
+    <div className={styles.pwcheck}>
+      <input 
+        type="text" 
+        value={checkPW} 
+        onChange={(e) => setCheckPW(e.target.value)} 
+        placeholder="비밀번호를 입력해주세요." 
+      />
+      <button 
+        type="submit" 
+        onClick={handleSubmit} 
+        style={{width: "100px", height: "33px", margin: "0", marginTop: "25px",marginLeft:"15px", cursor: "pointer", border: "#ccc 1px solid", fontSize: "15px", borderRadius: "20px"}}
+      >
+        확인
+      </button>
+    </div>
+  )
+}
+const SideMenuFeed = ({
+  data,
+  setIsSelected,
+  selectedId,
+  setIsEdit,
+  setEditData,
+  setIsPost,
+}) => {
+  console.log(data)
+  const [isDelete, setIsDelete] = useState(false);
   const selectedItem = data.find((item) => item.gallery_id === selectedId);
-  console.log(selectedItem);
+
+  const handleModify = () => {
+    let newdata = { ...selectedItem };
+    setEditData(newdata);
+    setIsEdit(true);
+    setIsPost(false);
+    setIsSelected(false);
+  };
+
+  const handleDelete = () => {
+    setIsDelete(!isDelete);
+  }
+
   return (
     <>
       <div className={styles.sideMenuFeedContainer}>
@@ -26,7 +91,7 @@ const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
             {/* 게시물 리스트 1set--- */}
             <div className={styles.FeedSet}>
               <div className={styles.FeedImg}>
-                <img src={`http://${IMG_BASE_URL}${selectedItem?.file_path}`} />
+                <img src={`http://${API_BASE_URL}${selectedItem?.file_path}`} />
               </div>
               <div className={styles.FeedContents}>
                 <div className={styles.FeedUserName}>
@@ -36,9 +101,9 @@ const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
                   </div>
                   <div className={styles.FeedTakeDate}>
                     <div className={styles.InfName}>등록일</div>
-                    <div>
-                      {selectedItem.post_date &&
-                        selectedItem.post_date.split("T")[0]}
+                    <div style={{ width: "150px" }}>
+                      {selectedItem.take_date &&
+                        selectedItem.take_date.split("T")[0]}
                     </div>
                   </div>
                 </div>
@@ -55,10 +120,9 @@ const SideMenuFeed = ({ data, setIsSelected, selectedId }) => {
               </div>
               <div className={styles.FeedFooter}>
                 <div>
-                  <button>수정</button>
-                  <button>삭제</button>
-                  <button onClick={showModal}>글쓰기</button>
-                  {modalOpen && <CreateFeedModal setModalOpen={setModalOpen} />}
+                {isDelete && <PasswordCheck selectedItemId={selectedItem.gallery_id} />}
+                  <button onClick={handleModify}>수정</button>
+                  <button onClick={handleDelete}>삭제</button>
                 </div>
               </div>
             </div>

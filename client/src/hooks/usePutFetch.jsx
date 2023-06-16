@@ -13,7 +13,7 @@ const usePutFetch = (param, postData) => {
     const fetchData = async () => {
       try {
         const response = await fetch(url, {
-          method: "PUT", // "POST"를 "PUT"으로 변경
+          method: "PUT",
           body: postData,
           signal: abortController.signal,
         });
@@ -31,12 +31,13 @@ const usePutFetch = (param, postData) => {
       }
     };
 
+    // postData가 변경될 때마다 API를 호출합니다.
     fetchData();
 
     return () => {
       abortController.abort();
     };
-  }, [url, postData]);
+  }, [url, postData]); // Dependency 수정
 
   return { data, isLoading, error };
 };
