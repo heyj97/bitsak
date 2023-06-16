@@ -1,6 +1,7 @@
 import styles from "./MapPage.module.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import usePostFetch from "../../hooks/usePostFetch";
+import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const LocationDropDownItem = ({ location, setLocation, setIsDropMenu }) => {
   return (
@@ -16,6 +17,8 @@ const LocationDropDownItem = ({ location, setLocation, setIsDropMenu }) => {
 };
 
 const LocationDropDownMenu = ({ setLocation, setIsDropMenu }) => {
+  const ref = useRef();
+  useOnClickOutside(ref, () => setIsDropMenu(false));
   const locationList = [
     "남가좌1동",
     "남가좌2동",
@@ -34,7 +37,7 @@ const LocationDropDownMenu = ({ setLocation, setIsDropMenu }) => {
   ];
 
   return (
-    <ul className={styles.dropMenu}>
+    <ul ref={ref} className={styles.dropMenu}>
       {locationList.map((loc) => (
         <LocationDropDownItem
           location={loc}
@@ -55,7 +58,6 @@ const SideMenuWrite = ({ setIsPost, setIsSelected }) => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [isDropMenu, setIsDropMenu] = useState(false);
-
   const { data, isLoading, error, fetchData } = usePostFetch();
 
   const handleFileChange = (e) => {
