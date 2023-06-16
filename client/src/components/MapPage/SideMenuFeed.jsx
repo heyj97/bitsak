@@ -125,10 +125,10 @@ const SideMenuFeed = ({
               <div className={styles.FeedImgDiv}>
                 <img
                   className={styles.FeedImg}
-                  src={`http://${API_BASE_URL}${selectedItem?.file_path}`}
+                  src={`http://${IMG_BASE_URL}${selectedItem?.file_path}`}
                   onClick={() =>
                     handleClickOpen(
-                      `http://${API_BASE_URL}${selectedItem?.file_path}`
+                      `http://${IMG_BASE_URL}${selectedItem?.file_path}`
                     )
                   }
                 />
