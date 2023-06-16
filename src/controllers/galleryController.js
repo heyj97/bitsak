@@ -75,7 +75,6 @@ async function updatePhoto(req, res, next) {
 // 사진 삭제
 async function deletePhoto(req, res, next) {
   try {
-    console.log(req.body)
     const galleryId = req.body.galleryId;
     const password = req.body.password;
 

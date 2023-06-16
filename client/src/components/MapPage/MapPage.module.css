@@ -6,6 +6,7 @@
   height: 800px;
   background-color: white;
   position: relative;
+  z-index: 0;
 }
 
 .MapPageContainer {
@@ -22,6 +23,7 @@
   width: 460px;
   height: 100%;
   background-color: rgb(233, 233, 233);
+  z-index: 0;
 }
 
 /* ------------------ 한빈 --------------------- */
@@ -200,13 +202,13 @@
   top: 0;
 }
 
-.FeedImg {
+.FeedImgDiv {
   width: 100%;
   height: 20rem;
   background-color: rgb(135, 135, 135);
 }
 
-.FeedImg img {
+.FeedImg {
   position: relative;
   width: 100%;
   top: 50%;
@@ -215,6 +217,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .FeedContents {
@@ -551,4 +554,43 @@
 
 .textLeft {
   text-align: left;
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modalContent {
+  display: block;
+  max-width: 1200px; /* 이 부분을 조정해주세요. */
+  max-height: 800px;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
 }

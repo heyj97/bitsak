@@ -12,12 +12,6 @@ const Test = () => {
 
   const { data, isLoading, error } = usePostFetch("gallery", postData);
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };

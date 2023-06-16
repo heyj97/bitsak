@@ -12,10 +12,6 @@ const SideMenu = ({ data }) => {
   const [editData, setEditData] = useState({});
   const [selectedId, setSelectedId] = useState(null);
 
-  useEffect(() => {
-    console.log(isEdit, editData, isSelected, isPost);
-  }, []);
-
   return (
     <>
       <div className={styles.sideMenuContainer}>

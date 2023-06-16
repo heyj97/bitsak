@@ -3,7 +3,7 @@ import styles from "./Introduce.module.css";
 import shuffleArrByValue from "../../utils/shuffleArrByValue";
 
 function randomColor() {
-  const color = ['#ff6384', "#E14263", "#FF7794", "#FF0036"]
+  const color = ["#ff6384", "#E14263", "#FF7794", "#FF0036"];
   var index = Math.floor(Math.random() * color.length);
   return color[index];
 }
@@ -31,8 +31,7 @@ const CloudItem = ({ label, value }) => {
         fontWeight: "bold",
         display: "inline-block",
         padding: "5px",
-        color:
-          value > 25 || value === 24.146341 ? randomColor() : "#ccc",
+        color: value > 25 || value === 24.146341 ? randomColor() : "#ccc",
       }}
     >
       {label}

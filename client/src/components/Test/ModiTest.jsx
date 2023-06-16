@@ -13,12 +13,6 @@ const ModiTest = () => {
 
   const { data, isLoading, error } = usePutFetch("gallery", formData);
 
-  useEffect(() => {
-    if (data) {
-      console.log(data);
-    }
-  }, [data]);
-
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };

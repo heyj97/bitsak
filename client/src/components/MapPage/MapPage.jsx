@@ -5,7 +5,7 @@ import SeodaemunMap from "./SeodaemunMap.jsx";
 import { useState } from "react";
 import useGetFetch from "../../hooks/useGetFetch.jsx";
 import Error from "../common/Error/Error.jsx";
-import styles from './MapPage.module.css'
+import styles from "./MapPage.module.css";
 
 const MapPage = () => {
   const [location, setLocation] = useState("연희동");
