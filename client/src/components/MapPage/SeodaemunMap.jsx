@@ -16,11 +16,11 @@ import { circleCoordinates } from "./boundConstants";
 import styles from "./MapPage.module.css";
 
 const coordinatesToPolygon = (arr, setLocation) => {
-  
   return arr.map((item, idx) => {
     return (
       <Polygon
         key={idx}
+        interactive={true}
         pathOptions={{
           color: "#FFE600",
           fillColor: "#000237",
@@ -33,7 +33,7 @@ const coordinatesToPolygon = (arr, setLocation) => {
         ])}
         eventHandlers={{
           click: (e) => {
-            setLocation(item.properties.temp)
+            setLocation(item.properties.temp);
           },
         }}
       >
@@ -65,7 +65,7 @@ const PostNumberCircle = ({ data, bounds, postCount, name }) => {
   );
 };
 
-const SeodaemunMap = ({setLocation}) => {
+const SeodaemunMap = ({ setLocation }) => {
   const position = [37.5833, 126.931557440644];
   const { data, isLoading, error } = useGetFetch("gallery/count-by-location");
 

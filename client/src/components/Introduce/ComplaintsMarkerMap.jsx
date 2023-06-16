@@ -72,9 +72,9 @@ const ComplaintsMarkerMap = () => {
   if (error) return <Error error={error.message} />;
 
   const bounds = [
-    [37.59, 126.90],
+    [37.59, 126.9],
     [37.595, 126.91],
-  ]
+  ];
 
   return (
     <div className={styles.globalLPChart}>
@@ -101,7 +101,7 @@ const ComplaintsMarkerMap = () => {
           opacity={0}
         />
         {coordinatesToPolygon(seodaemunData)}
-        <SVGOverlay attributes={{ stroke: "grey"}} bounds={bounds}>
+        <SVGOverlay attributes={{ stroke: "grey" }} bounds={bounds}>
           <rect x="0" y="0" width="100%" height="100%" fill="#000237" />
           <text x="10" y="20px" stroke="white">
             휘도 7이상 :

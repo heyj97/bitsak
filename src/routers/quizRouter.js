@@ -1,9 +1,8 @@
-import { Router } from 'express';
-import { quizController } from '../controllers/quizController.js';
+import { Router } from "express";
+import { quizController } from "../controllers/quizController.js";
 
 const quizRouter = Router();
 
-
-quizRouter.get('/api/quiz', quizController);
+quizRouter.get("/api/quiz", quizController);
 
 export { quizRouter };

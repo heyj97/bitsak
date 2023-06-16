@@ -1,12 +1,12 @@
 const score = {
   zero: {
-    description: "당신은 인간공해입니까?",
+    description: "당신은 아직 빛.알.못이시군요. 조금만 더 노력합시다!",
   },
   one: {
-    description: "당신은 아직 빛린이시군요. 조금만 더 노력합시다! 화이팅",
+    description: "당신은 아직 빛린이시군요. 조금만 더 노력합시다!",
   },
   two: {
-    description: "당신은 아직 빛린이시군요. 조금만 더 노력합시다! 화이팅",
+    description: "당신은 아직 빛린이시군요. 조금만 더 노력합시다!",
   },
   three: {
     description: "당신은 빛.잘.알 입니다 축하 축하 :>",

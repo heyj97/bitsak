@@ -5,6 +5,7 @@ import SeodaemunMap from "./SeodaemunMap.jsx";
 import { useState } from "react";
 import useGetFetch from "../../hooks/useGetFetch.jsx";
 import Error from "../common/Error/Error.jsx";
+import styles from "./MapPage.module.css";
 
 const MapPage = () => {
   const [location, setLocation] = useState("연희동");
@@ -13,14 +14,18 @@ const MapPage = () => {
   );
 
   // if (error) return <Error error={error} />;
-  if (!error?.message === "Error: 404, Not Found") return <Error error={error} />;
+  if (!error?.message === "Error: 404, Not Found")
+    return <Error error={error} />;
 
   return (
     <>
-      <div>
+      <div className={styles.MapPageContainer}>
         <SeodaemunMap setLocation={setLocation} />
-        {((error?.message === "Error: 404, Not Found") || !error) && !isLoading && <SideMenu data={data.data} />}
-        {(error?.message === "Error: 404, Not Found")&& !isLoading && <SideMenu data={data.data} />}
+        {(error?.message === "Error: 404, Not Found" || !error) &&
+          !isLoading && <SideMenu data={data.data} />}
+        {error?.message === "Error: 404, Not Found" &&
+          !isLoading &&
+          data.length > 0 && <SideMenu data={data.data} />}
       </div>
     </>
   );
