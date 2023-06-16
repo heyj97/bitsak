@@ -2,6 +2,51 @@ import styles from "./MapPage.module.css";
 import { useState, useEffect } from "react";
 import usePutFetch from "../../hooks/usePutFetch"; // Changed from usePostFetch
 
+const LocationDropDownItem = ({ location, setLocation, setIsDropMenu }) => {
+  return (
+    <li
+      onClick={() => {
+        setLocation(location);
+        setIsDropMenu(false);
+      }}
+    >
+      {location}
+    </li>
+  );
+};
+
+const LocationDropDownMenu = ({ setLocation, setIsDropMenu }) => {
+  const locationList = [
+    "남가좌1동",
+    "남가좌2동",
+    "북가좌1동",
+    "북가좌2동",
+    "북아현동",
+    "신촌동",
+    "연희동",
+    "천연동",
+    "충현동",
+    "홍은1동",
+    "홍은2동",
+    "홍제1동",
+    "홍제2동",
+    "홍제3동",
+  ];
+
+  return (
+    <ul className={styles.dropMenu}>
+      {locationList.map((loc) => (
+        <LocationDropDownItem
+          location={loc}
+          key={loc}
+          setLocation={setLocation}
+          setIsDropMenu={setIsDropMenu}
+        />
+      ))}
+    </ul>
+  );
+};
+
 const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
   const [file, setFile] = useState(editData.file_path);
   const [description, setDescription] = useState(editData.description);
@@ -10,12 +55,8 @@ const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState(editData.username);
   const [galleryId, setGalleryId] = useState(parseInt(editData.gallery_id));
-  const [postData, setPostData] = useState(null);
-  const { data, isLoading, error } = usePutFetch(
-    // Changed from usePostFetch
-    "gallery",
-    postData
-  );
+  const [isDropMenu, setIsDropMenu] = useState(false);
+  const { data, isLoading, error, fetchData } = usePutFetch();
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -24,6 +65,9 @@ const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isDropMenu) {
+      return;
+    }
     // 비밀번호 길이 검사
     if (password.length < 4) {
       alert("비밀번호는 4글자 이상이어야 합니다.");
@@ -36,11 +80,6 @@ const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
       return;
     }
 
-    // 닉네임 빈값 처리
-    if (!username) {
-      setUsername("익명");
-    }
-
     const formData = new FormData();
     formData.append("description", description);
     formData.append("location", location);
@@ -48,9 +87,9 @@ const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
     formData.append("galleryId", galleryId);
     formData.append("password", password); // Add password to the form data
     formData.append("file_path", file);
-    setPostData(formData);
+
+    await fetchData("gallery", formData);
     window.location.reload();
-    return;
   };
   return (
     <>
@@ -94,13 +133,20 @@ const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
             onChange={(e) => setTakeDate(e.target.value)}
           />
           <p>위 치</p>
-          <input
-            className={styles.mapWriteBodyInput}
-            type="text"
-            placeholder="Location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
+          <div>
+            <input
+              type="button"
+              className={styles.mapWriteBodyInput}
+              value={location}
+              onClick={() => setIsDropMenu(!isDropMenu)}
+            />
+            {isDropMenu && (
+              <LocationDropDownMenu
+                setIsDropMenu={setIsDropMenu}
+                setLocation={setLocation}
+              />
+            )}
+          </div>
           <div className={styles.fullGrid}>
             <p style={{ textAlign: "left" }}>내용</p>
             <textarea

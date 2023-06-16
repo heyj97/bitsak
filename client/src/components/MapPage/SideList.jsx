@@ -4,7 +4,7 @@ const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
   return (
     <>
       <div className={styles.Header}>
-        <h2 style={{ display: "inline-block" }}>빛공해 사례 목록</h2>{" "}
+        <h2 style={{ display: "inline-block" }}>빛공해 갤러리</h2>{" "}
         <button
           onClick={() => {
             setIsPost(true);

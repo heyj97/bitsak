@@ -3,7 +3,7 @@ import SideList from "./SideList";
 import SideMenuFeed from "./SideMenuFeed";
 import SideMenuModify from "./SideMenuModify";
 import SideMenuWrite from "./SideMenuWrite";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SideMenu = ({
   data,
