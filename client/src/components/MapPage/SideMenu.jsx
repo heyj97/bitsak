@@ -1,5 +1,4 @@
 import styles from "./MapPage.module.css";
-import { Link } from "react-router-dom";
 import SideList from "./SideList";
 import SideMenuFeed from "./SideMenuFeed";
 import SideMenuWrite from "./SideMenuWrite";
