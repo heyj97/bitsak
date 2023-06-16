@@ -1,5 +1,5 @@
 import styles from "./MapPage.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import usePostFetch from "../../hooks/usePostFetch";
 
 const LocationDropDownItem = ({ location, setLocation, setIsDropMenu }) => {
