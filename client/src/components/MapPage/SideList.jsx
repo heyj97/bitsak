@@ -1,5 +1,5 @@
 import styles from "./MapPage.module.css";
-import { API_BASE_URL } from "../../constants/api";
+import { API_BASE_URL, IMG_BASE_URL } from "../../constants/api";
 const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
   return (
     <>
@@ -51,7 +51,7 @@ const ListItem = ({ setIsSelected, data, setSelectedId }) => {
       <div className={styles.ListSet}>
         <div className={styles.ListImg}>
           <img
-            src={`http://${API_BASE_URL}${data.file_path}`}
+            src={`http://${IMG_BASE_URL}${data.file_path}`}
             alt={`${data.location}${data.file_path}`}
           />
         </div>
