@@ -15,7 +15,13 @@ import Error from "../common/Error/Error";
 import { circleCoordinates } from "./boundConstants";
 import styles from "./MapPage.module.css";
 
-const coordinatesToPolygon = (arr, setLocation) => {
+const coordinatesToPolygon = (
+  arr,
+  setLocation,
+  setIsEdit,
+  setIsPost,
+  setIsSelected
+) => {
   return arr.map((item, idx) => {
     return (
       <Polygon
@@ -34,6 +40,9 @@ const coordinatesToPolygon = (arr, setLocation) => {
         eventHandlers={{
           click: (e) => {
             setLocation(item.properties.temp);
+            setIsEdit(false);
+            setIsPost(false);
+            setIsSelected(false);
           },
         }}
       >
@@ -65,7 +74,7 @@ const PostNumberCircle = ({ data, bounds, postCount, name }) => {
   );
 };
 
-const SeodaemunMap = ({ setLocation }) => {
+const SeodaemunMap = ({ setLocation, setIsEdit, setIsPost, setIsSelected }) => {
   const position = [37.5833, 126.931557440644];
   const { data, isLoading, error } = useGetFetch("gallery/count-by-location");
 
@@ -88,7 +97,13 @@ const SeodaemunMap = ({ setLocation }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           opacity={0}
         />
-        {coordinatesToPolygon(seodaemunData, setLocation)}
+        {coordinatesToPolygon(
+          seodaemunData,
+          setLocation,
+          setIsEdit,
+          setIsPost,
+          setIsSelected
+        )}
         {data &&
           circleCoordinates.map((item, idx) => {
             return (

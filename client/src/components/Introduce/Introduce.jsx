@@ -24,7 +24,7 @@ const Introduce = () => {
           style={{ marginTop: "100px", marginBottom: "100px" }}
         >
           <button onClick={() => navigate("/quiz")}>빛공해 퀴즈</button>
-          <button onClick={() => navigate("/map")}>빛공해 제보</button>
+          <button onClick={() => navigate("/map")}>빛공해 갤러리</button>
         </div>
       </div>
     </>

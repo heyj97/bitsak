@@ -5,10 +5,15 @@ import SideMenuModify from "./SideMenuModify";
 import SideMenuWrite from "./SideMenuWrite";
 import { useEffect, useState } from "react";
 
-const SideMenu = ({ data }) => {
-  const [isSelected, setIsSelected] = useState(false);
-  const [isPost, setIsPost] = useState(false);
-  const [isEdit, setIsEdit] = useState(false);
+const SideMenu = ({
+  data,
+  isEdit,
+  isPost,
+  isSelected,
+  setIsEdit,
+  setIsPost,
+  setIsSelected,
+}) => {
   const [editData, setEditData] = useState({});
   const [selectedId, setSelectedId] = useState(null);
 

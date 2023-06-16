@@ -154,8 +154,8 @@ const SideMenuFeed = ({
                   <div className={styles.FeedTakeDate}>
                     <div className={styles.InfName}>등록일</div>
                     <div style={{ width: "150px" }}>
-                      {selectedItem?.take_date &&
-                        selectedItem?.take_date.split("T")[0]}
+                      {selectedItem?.post_date &&
+                        selectedItem?.post_date.split("T")[0]}
                     </div>
                   </div>
                 </div>
@@ -165,6 +165,13 @@ const SideMenuFeed = ({
                   <div>{selectedItem?.location}</div>
                 </div>
 
+                <div className={styles.FeedDescription}>
+                  <div className={styles.InfName}>촬영일</div>
+                  <div>
+                    {selectedItem?.take_date &&
+                      selectedItem?.take_date.split("T")[0]}
+                  </div>
+                </div>
                 <div className={styles.FeedDescription}>
                   <div className={styles.InfName}>내용</div>
                   <div>{selectedItem?.description}</div>

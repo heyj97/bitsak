@@ -39,6 +39,7 @@ const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
 };
 
 const ListItem = ({ setIsSelected, data, setSelectedId }) => {
+  console.log(data);
   return (
     <button
       onClick={() => {
@@ -59,6 +60,10 @@ const ListItem = ({ setIsSelected, data, setSelectedId }) => {
           <div className={styles.userName}>
             <div className={styles.InfName}>작성자</div>
             <div>{data.username}</div>
+          </div>
+          <div className={styles.takeDate}>
+            <div className={styles.InfName}>촬영일</div>
+            <div>{data.take_date && data.take_date.split("T")[0]}</div>
           </div>
           <div className={styles.takeDate}>
             <div className={styles.InfName}>등록일</div>

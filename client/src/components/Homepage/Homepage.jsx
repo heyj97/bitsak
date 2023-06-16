@@ -20,7 +20,7 @@ const Homepage = () => {
         <MenuItem
           title="빛공해 갤러리"
           url="map"
-          desc="빛공해를 제보하고 공유해봅시다"
+          desc="빛공해를 공유해봅시다"
         />
       </div>
     </div>
