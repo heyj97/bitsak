@@ -3,14 +3,15 @@ import styles from "./Introduce.module.css";
 const UKnowLP = () => {
   return (
     <>
+      <div style={{ height: "100px" }}></div>
       <div className={styles.globalLPChart}>
         <h2 className={styles.ChartTitle}>
-          <span className={styles.ChartTitleHightlight}>빛공해</span>를 알고
-          계신가요?
+          <span className={styles.ChartTitleHightlight}>빛공해</span>란
+          무엇일까요?
         </h2>
         <p className={styles.ChartParagraph}>
-          사람들이 모르는 사이에 이미 우리 일상에 침투해있는 빛공해에 대해
-          알고계신가요?
+          우리가 모르는 사이에 이미 일상에 침투해있는 빛공해에 대해 알고
+          계신가요?
         </p>
       </div>
     </>
@@ -154,7 +155,7 @@ const LPProblem = () => {
           야간조명은 식물의 생리생태에 여러 가지 영향을 미칩니다. 특히 광합성과
           성장 등의 영양생리와 생물계절에 영향,
           <br /> 단일식물 및 장일식물의 꽃눈형성에 미치는 영향, 수분을 위한
-          방화곤춘에 미치는 영향 등이 있습니다.
+          방화곤충에 미치는 영향 등이 있습니다.
         </p>
       </div>
     </>
@@ -165,7 +166,6 @@ const LPIntroduce = () => {
   return (
     <>
       <UKnowLP />
-      <div className={styles.blankDiv} />
       <LPIssue />
       <div className={styles.blankDiv} />
       <LPProblem />

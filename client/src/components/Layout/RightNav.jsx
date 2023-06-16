@@ -20,7 +20,7 @@ const RightNav = () => {
         )}
         {(isQuiz || isIntro) && (
           <li>
-            <Link to={"/map"}>빛공해 제보</Link>
+            <Link to={"/map"}>빛공해 갤러리</Link>
           </li>
         )}
       </ul>

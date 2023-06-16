@@ -28,7 +28,7 @@ const QuizResult = ({ questionData, correctCount, correctIdx }) => {
           <button onClick={() => navigate("/introduce")}>
             빛공해 더 알아보기
           </button>
-          <button onClick={() => navigate("/map")}>빛공해 지도 갤러리</button>
+          <button onClick={() => navigate("/map")}>빛공해 갤러리</button>
         </div>
       </div>
     </>

@@ -8,6 +8,9 @@ import Error from "../common/Error/Error.jsx";
 import styles from "./MapPage.module.css";
 
 const MapPage = () => {
+  const [isSelected, setIsSelected] = useState(false);
+  const [isPost, setIsPost] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const [location, setLocation] = useState("연희동");
   const { data, isLoading, error } = useGetFetch(
     `gallery/by-location/${location}`
@@ -20,12 +23,24 @@ const MapPage = () => {
   return (
     <>
       <div className={styles.MapPageContainer}>
-        <SeodaemunMap setLocation={setLocation} />
+        <SeodaemunMap
+          setLocation={setLocation}
+          setIsEdit={setIsEdit}
+          setIsPost={setIsPost}
+          setIsSelected={setIsSelected}
+        />
         {(error?.message === "Error: 404, Not Found" || !error) &&
-          !isLoading && <SideMenu data={data.data} />}
-        {error?.message === "Error: 404, Not Found" &&
-          !isLoading &&
-          data.length > 0 && <SideMenu data={data.data} />}
+          !isLoading && (
+            <SideMenu
+              data={data.data}
+              isEdit={isEdit}
+              isPost={isPost}
+              isSelected={isSelected}
+              setIsEdit={setIsEdit}
+              setIsPost={setIsPost}
+              setIsSelected={setIsSelected}
+            />
+          )}
       </div>
     </>
   );
