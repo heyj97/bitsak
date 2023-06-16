@@ -39,7 +39,6 @@ const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
 };
 
 const ListItem = ({ setIsSelected, data, setSelectedId }) => {
-  console.log(data);
   return (
     <button
       onClick={() => {

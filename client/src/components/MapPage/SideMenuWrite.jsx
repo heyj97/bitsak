@@ -58,8 +58,6 @@ const SideMenuWrite = ({ setIsPost, setIsSelected }) => {
 
   const { data, isLoading, error, fetchData } = usePostFetch();
 
-  useEffect(() => console.log(data), [data]);
-
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
