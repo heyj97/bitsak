@@ -38,9 +38,10 @@ const ComplaintsMarker = ({ complaint }) => {
 };
 
 const coordinatesToPolygon = (arr) => {
-  return arr.map((item) => {
+  return arr.map((item, idx) => {
     return (
       <Polygon
+        key={idx.toString()}
         pathOptions={{
           color: "#FFE600",
           fillColor: "#000237",
@@ -124,7 +125,9 @@ const ComplaintsMarkerMap = () => {
         </SVGOverlay>
         {data.data.length > 0 &&
           data.data.map((complaint, idx) => {
-            return <ComplaintsMarker complaint={complaint} key={idx} />;
+            return (
+              <ComplaintsMarker complaint={complaint} key={idx.toString()} />
+            );
           })}
       </MapContainer>
       <p className={styles.ChartParagraph}>

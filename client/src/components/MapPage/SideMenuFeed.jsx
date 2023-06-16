@@ -25,7 +25,6 @@ const PasswordCheck = ({ selectedItemId }) => {
         // Successful deletion
         const responseData = await response.json();
         setIsSelected(false);
-        window.location.reload();
         // Reset the password field
         setCheckPW("");
       } else {
@@ -35,12 +34,15 @@ const PasswordCheck = ({ selectedItemId }) => {
     } catch (error) {
       console.error("삭제에 실패했습니다.", error);
     }
+
+    window.location.reload();
+    return;
   };
 
   return (
     <div className={styles.pwcheck}>
       <input
-        type="text"
+        type="password"
         value={checkPW}
         onChange={(e) => setCheckPW(e.target.value)}
         placeholder="비밀번호를 입력해주세요."

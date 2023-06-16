@@ -24,7 +24,7 @@ const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
                 <ListItem
                   setIsSelected={setIsSelected}
                   data={item}
-                  key={idx}
+                  key={idx.toString()}
                   setSelectedId={setSelectedId}
                 />
               );

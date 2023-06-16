@@ -12,7 +12,7 @@ const QuizSolution = ({ quizData, correctIdx }) => {
               question={quiz.question}
               answer={quiz.answer}
               explanation={quiz.explanation}
-              key={idx}
+              key={idx.toString()}
             />
           );
         })}

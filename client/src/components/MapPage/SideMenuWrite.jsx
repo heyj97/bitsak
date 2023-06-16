@@ -1,6 +1,7 @@
 import styles from "./MapPage.module.css";
 import { useState, useEffect } from "react";
 import usePostFetch from "../../hooks/usePostFetch";
+import { useNavigate } from "react-router-dom";
 
 const SideMenuWrite = ({ setIsPost, setIsSelected }) => {
   const [file, setFile] = useState(null);
@@ -9,16 +10,12 @@ const SideMenuWrite = ({ setIsPost, setIsSelected }) => {
   const [takeDate, setTakeDate] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [postData, setPostData] = useState(null);
-  const [triggerFetch, setTriggerFetch] = useState(false); // 추가한 상태
+  const navigate = useNavigate();
 
   // 이 부분에서 postData와 triggerFetch 상태를 모두 주시합니다.
-  const { data, isLoading, error } = usePostFetch(
-    "gallery",
-    postData,
-    triggerFetch
-  );
+  const { data, isLoading, error, fetchData } = usePostFetch();
 
+  useEffect(() => console.log(data), [data]);
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -50,8 +47,9 @@ const SideMenuWrite = ({ setIsPost, setIsSelected }) => {
     formData.append("take_date", takeDate);
     formData.append("password", password);
     formData.append("username", username);
-    setPostData(formData);
-    setTriggerFetch(!triggerFetch);
+    await fetchData("gallery", formData);
+    window.location.reload();
+    return;
   };
   return (
     <>

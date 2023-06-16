@@ -19,7 +19,7 @@ const coordinatesToPolygon = (arr, setLocation) => {
   return arr.map((item, idx) => {
     return (
       <Polygon
-        key={idx}
+        key={idx.toString()}
         interactive={true}
         pathOptions={{
           color: "#FFE600",
@@ -92,15 +92,13 @@ const SeodaemunMap = ({ setLocation }) => {
         {data &&
           circleCoordinates.map((item, idx) => {
             return (
-              <>
-                <PostNumberCircle
-                  bounds={item.bounds}
-                  postCount={item.count}
-                  name={item.name}
-                  data={data}
-                  key={idx}
-                />
-              </>
+              <PostNumberCircle
+                bounds={item.bounds}
+                postCount={item.count}
+                name={item.name}
+                data={data}
+                key={idx.toString()}
+              />
             );
           })}
       </MapContainer>
