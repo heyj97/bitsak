@@ -1,44 +1,35 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { API_BASE_URL } from "../constants/api";
 
-const usePostFetch = (param, postData, triggerFetch) => {
+const usePostFetch = () => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const url = `http://${API_BASE_URL}/api/${param}`;
 
-  useEffect(() => {
-    const abortController = new AbortController();
+  const abortController = new AbortController();
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          body: postData,
-          signal: abortController.signal,
-        });
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}, ${response.statusText}`);
-        }
-        const responseData = await response.json();
-        setData(responseData);
-        setIsLoading(false);
-      } catch (error) {
-        if (!abortController.signal.aborted) {
-          setError(error);
-          setIsLoading(false);
-        }
+  const fetchData = async (param, postData) => {
+    const url = `http://${API_BASE_URL}/api/${param}`;
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        body: postData,
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}, ${response.statusText}`);
       }
-    };
+      const responseData = await response.json();
+      setData(responseData);
+      setIsLoading(false);
+    } catch (error) {
+      if (!abortController.signal.aborted) {
+        setError(error);
+        setIsLoading(false);
+      }
+    }
+  };
 
-    fetchData();
-
-    return () => {
-      abortController.abort();
-    };
-  }, [url, postData, triggerFetch]); // triggerFetch를 의존성 배열에 추가했습니다.
-
-  return { data, isLoading, error };
+  return { data, isLoading, error, fetchData };
 };
 
 export default usePostFetch;

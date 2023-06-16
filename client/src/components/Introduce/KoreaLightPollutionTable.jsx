@@ -20,7 +20,7 @@ const KoreaLightPollutionTable = ({ resData }) => {
                   fontWeight: "200",
                   fontSize: "14px",
                 }}
-                key={idx}
+                key={idx.toString()}
               >
                 <td>{data.year}</td>
                 <td>{data.sum.toLocaleString()}</td>

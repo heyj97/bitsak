@@ -49,6 +49,8 @@ const SideMenuModify = ({ setIsPost, setIsEdit, setIsSelected, editData }) => {
     formData.append("password", password); // Add password to the form data
     formData.append("file_path", file);
     setPostData(formData);
+    window.location.reload();
+    return;
   };
   return (
     <>
