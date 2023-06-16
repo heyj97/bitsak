@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { API_BASE_URL } from "../../constants/api";
+import { API_BASE_URL, IMG_BASE_URL } from "../../constants/api";
 import styles from "./MapPage.module.css";
 
 const PasswordCheck = ({ selectedItemId }) => {

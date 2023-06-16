@@ -1,5 +1,5 @@
 import styles from "./MapPage.module.css";
-import { API_BASE_URL, IMG_BASE_URL } from "../../constants/api";
+import { IMG_BASE_URL } from "../../constants/api";
 const SideList = ({ setIsSelected, data, setSelectedId, setIsPost }) => {
   return (
     <>
