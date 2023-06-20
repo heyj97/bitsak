@@ -72,22 +72,21 @@ async function updatePhoto(req, res, next) {
   }
 }
 
-// 사진 삭제
-async function deletePhoto(req, res, next) {
-  try {
-    const galleryId = req.body.galleryId;
-    const password = req.body.password;
+    // 사진 삭제
+    async function deletePhoto(req, res, next) {
+        try {
 
-    //게시물 삭제
-    const galleryDelete = await galleryService.deletePhoto({
-      galleryId,
-      password,
-    });
-    return res.status(galleryDelete.status).send(galleryDelete);
-  } catch (error) {
-    next(error);
-  }
-}
+            const {galleryId, password} = req.body;
+
+            //게시물 삭제
+            const galleryDelete = await galleryService.deletePhoto({galleryId, password});
+            return res.status(galleryDelete.status).send(galleryDelete);
+        } 
+        catch (error) {
+            next(error);
+        }
+    }
+
 
 // 특정 location(동)의 사진 데이터 불러오기
 async function getPhotosByLocation(req, res, next) {
