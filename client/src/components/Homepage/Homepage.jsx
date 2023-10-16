@@ -3,29 +3,28 @@
 import styles from "./Homepage.module.css";
 import MenuItem from "./MenuItem";
 
-const HomePage = () => {
+const Homepage = () => {
   return (
     <div className={styles.homeContainer}>
-      <div className={styles.homeImgFrame}></div>
       <div className={styles.homepageFlexContainer}>
         <MenuItem
           title="빛공해 소개"
           url="introduce"
-          desc="빛공해에 대해서 알고 계시나요?"
+          desc="빛공해에 대해 알아봅시다."
         />
         <MenuItem
           title="빛공해 퀴즈"
           url="quiz"
-          desc="빛공해 관련된 퀴즈를 풀어봅시다."
+          desc="빛공해에 대해 얼마나 알고있나요?"
         />
         <MenuItem
           title="빛공해 갤러리"
-          url="gallery"
-          desc="빛공해를 사진을 통해 알아봅시다."
+          url="map"
+          desc="빛공해를 공유해봅시다"
         />
       </div>
     </div>
   );
 };
 
-export default HomePage;
+export default Homepage;

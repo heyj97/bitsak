@@ -1,46 +1,620 @@
-/*--------------------*/
-.Map {
-    width: 80%;
-    height: 30rem;
-    margin: 0 auto;
-    margin-top: 5rem;
+/* ------------------ 주현 --------------------- */
+
+.mapContainer {
+  margin-top: 20px;
+  width: 1000px;
+  height: 800px;
+  background-color: white;
+  position: relative;
+  z-index: 0;
 }
 
-/*--------------------*/
-.overlaybox {
-    position:relative;
-    width:360px;
-    height:350px;
-    background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/box_movie.png') no-repeat;
-    padding:15px 10px;
+.MapPageContainer {
+  width: 1430px;
+  margin: auto;
 }
-.overlaybox div, ul {
-    overflow:hidden;
-    margin:0; 
-    padding:0;
+
+/* ------------------ 주현 --------------------- */
+
+.sideMenuContainer {
+  position: absolute;
+  top: 70px;
+  right: 0px;
+  width: 460px;
+  height: 100%;
+  background-color: rgb(233, 233, 233);
+  z-index: 0;
 }
-.overlaybox li {
-    list-style: none;
+
+/* ------------------ 한빈 --------------------- */
+
+.sideMenuFeedContainer {
+  background-color: rgb(233, 233, 233);
+  height: 100%;
 }
-.overlaybox .boxtitle {
-    color:#fff;
-    font-size:16px;
-    font-weight:bold;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png') no-repeat right 120px center;
-    margin-bottom:8px;
+
+/* [SideMenu.jsx]*/
+
+/* 헤더 - 사이드메뉴 컨테이너 제목 ------------ */
+.Header {
+  text-align: center;
+  padding-left: 100px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #c3c3c3;
 }
-.overlaybox .first {position:relative;width:247px;height:136px;background: url('./imgDummy/img1.jpg') no-repeat;margin-bottom:8px;}
-.first .triangleText {position:absolute;width:48px;height:48px;top:0;left:0;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/triangle.png') no-repeat; padding:6px;font-size:18px;color:#fff;font-weight:bold;}
-.first .movietitleText {position:absolute;width:100%;bottom:0;background:rgba(0,0,0,0.4);padding:7px 15px;font-size:14px;color:#fff;font-weight:bold;}
-.overlaybox ul {width:247px;}
-.overlaybox li {position:relative;margin-bottom:2px;background:#2b2d36;padding:5px 10px;color:#aaabaf;line-height: 1;}
-.overlaybox li span {display:inline-block;}
-.overlaybox li .number {font-size:16px;font-weight:bold;}
-.overlaybox li .title {font-size:13px;}
-.overlaybox ul .arrowUp {position:absolute;margin-top:8px;right:25px;width:5px;height:3px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/updown.png') no-repeat;} 
-.overlaybox li .arrowUp {background-position:0 -40px;}
-.overlaybox li .arrowDown {background-position:0 -60px;}
-.overlaybox li .count {position:absolute;margin-top:5px;right:15px;font-size:10px;}
-.overlaybox li:hover {color:#fff;background:#d24545;}
-.overlaybox li:hover .arrowUp {background-position:0 0px;}
-.overlaybox li:hover .arrowDown {background-position:0 -20px;}   
+
+.Header button {
+  border: #c1c1c1 2px solid;
+  width: 70px;
+  height: 30px;
+  float: right;
+  margin-right: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.Header button:hover {
+  border: #000237 2px solid;
+}
+
+/* 컨텐츠 - 사이드메뉴 컨텐츠 랩 -------------- */
+.ContentView {
+  height: 90%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  z-index: 10;
+}
+
+.listItem {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+.pwcheck {
+  position: absolute;
+  top: -80px;
+  width: 100%;
+  background: grey;
+}
+
+.pwcheck input {
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  border: #ccc 1px solid;
+  border-radius: 20px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.pwcheck input:focus {
+  border: #000237 1px solid;
+}
+
+.ListSet {
+  /* 게시물 리스트 1SET */
+  padding: 1rem;
+  display: flex;
+  float: left;
+  width: 95%;
+  border-bottom: 1px solid #c3c3c3;
+}
+
+.ListImg {
+  width: 70%;
+  height: 8rem;
+  background-color: rgb(135, 135, 135);
+}
+
+.ListImg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ListContents {
+  margin-top: 10px;
+  float: left;
+  margin-left: 1rem;
+  align-items: center;
+  width: 100%;
+}
+
+.location,
+.takeDate,
+.userName,
+.description {
+  float: left;
+  width: 200px;
+  text-align: left;
+  margin: 0px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.location div,
+.takeDate div,
+.userName div,
+.description div {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+  align-items: left;
+  padding-left: 1rem;
+}
+
+.InfName {
+  display: inline;
+  float: left;
+  width: 3rem;
+}
+
+.FeedFooter button {
+  cursor: pointer;
+}
+
+.Footer,
+.FeedFooter {
+  width: 100%;
+  height: 5rem;
+  background-color: gray;
+  position: absolute;
+  bottom: 0;
+  align-items: center;
+  text-align: center;
+}
+
+.Footer div {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.Footer button {
+  background-color: gray;
+  bottom: 0;
+}
+
+/* [SideMenuFeed] */
+.FeedContentView {
+  height: 100%;
+}
+
+.FeedContentOverView button {
+  margin: 1rem;
+  position: relative;
+  z-index: 2;
+  top: 0;
+  color: white;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  font-size: large;
+}
+
+.FeedSet {
+  width: 100%;
+  height: 100%;
+  float: left;
+  position: absolute;
+  top: 0;
+}
+
+.FeedImgDiv {
+  width: 100%;
+  height: 20rem;
+  background-color: rgb(135, 135, 135);
+}
+
+.FeedImg {
+  position: relative;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.FeedContents {
+  width: 100%;
+  padding: 1rem;
+  float: left;
+  box-sizing: border-box;
+}
+
+.FeedLocation,
+.FeedTakeDate,
+.FeedUserName,
+.FeedDescription {
+  display: flex;
+}
+
+.FeedContents div {
+  margin-top: 1rem;
+}
+
+.FeedLocation .InfName,
+.FeedDescription .InfName {
+  width: 3rem;
+  padding-right: 1rem;
+  border-right: 1px solid #848484;
+}
+
+.InfName div {
+  float: left;
+}
+
+.FeedUserName {
+  align-items: center;
+  margin-top: 0;
+}
+
+.FeedUserName .figure {
+  display: flex;
+  width: max-content;
+  border: 2px solid #000237;
+  border-radius: 100px 100px 100px 100px;
+  margin-left: 0.5rem;
+}
+
+.figure .InfName {
+  text-align: center;
+  width: 4rem;
+  margin-right: 0;
+  color: #000237;
+}
+
+.figure div {
+  margin: 0.5rem;
+  margin-right: 1rem;
+  color: gray;
+}
+
+.FeedTakeDate {
+  width: 200px;
+  float: right;
+  margin-left: 3rem;
+  color: gray;
+}
+
+.FeedTakeDate div {
+  margin: 0.5rem;
+}
+
+.FeedTakeDate .InfName {
+  margin-left: 3rem;
+  width: 5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0;
+}
+
+.FeedLocation {
+  margin-left: 1rem;
+}
+
+.FeedDescription {
+  margin-left: 1rem;
+}
+
+.FeedLocation div,
+.FeedDescription div {
+  margin-left: 1rem;
+}
+
+.FeedFooter div {
+  height: 5rem;
+}
+
+.FeedFooter div button {
+  margin-top: 1.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.ModalContainer {
+  width: 400px;
+  height: 780px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  position: absolute;
+  top: 10px;
+  right: 110%;
+}
+
+.ModalContainerModi {
+  width: 400px;
+  height: 780px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  position: absolute;
+  top: -760px;
+  left: -100%;
+}
+
+.ModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.ModalHeder span div {
+  text-align: center;
+  margin: 0;
+}
+
+.ModalClose {
+  border: none;
+  position: relative;
+  left: 10px;
+  top: -10px;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.ModalUpload {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 2rem;
+  height: 2rem;
+  background-color: rgb(233, 233, 233);
+}
+
+.UserInfo {
+  margin-bottom: 10px;
+}
+
+.InfoSet {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.InfoSet label {
+  margin-right: 8px;
+}
+
+.ModalDate {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  float: left;
+}
+
+.ModalDate div {
+  margin-right: 8px;
+  float: left;
+}
+
+.ModalLocation {
+  margin-bottom: 10px;
+  float: left;
+}
+
+.ModalImgUpload button {
+  padding: 8px 16px;
+  background-color: darkgray;
+  width: 80%;
+  height: 200px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.ModalDescription,
+.ModalLocation {
+  margin: 0;
+  float: left;
+  display: flex;
+  width: 100%;
+}
+.ModalHeader span div {
+  position: absolute;
+  top: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.mapWriteContainer {
+  width: fit-content;
+  height: auto;
+  position: relative;
+}
+
+.mapWriteHeader {
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  border-bottom: #ccc 1px solid;
+}
+
+.mapWriteHeader button,
+.mapWriteHeader h3 {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+}
+
+.mapWriteHeader button {
+  width: 50px;
+  height: 30px;
+  border-radius: 20px;
+  float: left;
+  margin-left: 10px;
+  border: #ccc 2px solid;
+  color: #ccc;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.mapWriteHeader button:hover {
+  border: #000237 2px solid;
+  color: #000237;
+}
+
+.mapWriteHeader h3 {
+  margin-left: -50px;
+}
+
+.mapWriteBody {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: fit-content;
+  height: fit-content;
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 70px 130px 70px 130px;
+  gap: 10px;
+}
+
+.mapWriteBody p,
+.mapWriteBody input {
+  text-align: center;
+  width: 100%;
+  outline: none;
+}
+
+.mapWriteBodyInput {
+  width: 100%;
+  border-radius: 20px;
+  border: #ccc 1px solid;
+  transition: all 0.3s ease-in-out;
+  padding: 3px;
+}
+
+.mapWriteBodyInput:hover {
+  border: #000237 1px solid;
+}
+
+.dropMenu {
+  border-radius: 15px;
+  overflow: hidden;
+  position: absolute;
+  width: 100px;
+  text-align: center;
+  list-style: none;
+  background-color: rgb(233, 233, 233);
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.dropMenu li {
+  width: 100%;
+  cursor: pointer;
+  padding: 5px;
+  border-bottom: #ccc 1px solid;
+  box-sizing: border-box;
+}
+
+.dropMenu li:hover {
+  background-color: rgb(220, 220, 220);
+}
+
+.dropMenu li:last-child {
+  border-bottom: none;
+}
+
+.mapWriteDescription {
+  width: 100%;
+  height: 600px;
+  margin-left: 5px;
+  margin-top: 5px;
+  text-align: left;
+  resize: none;
+  border-radius: 10px;
+  border: #ccc 1px solid;
+  transition: all 0.3s ease-in-out;
+  padding: 10px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.mapWriteDescription:focus {
+  border: #000237 1px solid;
+}
+
+.fullGrid {
+  grid-column: 1/5;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 10px;
+  height: 40px;
+  border: #ccc 2px solid;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-left: 5px;
+}
+
+.submitBtn:hover {
+  background-color: #000237;
+  color: rgb(255, 230, 0);
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.modal {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modalContent {
+  display: block;
+  max-width: 1200px; /* 이 부분을 조정해주세요. */
+  max-height: 800px;
+  object-fit: contain;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}

@@ -1,21 +1,19 @@
-import db from '../config/dbConfig.js';
+import db from "../config/dbConfig.js";
 
-  // SQL query
-  // 서대문구 위치별 민원량 불러오기
-  // illuminance:조도, luminance:휘도
-  class sdmComplaintsModel {
-    static async getAll() {
-      return new Promise((resolve, reject) => {
-        db.query('SELECT minwon_id, latitude, longitude, illuminance, luminance FROM minwon', (err, res) => {
-          if (err) {
-            console.log('error', err);
-            reject(err);
-          } else {
-            resolve(res);
-          }
-        });
-      });
-      
-    }
+// SQL query
+// 서대문구 위치별 민원량 불러오기
+// illuminance:조도, luminance:휘도
+class sdmComplaintsModel {
+  static async getAll() {
+    const selectSdmComplaints =
+      "SELECT minwon_id, latitude, longitude, illuminance, luminance \
+             FROM minwon \
+             WHERE luminance >= 3";
+
+    const [rows] = await db.query(selectSdmComplaints);
+
+    return rows;
+  }
 }
+
 export { sdmComplaintsModel };

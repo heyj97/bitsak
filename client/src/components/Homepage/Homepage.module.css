@@ -2,14 +2,6 @@
   height: fit-content;
   background-color: black;
 }
-
-.homeImgFrame {
-  width: 100%;
-  height: 640px;
-  overflow: hidden;
-  background-color: grey;
-}
-
 .homepageImg {
   width: 100%;
   min-width: 1200px;
@@ -27,33 +19,45 @@
 .menuBox {
   color: white;
   flex-grow: 1;
-  height: 100%;
+  height: 100vh;
   text-align: center;
-  background: black;
+  background-size: cover;
   border: none;
   overflow: hidden;
-  position: relative;
+}
+
+.menuCover {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
   transition: background-color 0.2s ease-in-out;
   cursor: pointer;
 }
 
-.menuBox:first-child:hover {
-  background-color: #eb4034;
+.menuBox:first-child:hover > .menuCover {
+  background: rgba(56, 92, 199, 0.7);
+  backdrop-filter: blur(10px);
+}
+.menuBox:nth-child(2):hover > .menuCover {
+  background: rgba(199, 56, 63, 0.7);
+  backdrop-filter: blur(10px);
 }
 
-.menuBox:nth-child(2):hover {
-  background-color: #41b04a;
-}
-
-.menuBox:hover {
-  background-color: #4157b0;
+.menuBox:hover > .menuCover {
+  background: rgba(56, 199, 94, 0.7);
+  backdrop-filter: blur(10px);
 }
 
 .menuTitle {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 40px;
 }
 
 .menuDesc {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   font-size: 15px;
-  margin-top: 10px;
 }

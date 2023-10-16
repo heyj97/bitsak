@@ -1,0 +1,102 @@
+.Nav {
+  width: 100%;
+  height: 70px;
+  background-color: #000237;
+  color: #ffe600;
+}
+
+.Logo {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+}
+
+.Logo a {
+  text-decoration: none;
+  color: #ffe600;
+}
+
+.navRight {
+  width: fit-content;
+  height: 100%;
+  display: inline-block;
+  float: right;
+  margin-right: 20px;
+}
+
+.navRight li {
+  display: inline-block;
+  margin: 0 20px;
+  font-size: 20px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.navRight a {
+  text-decoration: none;
+  color: #ffe600;
+  transition: color 0.3s ease-in-out;
+}
+.navRight a:hover {
+  text-decoration: hover;
+  color: #6e6300;
+}
+
+.Footer {
+  margin-top: 100px;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 200px;
+  background-color: #070032;
+  color: #ffe600;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+.Footer h2 {
+  margin-left: 50px;
+}
+
+.FooterContent {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.FooterContent div {
+  width: 300px;
+  margin-right: 40px;
+}
+
+.FooterContent div:first-child {
+  display: flex;
+}
+
+.FooterContent ul {
+  margin-right: 30px;
+  list-style: none;
+}
+
+.FooterContent h3 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.FooterContent li {
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.FooterContent a {
+  color: #ffe600;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+.FooterContent a:hover {
+  color: #fff;
+  text-decoration: none;
+}

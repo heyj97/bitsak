@@ -1,24 +1,33 @@
-import useGetFetch from "../../hooks/useGetFetch";
-import { API_BASE_URL, API_PORT } from "../../constants/api";
-import WordCloud from "./WordCloud";
 import styles from "./Introduce.module.css";
-import Spinner from "../../utils/Spinner/Spinner";
+import btnStyles from "../Quiz/Quiz.module.css";
+import GlobalLightPollutionChart from "./GlobalLightPollutionChart";
+import YearlyComplaints from "./YearlyComplaints";
+import KoreaLightPollutionChart from "./KoreaLightPollutionChart";
+import ComplaintsMarkerMap from "./ComplaintsMarkerMap";
+import SeoulLightPollution from "./SeoulLightPollution";
+import { useNavigate } from "react-router-dom";
+import LPIntroduce from "./LPIntroduce";
 
 const Introduce = () => {
-  const url = `http://${API_BASE_URL}:${API_PORT}/complaints`;
-  const { data, isLoading, error } = useGetFetch(url);
-
-  if (error) {
-    console.log("에러발생:", error);
-  }
-
-  if (isLoading) {
-    return <Spinner />;
-  }
+  const navigate = useNavigate();
   return (
-    <div className={styles.wholeContainer}>
-      {Array.isArray(data) && data.length > 0 && <WordCloud resData={data} />}
-    </div>
+    <>
+      <div className={styles.wholeContainer}>
+        <LPIntroduce />
+        <GlobalLightPollutionChart />
+        <KoreaLightPollutionChart />
+        <SeoulLightPollution />
+        <ComplaintsMarkerMap />
+        <YearlyComplaints />
+        <div
+          className={btnStyles.linkBtnContainer}
+          style={{ marginTop: "100px", marginBottom: "100px" }}
+        >
+          <button onClick={() => navigate("/quiz")}>빛공해 퀴즈</button>
+          <button onClick={() => navigate("/map")}>빛공해 갤러리</button>
+        </div>
+      </div>
+    </>
   );
 };
 

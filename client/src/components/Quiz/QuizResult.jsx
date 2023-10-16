@@ -3,6 +3,7 @@ import score from "../../constants/score";
 import QuizPhoto from "./QuizPhoto";
 import styles from "./Quiz.module.css";
 import QuizSolution from "./QuizSolution";
+import { useMemo } from "react";
 
 const countToResult = (count) => {
   const countInt = parseInt(count);
@@ -15,7 +16,7 @@ const countToResult = (count) => {
 };
 
 const QuizResult = ({ questionData, correctCount, correctIdx }) => {
-  const data = countToResult(correctCount);
+  const data = useMemo(() => countToResult(correctCount), [correctCount]);
   const navigate = useNavigate();
 
   return (
@@ -27,7 +28,7 @@ const QuizResult = ({ questionData, correctCount, correctIdx }) => {
           <button onClick={() => navigate("/introduce")}>
             빛공해 더 알아보기
           </button>
-          <button onClick={() => navigate("/map")}>빛공해 지도 갤러리</button>
+          <button onClick={() => navigate("/map")}>빛공해 갤러리</button>
         </div>
       </div>
     </>

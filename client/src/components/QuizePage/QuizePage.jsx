@@ -4,11 +4,11 @@
 import styles from "../Layout/Header.module.css";
 
 const QuizePage = () => {
-    return (
-        <div className={styles.Home}>
-            <h1> 빛공해 퀴즈 페이지 (작업 중) </h1>
-        </div>
-    );
+  return (
+    <div className={styles.Home}>
+      <h1> 빛공해 퀴즈 페이지 (작업 중) </h1>
+    </div>
+  );
 };
 
 export default QuizePage;

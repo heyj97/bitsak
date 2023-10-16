@@ -2,8 +2,9 @@ import { useState } from "react";
 import useGetFetch from "../../hooks/useGetFetch";
 import AnswerForm from "./AnswerForm";
 import Question from "./Question";
-import { API_BASE_URL, API_PORT } from "../../constants/api";
 import styles from "./Quiz.module.css";
+import Error from "../common/Error/Error";
+import Spinner from "../common/Spinner/Spinner";
 
 const QuizForm = ({
   setQuestionData,
@@ -14,27 +15,34 @@ const QuizForm = ({
   correctIdx,
   setCorrectIdx,
 }) => {
-  const { data, isLoading, error } = useGetFetch(
-    `http://${API_BASE_URL}:${API_PORT}/quiz`
-  );
+  const { data, isLoading, error } = useGetFetch("quiz");
   const [quizNum, setQuizNum] = useState(0);
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>error...</div>;
-  if (quizNum === data.length) {
-    const newQArr = [...data];
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  if (error)
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  if (quizNum === data.data.length) {
+    const newQArr = [...data.data];
     setQuestionData(newQArr);
     setIsProgress(false);
     setIsEnd(true);
   }
-
   return (
     <div className={styles.quizContainer}>
-      {quizNum < data.length && (
+      {quizNum < data.data.length && (
         <div className={styles.quizTitleContainer}>
-          <Question quizNum={quizNum + 1} quiz={data[quizNum].question} />
+          <Question quizNum={quizNum + 1} quiz={data.data[quizNum].question} />
           <AnswerForm
-            answer={data[quizNum].answer}
-            answerIdx={data[quizNum].question_id}
+            answer={data.data[quizNum].answer}
+            answerIdx={data.data[quizNum].question_id}
             correctCount={correctCount}
             setCorrectCount={setCorrectCount}
             setCorrectIdx={setCorrectIdx}

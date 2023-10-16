@@ -8,11 +8,11 @@ const QuizSolution = ({ quizData, correctIdx }) => {
           return (
             <QuizSolutionItem
               correctIdx={correctIdx}
-              i={quiz.question_id}
-              q={quiz.question}
-              a={quiz.answer}
-              d={quiz.explanation}
-              key={idx}
+              id={quiz.question_id}
+              question={quiz.question}
+              answer={quiz.answer}
+              explanation={quiz.explanation}
+              key={idx.toString()}
             />
           );
         })}
@@ -20,23 +20,25 @@ const QuizSolution = ({ quizData, correctIdx }) => {
   );
 };
 
-const QuizSolutionItem = ({ correctIdx, i, q, a, d }) => {
-  const boolToOX = (bool) => {
-    if (bool) return "O";
-    if (!bool) return "X";
-  };
+const QuizSolutionItem = ({
+  correctIdx,
+  id,
+  question,
+  answer,
+  explanation,
+}) => {
   return (
     <li
       className={
-        correctIdx.includes(i)
+        correctIdx.includes(id)
           ? styles.quizSolutionUlTrue
           : styles.quizSolutionUlFalse
       }
     >
       <h3>
-        {boolToOX(a)}. {q}
+        {correctIdx.includes(id) ? "정답" : "오답"}) {question}
       </h3>
-      <p>{d}</p>
+      <p>{explanation}</p>
     </li>
   );
 };
