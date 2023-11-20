@@ -6,37 +6,37 @@ const useGetFetch = (param) => {
   const [error, setError] = useState(null);
   const url = `http://${API_BASE_URL}/api/${param}`;
 
-  useEffect(() => {
-    const abortController = new AbortController();
+  const abortController = new AbortController();
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url, {
-          method: "GET",
-          signal: abortController.signal,
-        });
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}, ${response.statusText}`);
-        }
-        const responseData = await response.json();
-        setData(responseData);
-        setIsLoading(false);
-      } catch (error) {
-        if (!abortController.signal.aborted) {
-          setError(error);
-          setIsLoading(false);
-        }
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        signal: abortController.signal,
+      });
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}, ${response.statusText}`);
       }
-    };
+      const responseData = await response.json();
+      setData(responseData);
+      setIsLoading(false);
+    } catch (error) {
+      if (!abortController.signal.aborted) {
+        setError(error);
+        setIsLoading(false);
+      }
+    }
+  };
 
-    fetchData();
-
+  useEffect(() => {
+    shouldFetch && fetchData();
     return () => {
       abortController.abort();
     };
-  }, [url]);
+  }, [shouldFetch, fetchData]);
 
-  return { data, isLoading, error };
+  const mutate = () => fetchData();
+  return { data, isLoading, error, mutate };
 };
 
 export default useGetFetch;

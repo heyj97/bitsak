@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import styles from "./Introduce.module.css";
 import shuffleArrByValue from "../../utils/shuffleArrByValue";
 
 function randomColor() {
